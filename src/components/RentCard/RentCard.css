@@ -1,4 +1,4 @@
-.RentCard {
-    height: 150px;
+.RentCard img {
+    height: 250px;
     object-fit: cover;
 }
