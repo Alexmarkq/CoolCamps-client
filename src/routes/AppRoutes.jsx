@@ -1,21 +1,24 @@
 import { Routes, Route } from "react-router-dom"
+import RentDetailsPage from "../pages/RentDetailsPage/RentDetailsPage"
 import RentListPage from "../pages/RentListPage/RentListPage"
+import HomePage from "../pages/HomePage/HomePage"
+import NewRentPage from "../pages/NewRentPage/NewRentPage"
+
 
 
 const AppRoutes = () => {
     return (
         <Routes>
-            <Route path="/" element={<p>Home</p>} />
-            <Route path="/usuarios/crear" element={<p>Registro</p>} />
-            <Route path="/usuarios/iniciar-sesion" element={<p>Iniciar sesión</p>} />
-            <Route path="/usuarios/cerrar-sesion" element={<p>Cerrar Sesión</p>} />
-            <Route path="/usuarios/crear" element={<p>Registro</p>} />
-            <Route path="/usuarios/perfil" element={<p> Mi perfil</p>} />
-            <Route path="/usuarios/perfil/editar" element={<p> Editar perfil</p>} />
-            <Route path="/usuarios/eliminar" element={<p> Eliminar</p>} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/alquiler/lista" element={<RentListPage />} />
+            <Route path="/detalles/:rent_id" element={<RentDetailsPage />} />
+            <Route path="/crear" element={<NewRentPage />} />
+            <Route path="/iniciar-sesion" element={<p>Iniciar sesión</p>} />
+            <Route path="/cerrar-sesion" element={<p>Cerrar Sesión</p>} />
+            <Route path="/registro" element={<p>Registro</p>} />
+            <Route path="/perfil" element={<p> Mi perfil</p>} />
+            <Route path="/perfil/editar" element={<p> Editar perfil</p>} />
             <Route path="/crear" element={<p>Crear alquiler</p>} />
-            <Route path="/detalles/:rent_id" element={<p>Detalles de anuncio</p>} />
             <Route path="/comentario/crear" element={<p> Crear comentario</p>} />
             <Route path="/*" element={<h1>404</h1>} />
         </Routes>

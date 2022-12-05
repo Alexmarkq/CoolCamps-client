@@ -19,23 +19,23 @@ const Navigation = () => {
                             </Nav.Link>
                         </Link>
                         <NavDropdown title="Perfil" id="basic-nav-dropdown">
-                            <Link to="/usuarios/perfil">
+                            <Link to="/perfil">
                                 <NavDropdown.Item as="div">
                                     Mi Perfil
                                 </NavDropdown.Item>
                             </Link>
-                            <Link to="/usuarios/iniciar-sesion">
+                            <Link to="/iniciar-sesion">
                                 <NavDropdown.Item as="div">
                                     Iniciar Sesión
                                 </NavDropdown.Item>
                             </Link>
-                            <Link to="/usuarios/cerrar-sesion">
+                            <Link to="/cerrar-sesion">
                                 <NavDropdown.Item as="div">
                                     Cerrar  Sesión
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
                             </Link>
-                            <Link to="/usuarios/crear">
+                            <Link to="/crear">
                                 <NavDropdown.Item as="div">
                                     Registro
                                 </NavDropdown.Item>

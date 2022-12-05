@@ -14,7 +14,7 @@ class RentService {
     }
 
     getOneRent(rent_id) {
-        return this.api.get(`/getOneRent/${rent_id}`)
+        return this.api.get(`/rent/${rent_id}`)
     }
 
     saveRent(rentData) {
