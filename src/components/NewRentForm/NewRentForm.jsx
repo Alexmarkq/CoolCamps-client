@@ -1,10 +1,10 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import rentService from "../../services/Rent.service"
+import UploadServices from "../../services/Upload.service"
 
 
-
-const NewRentForm = () => {
+const NewRentForm = ({ fireFinalActions }) => {
 
     const [rentData, setRentData] = useState({
         title: '',
@@ -13,9 +13,29 @@ const NewRentForm = () => {
         imageUrl: ''
     })
 
+    const [loadingImage, setLoadingImage] = useState(false)
+
     const handleInputChange = e => {
         const { name, value } = e.target
         setRentData({ ...rentData, [name]: value })
+    }
+
+    const handleFileUpload = e => {
+
+        setLoadingImage(true)
+
+        const formData = new FormData()
+
+        formData.append('imageData', e.target.files[0])
+
+        UploadServices
+            .uploadimage(formData)
+            .then(res => {
+                setRentData({ ...rentData, imageUrl: res.data.cloudinary_url })
+                setLoadingImage(false)
+            })
+            .catch(err => console.log(err))
+
     }
 
     const handleFormSubmit = e => {
@@ -24,7 +44,7 @@ const NewRentForm = () => {
         rentService
             .saveRent(rentData)
             .then(() => {
-                console.log('Done!!! Bitches')
+                fireFinalActions()
             })
             .catch(err => console.error(err))
 
@@ -52,12 +72,12 @@ const NewRentForm = () => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="image">
-                <Form.Label>Imagen (URL)</Form.Label>
-                <Form.Control type="url" name="imageUrl" value={imageUrl} onChange={handleInputChange} />
+                <Form.Label>Imagen</Form.Label>
+                <Form.Control type="file" onChange={handleFileUpload} />
             </Form.Group>
 
             <div className="d-grid">
-                <Button variant="outline-secondary" type="submit">Crear montaña rusa</Button>
+                <Button variant="outline-secondary" type="submit">Crear anuncio</Button>
             </div>
         </Form>
     )

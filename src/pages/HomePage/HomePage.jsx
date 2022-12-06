@@ -14,8 +14,8 @@ const HomePage = () => {
 
                     <h1>🚐 Cool Camps</h1>
                     <hr />
-                    <p>Renta tu proxima experiensia!</p>
-                    <Link to="/alquiler/lista">
+                    <p>Lo tienes tio?</p>
+                    <Link to="/lista">
                         <Button variant="outline-secondary">Ir a la galería</Button>
                     </Link>
                     <hr />

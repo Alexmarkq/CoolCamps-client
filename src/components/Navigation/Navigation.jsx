@@ -1,8 +1,32 @@
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { useState, useEffect, useContext } from 'react';
+import { Container, Nav, Navbar, NavDropdown, Button, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import rentService from '../../services/Rent.service';
+import NewRentForm from '../NewRentForm/NewRentForm'
+
+import { RentContext } from '../../contexts/rent.context'
+
+
 
 
 const Navigation = () => {
+
+    const { loadRents } = useContext(RentContext)
+
+    const [showModal, setShowModal] = useState(false)
+
+    const openModal = () => setShowModal(true)
+    const closeModal = () => setShowModal(false)
+
+    const fireFinalActions = () => {
+        closeModal()
+        loadRents()
+    }
+
+    useEffect(() => {
+        loadRents()
+    }, [])
+
 
     return (
         <Navbar bg="light" expand="lg">
@@ -12,12 +36,13 @@ const Navigation = () => {
                 </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Link to="/alquiler/lista">
+                    <Nav className="justify-content-end flex-grow-1 pe-3">
+                        <Link to="/lista">
                             <Nav.Link as='div'>
                                 Alquilar
                             </Nav.Link>
                         </Link>
+
                         <NavDropdown title="Perfil" id="basic-nav-dropdown">
                             <Link to="/perfil">
                                 <NavDropdown.Item as="div">
@@ -41,8 +66,21 @@ const Navigation = () => {
                                 </NavDropdown.Item>
                             </Link>
                         </NavDropdown>
+
+                        <Button onClick={openModal} variant="outline-secondary" size="sm">Anunciar mi caravana</Button>
+
+                        <Modal show={showModal} onHide={closeModal}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Alquila tu caravana</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <NewRentForm fireFinalActions={fireFinalActions} />
+                            </Modal.Body>
+                        </Modal>
+
                     </Nav>
                 </Navbar.Collapse>
+
             </Container>
         </Navbar >
     )

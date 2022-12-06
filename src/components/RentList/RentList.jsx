@@ -1,4 +1,3 @@
-
 import RentCard from "../RentCard/RentCard"
 import { Row, Col } from 'react-bootstrap'
 

@@ -3,7 +3,6 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom';
 
 
-
 function RentCard({ title, description, imageUrl, _id }) {
     return (
         <Link to={`/detalles/${_id}`}>
