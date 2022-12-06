@@ -1,12 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { Container, Nav, Navbar, NavDropdown, Button, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import rentService from '../../services/Rent.service';
 import NewRentForm from '../NewRentForm/NewRentForm'
 
 import { RentContext } from '../../contexts/rent.context'
-
-
 
 
 const Navigation = () => {
@@ -60,7 +57,7 @@ const Navigation = () => {
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
                             </Link>
-                            <Link to="/crear">
+                            <Link to="/registro">
                                 <NavDropdown.Item as="div">
                                     Registro
                                 </NavDropdown.Item>

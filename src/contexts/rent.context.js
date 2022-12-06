@@ -15,7 +15,6 @@ function RentProviderWrapper(props) {
             .catch(err => console.log(err))
     }
 
-
     return (
         <RentContext.Provider value={{ rents, setRents, loadRents }}>
             {props.children}
