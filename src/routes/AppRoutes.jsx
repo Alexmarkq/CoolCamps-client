@@ -5,7 +5,8 @@ import HomePage from "../pages/HomePage/HomePage"
 import NewRentPage from "../pages/NewRentPage/NewRentPage"
 import SignupPage from "../pages/SignupPage/SignupPage"
 import LoginPage from "../pages/LoginPage/LoginPage"
-
+import ProfilePage from "../pages/ProfilePage/ProfilePage"
+import PrivateRoute from "./PrivateRoute"
 
 const AppRoutes = () => {
     return (
@@ -17,9 +18,12 @@ const AppRoutes = () => {
             <Route path="/iniciar-sesion" element={<LoginPage />} />
             <Route path="/cerrar-sesion" element={<p>Cerrar Sesión</p>} />
             <Route path="/registro" element={<SignupPage />} />
-            <Route path="/perfil" element={<p> Mi perfil</p>} />
-            <Route path="/perfil/editar" element={<p> Editar perfil</p>} />
-            {/* <Route path="/crear" element={<p>Crear alquiler</p>} /> */}
+
+            <Route element={<PrivateRoute />}>
+                <Route path="/perfil" element={<ProfilePage />} />
+                <Route path="/perfil/editar" element={<p> Editar perfil</p>} />
+            </Route>
+
             <Route path="/comentario/crear" element={<p> Crear comentario</p>} />
             <Route path="/*" element={<h1>404</h1>} />
         </Routes>

@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import rentService from "../../services/Rent.service"
 import UploadServices from "../../services/Upload.service"
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
 const NewRentForm = ({ fireFinalActions }) => {
@@ -14,6 +15,8 @@ const NewRentForm = ({ fireFinalActions }) => {
     })
 
     const [loadingImage, setLoadingImage] = useState(false)
+    const [errors, setErrors] = useState([])
+
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -25,7 +28,6 @@ const NewRentForm = ({ fireFinalActions }) => {
         setLoadingImage(true)
 
         const formData = new FormData()
-
         formData.append('imageData', e.target.files[0])
 
         UploadServices
@@ -38,18 +40,16 @@ const NewRentForm = ({ fireFinalActions }) => {
 
     }
 
-    const handleFormSubmit = e => {
-        e.preventDefault()
 
+    const handleFormSubmit = e => {
+
+        e.preventDefault()
         rentService
             .saveRent(rentData)
-            .then(() => {
-                fireFinalActions()
-            })
-            .catch(err => console.error(err))
+            .then(() => { fireFinalActions() })
+            .catch(err => setErrors(err.response.data.errorMessages))
 
     }
-
 
     const { title, description, price, imageUrl } = rentData
 
@@ -75,6 +75,8 @@ const NewRentForm = ({ fireFinalActions }) => {
                 <Form.Label>Imagen</Form.Label>
                 <Form.Control type="file" onChange={handleFileUpload} />
             </Form.Group>
+
+            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
                 <Button variant="outline-secondary" type="submit">Crear anuncio</Button>

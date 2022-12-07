@@ -5,7 +5,7 @@ import { AuthContext } from "../../contexts/auth.context"
 import authService from "../../services/Auth.service"
 
 
-const LoginForm = () => {
+const LoginForm = ({ fireFinalActions }) => {
 
     const [signupData, setSignupData] = useState({
         email: '',
@@ -32,7 +32,8 @@ const LoginForm = () => {
                 const tokenFromServer = data.authToken
                 storeToken(tokenFromServer)
                 authenticateUser()
-                navigate('/lista')
+                navigate('/')
+                { fireFinalActions() }
             })
             .catch(err => console.log(err))
     }
