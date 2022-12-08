@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
+import { AuthContext } from './../../contexts/auth.context'
+import { useContext } from 'react'
 import rentService from "./../../services/Rent.service"
 
 
-const RentDetailsPage = () => {
+const RentDetailsPage = ({ }) => {
+
+    const { user } = useContext(AuthContext)
 
     const [rent, setRent] = useState({})
 
@@ -16,11 +20,13 @@ const RentDetailsPage = () => {
             .getOneRent(rent_id)
             .then(({ data }) => setRent(data))
             .catch(err => console.error(err))
+
     }, [])
 
-    const { title, description, price, imageUrl } = rent
+    const { title, description, price, imageUrl, owner } = rent
 
     return (
+
         <Container>
             {
                 !rent
@@ -35,6 +41,18 @@ const RentDetailsPage = () => {
                             <Col md={{ span: 6, offset: 1 }}>
                                 <h3>Especificaciones</h3>
                                 <p>{description}</p>
+
+                                {
+                                    owner || owner != user?._id
+                                        ?
+                                        <>
+                                            {owner.username}
+                                        </>
+                                        :
+                                        <h1>Mi caravana</h1>
+                                }
+
+
                                 <h4> {price} € / Día</h4>
                             </Col>
 

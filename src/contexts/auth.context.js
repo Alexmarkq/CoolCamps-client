@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState } from "react";
-import authService from "../services/Auth.service";
+import { createContext, useEffect, useState } from "react"
+import authService from "../services/Auth.service"
 
 const AuthContext = createContext()
 
@@ -16,16 +16,19 @@ function AuthProviderWrapper(props) {
 
         const token = localStorage.getItem("authToken")
 
-        authService
-            .verify(token)
-            .then(({ data }) => {
-                setUser(data)
-                setIsLoading(false)
-            })
-            .catch(err => {
-                setUser(null)
-                setIsLoading(false)
-            })
+        if (token) {
+
+            authService
+                .verify(token)
+                .then(({ data }) => {
+                    setUser(data)
+                    setIsLoading(false)
+                })
+                .catch(err => {
+                    setUser(null)
+                    setIsLoading(false)
+                })
+        }
     }
     const logoutUser = () => {
         setUser(null)

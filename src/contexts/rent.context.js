@@ -4,9 +4,10 @@ import rentService from "../services/Rent.service"
 
 const RentContext = createContext()
 
+
 function RentProviderWrapper(props) {
 
-    const [rents, setRents] = useState()
+    const [rents, setRents] = useState([])
 
     const loadRents = () => {
         rentService

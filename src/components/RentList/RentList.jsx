@@ -3,6 +3,8 @@ import { Row, Col } from 'react-bootstrap'
 
 
 const RentList = ({ rents }) => {
+
+
     return (
         <Row>
             {rents.map(elm => {

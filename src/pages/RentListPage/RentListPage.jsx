@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react"
 import RentList from "../../components/RentList/RentList"
 import rentService from "../../services/Rent.service"
-import { Container, Button, Modal } from 'react-bootstrap'
+import { Container, Button } from 'react-bootstrap'
 import { Link } from "react-router-dom"
 import { RentContext } from "../../contexts/rent.context"
 

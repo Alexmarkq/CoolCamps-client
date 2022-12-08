@@ -21,13 +21,12 @@ function RentCard({ title, description, imageUrl, _id, owner }) {
                             !owner || owner != user?._id
                                 ?
                                 <>
-                                    <p>{owner.username}</p>
+                                    {owner.username}
 
                                 </>
                                 :
                                 <h1>es mia</h1>
                         }
-
 
                     </Card.Text>
 

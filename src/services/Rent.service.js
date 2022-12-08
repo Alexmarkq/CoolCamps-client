@@ -30,6 +30,10 @@ class RentService {
     saveRent(rentData) {
         return this.api.post('/saveRent', rentData)
     }
+
+    getOwnProducts() {
+        return this.api.get('/getOwnRents')
+    }
 }
 
 const rentService = new RentService()
