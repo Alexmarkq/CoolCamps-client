@@ -3,6 +3,7 @@ import { Container, Button } from 'react-bootstrap'
 import { Link } from "react-router-dom"
 import { useContext, useEffect } from "react"
 import { RentContext } from "../../contexts/rent.context"
+import Loader from "../../components/Loader/Loader"
 
 
 const RentListPage = () => {
@@ -14,11 +15,12 @@ const RentListPage = () => {
     }, [])
 
     return (
+
         <>
             <Container>
                 <h2 className="mt-4">Lista de alquileres</h2>
                 <hr />
-                <RentList rents={rents} />
+                {!rents ? <Loader /> : <RentList rents={rents} />}
                 <hr />
                 <Link to="/">
                     <Button variant="outline-secondary">Volver al inicio</Button>

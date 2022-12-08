@@ -6,6 +6,7 @@ import { useContext } from 'react'
 import rentService from "./../../services/Rent.service"
 
 
+
 const RentDetailsPage = () => {
 
     const { user } = useContext(AuthContext)

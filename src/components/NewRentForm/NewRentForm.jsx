@@ -15,6 +15,7 @@ const NewRentForm = ({ fireFinalActions }) => {
     })
 
     const [loadingImage, setLoadingImage] = useState(false)
+
     const [errors, setErrors] = useState([])
 
 

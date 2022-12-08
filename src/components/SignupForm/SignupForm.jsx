@@ -3,9 +3,12 @@ import { Form, Button } from "react-bootstrap"
 import { useNavigate } from 'react-router-dom'
 import authService from "../../services/Auth.service"
 import UploadServices from "../../services/Upload.service"
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
 const SignupForm = ({ fireFinalActions }) => {
+
+    const [errors, setErrors] = useState([])
 
     const [signupData, setSignupData] = useState({
         username: '',
@@ -45,7 +48,7 @@ const SignupForm = ({ fireFinalActions }) => {
             .then(() => {
                 navigate('/iniciar-sesion')
             })
-            .catch(err => console.log(err))
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
     const { username, password, email, profileImg } = signupData
@@ -77,6 +80,7 @@ const SignupForm = ({ fireFinalActions }) => {
                 <Form.Control type="file" onChange={handleFileUpload} />
             </Form.Group>
 
+            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
                 <Button variant="dark" type="submit">Registrarme</Button>

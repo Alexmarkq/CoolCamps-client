@@ -7,7 +7,8 @@ const RentContext = createContext()
 
 function RentProviderWrapper(props) {
 
-    const [rents, setRents] = useState([])
+    //useState([])
+    const [rents, setRents] = useState()
     const [userRents, setUserRents] = useState([])
 
     const loadRents = () => {
