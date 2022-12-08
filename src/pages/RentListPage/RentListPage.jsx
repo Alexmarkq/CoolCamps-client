@@ -1,14 +1,13 @@
-import { useState, useEffect, useContext } from "react"
 import RentList from "../../components/RentList/RentList"
-import rentService from "../../services/Rent.service"
 import { Container, Button } from 'react-bootstrap'
 import { Link } from "react-router-dom"
+import { useContext, useEffect } from "react"
 import { RentContext } from "../../contexts/rent.context"
 
 
 const RentListPage = () => {
 
-    const { rents, loadRents } = useContext(RentContext)
+    const { loadRents, rents } = useContext(RentContext)
 
     useEffect(() => {
         loadRents()
@@ -19,7 +18,7 @@ const RentListPage = () => {
             <Container>
                 <h2 className="mt-4">Lista de alquileres</h2>
                 <hr />
-                {!rents ? <h1>Cargando</h1> : <RentList rents={rents} />}
+                <RentList rents={rents} />
                 <hr />
                 <Link to="/">
                     <Button variant="outline-secondary">Volver al inicio</Button>

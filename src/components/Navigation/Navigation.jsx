@@ -14,17 +14,14 @@ const Navigation = () => {
 
     const { user, logoutUser } = useContext(AuthContext)
 
-    const [showModal, setShowModal] = useState(false)
-    const [showLoginModal, setShowLoginModal] = useState(false)
+    const [modal, setModal] = useState({
+        visible: false,
+        content: ''
+    })
 
-    const openLoginModal = () => setShowLoginModal(true)
-    const closeLoginModal = () => setShowLoginModal(false)
-
-    const openModal = () => setShowModal(true)
-    const closeModal = () => setShowModal(false)
+    const closeModal = () => setModal({ visible: false })
 
     const fireFinalActions = () => {
-        closeLoginModal()
         closeModal()
         loadRents()
     }
@@ -55,7 +52,7 @@ const Navigation = () => {
                                 <>
 
 
-                                    <Link onClick={openLoginModal}>
+                                    <Link onClick={() => setModal({ visible: true, content: 'login' })}>
                                         <NavDropdown.Item as="div">
                                             Iniciar Sesión
                                         </NavDropdown.Item>
@@ -84,12 +81,12 @@ const Navigation = () => {
                         {user ?
 
                             <>
-                                <Button onClick={openModal} variant="outline-secondary" size="sm">Anunciar mi caravana</Button>
+                                <Button onClick={() => setModal({ visible: true, content: 'rent' })} variant="outline-secondary" size="sm">Anunciar mi caravana</Button>
 
                             </>
                             :
                             <>
-                                <Link onClick={openLoginModal}>
+                                <Link onClick={() => setModal({ visible: true, content: 'login' })}>
                                     <Button variant="outline-secondary" size="sm">Anunciar mi caravana</Button>
                                 </Link>
                             </>
@@ -99,23 +96,16 @@ const Navigation = () => {
 
             </Container>
 
-            <Modal show={showLoginModal} onHide={closeLoginModal}>
+            <Modal show={modal.visible} onHide={closeModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Accede</Modal.Title>
+                    <Modal.Title>{modal.content === 'login' ? 'Accede' : 'Alquila'}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <LoginForm fireFinalActions={fireFinalActions} />
+                    {modal.content === 'login' && <LoginForm fireFinalActions={fireFinalActions} />}
+                    {modal.content === 'rent' && <NewRentForm fireFinalActions={fireFinalActions} />}
                 </Modal.Body>
             </Modal>
 
-            <Modal show={showModal} onHide={closeModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Alquila tu caravana</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <NewRentForm fireFinalActions={fireFinalActions} />
-                </Modal.Body>
-            </Modal>
 
         </Navbar >
     )

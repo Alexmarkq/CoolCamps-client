@@ -6,7 +6,7 @@ import { useContext } from 'react'
 import rentService from "./../../services/Rent.service"
 
 
-const RentDetailsPage = ({ }) => {
+const RentDetailsPage = () => {
 
     const { user } = useContext(AuthContext)
 
@@ -15,13 +15,18 @@ const RentDetailsPage = ({ }) => {
     const { rent_id } = useParams()
 
 
-    useEffect(() => {
+    const oneRent = () => {
+
         rentService
             .getOneRent(rent_id)
             .then(({ data }) => setRent(data))
             .catch(err => console.error(err))
+    }
 
+    useEffect(() => {
+        oneRent()
     }, [])
+
 
     const { title, description, price, imageUrl, owner } = rent
 
@@ -46,12 +51,11 @@ const RentDetailsPage = ({ }) => {
                                     owner || owner != user?._id
                                         ?
                                         <>
-                                            {owner.username}
+                                            {owner?.username}
                                         </>
                                         :
                                         <h1>Mi caravana</h1>
                                 }
-
 
                                 <h4> {price} € / Día</h4>
                             </Col>

@@ -33,7 +33,7 @@ const LoginForm = ({ fireFinalActions }) => {
                 storeToken(tokenFromServer)
                 authenticateUser()
                 navigate('/')
-                { fireFinalActions() }
+                fireFinalActions()
             })
             .catch(err => console.log(err))
     }

@@ -8,6 +8,7 @@ const RentContext = createContext()
 function RentProviderWrapper(props) {
 
     const [rents, setRents] = useState([])
+    const [userRents, setUserRents] = useState([])
 
     const loadRents = () => {
         rentService
@@ -16,8 +17,19 @@ function RentProviderWrapper(props) {
             .catch(err => console.log(err))
     }
 
+    const loadUserRents = () => {
+        rentService
+            .getOwnProducts()
+            .then(({ data }) => {
+                setUserRents(data)
+            })
+            .catch(err => console.log(err))
+
+
+    }
+
     return (
-        <RentContext.Provider value={{ rents, setRents, loadRents }}>
+        <RentContext.Provider value={{ rents, userRents, loadRents, loadUserRents }}>
             {props.children}
         </RentContext.Provider >
     )

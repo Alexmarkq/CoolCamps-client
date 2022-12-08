@@ -4,24 +4,17 @@ import { Card, ListGroup, Container, Button } from 'react-bootstrap'
 import rentService from '../../services/Rent.service'
 import { Link } from 'react-router-dom'
 import RentList from '../../components/RentList/RentList'
+import { RentContext } from '../../contexts/rent.context'
 
 
 const ProfilePage = () => {
 
-    const [rents, setRents] = useState(null)
-
     const { user } = useContext(AuthContext)
 
-
-    const loadProducts = () => {
-        rentService
-            .getOwnProducts()
-            .then(({ data }) => { setRents(data) })
-            .catch(err => console.log(err))
-    }
+    const { loadUserRents, userRents } = useContext(RentContext)
 
     useEffect(() => {
-        loadProducts()
+        loadUserRents()
     }, [])
 
     const { username, email, profileImg, owner } = user
@@ -44,7 +37,7 @@ const ProfilePage = () => {
                 </Card>
                 <h1 className="mt-4">Mis alquileres</h1>
                 <hr />
-                {!rents ? <h2>Cargando</h2> : <RentList rents={rents} />}
+                <RentList rents={userRents} />
                 <hr />
                 <Link to="/">
                     <Button variant="outline-secondary">Volver al inicio</Button>
