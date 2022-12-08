@@ -1,9 +1,14 @@
 import './RentCard.css'
 import Card from 'react-bootstrap/Card'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import { AuthContext } from './../../contexts/auth.context'
+import { useContext } from 'react'
 
 
-function RentCard({ title, description, imageUrl, _id }) {
+function RentCard({ title, description, imageUrl, _id, owner }) {
+
+    const { user } = useContext(AuthContext)
+
     return (
         <Link to={`/detalles/${_id}`}>
             <Card className='mb-3 mt-3 RentCard' >
@@ -12,6 +17,18 @@ function RentCard({ title, description, imageUrl, _id }) {
                     <Card.Title >{title}</Card.Title>
                     <Card.Text >
                         {description}
+                        {
+                            !owner || owner != user?._id
+                                ?
+                                <>
+                                    <p>{owner.username}</p>
+
+                                </>
+                                :
+                                <h1>es mia</h1>
+                        }
+
+
                     </Card.Text>
 
                 </Card.Body>
