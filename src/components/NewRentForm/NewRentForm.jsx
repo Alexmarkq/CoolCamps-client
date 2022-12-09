@@ -80,7 +80,7 @@ const NewRentForm = ({ fireFinalActions }) => {
             {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
-                <Button variant="outline-secondary" type="submit">Crear anuncio</Button>
+                <Button variant="outline-secondary" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear anuncio'}</Button>
             </div>
         </Form>
     )
