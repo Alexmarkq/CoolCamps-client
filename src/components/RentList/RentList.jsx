@@ -1,14 +1,10 @@
 import RentCard from "../RentCard/RentCard"
 import { Row, Col } from 'react-bootstrap'
-import Maps from "../Maps/Maps"
-
-
 
 
 const RentList = ({ rents }) => {
 
     return (
-
 
         <Row>
             {rents.map(elm => {
@@ -19,8 +15,6 @@ const RentList = ({ rents }) => {
                 )
             })}
         </Row>
-
-
 
     )
 }

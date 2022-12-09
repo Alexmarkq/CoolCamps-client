@@ -7,8 +7,7 @@ const containerStyle = {
     height: '400px'
 };
 
-
-function Maps({ lat, lng }) {
+const Maps = ({ lat, lng }) => {
 
 
     const center = {
@@ -34,7 +33,7 @@ function Maps({ lat, lng }) {
                         lng
 
                     }} />
-                <></>
+
             </GoogleMap>
         </LoadScript>
     )
