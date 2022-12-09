@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom"
 import { AuthContext } from './../../contexts/auth.context'
 import { useContext } from 'react'
 import rentService from "./../../services/Rent.service"
+import Maps from '../../components/Maps/Maps'
+import Loader from "../../components/Loader/Loader"
 
 
 
@@ -29,25 +31,30 @@ const RentDetailsPage = () => {
     }, [])
 
 
-    const { title, description, price, imageUrl, owner } = rent
+    const { title, description, price, imageUrl, location, owner } = rent
+
 
     return (
 
         <Container>
             {
-                !rent
+                !title
                     ?
-                    <h1>CARGANDO</h1>
+                    <Loader />
                     :
                     <>
-                        <h1 className="mb-4 mt-4">{title}</h1>
+                        <Row>
+                            <Col md={{ span: 8, offset: 1 }}>
+                                <h1 className="mb-4 mt-4">{title}</h1>
+                            </Col>
+                        </Row>
                         <hr />
                         <Row>
 
-                            <Col md={{ span: 6, offset: 1 }}>
+                            <Col md={{ span: 4, offset: 1 }} >
+
                                 <h3>Especificaciones</h3>
                                 <p>{description}</p>
-
                                 {
                                     owner || owner != user?._id
                                         ?
@@ -57,7 +64,6 @@ const RentDetailsPage = () => {
                                         :
                                         <h1>Mi caravana</h1>
                                 }
-
                                 <h4> {price} € / Día</h4>
                             </Col>
 
@@ -65,12 +71,21 @@ const RentDetailsPage = () => {
                                 <img src={imageUrl} style={{ width: '100%' }} />
                             </Col>
 
+                            <Col className="Maps" md={{ span: 3 }}>
+                                <p> <Maps lat={location.coordinates[0]} lng={location.coordinates[1]} /></p>
+                            </Col>
+
                         </Row>
                         <hr />
                         <Link to="/lista">
                             <Button as="div" variant="outline-secondary">Volver</Button>
                         </Link>
+
+
+
                     </>
+
+
             }
 
         </Container >

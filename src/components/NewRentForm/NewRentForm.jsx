@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Form, Button } from "react-bootstrap"
+import { Form, Button, Container, Row, Col } from "react-bootstrap"
 import rentService from "../../services/Rent.service"
 import UploadServices from "../../services/Upload.service"
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
@@ -11,8 +11,12 @@ const NewRentForm = ({ fireFinalActions }) => {
         title: '',
         description: '',
         price: 0,
-        imageUrl: ''
-    })
+        imageUrl: '',
+        lat: 0,
+        lng: 0
+
+    }
+    )
 
     const [loadingImage, setLoadingImage] = useState(false)
 
@@ -52,37 +56,47 @@ const NewRentForm = ({ fireFinalActions }) => {
 
     }
 
-    const { title, description, price, imageUrl } = rentData
+    const { title, description, price, lat, lng } = rentData
 
     return (
-        <Form onSubmit={handleFormSubmit}>
-            <Form.Group className="mb-3" controlId="title">
-                <Form.Label>Título</Form.Label>
-                <Form.Control type="text" name="title" value={title} onChange={handleInputChange} />
-            </Form.Group>
+        <Container>
+            < Form onSubmit={handleFormSubmit} >
+                <Form.Group className="mb-3" controlId="title">
+                    <Form.Label>Título</Form.Label>
+                    <Form.Control type="text" name="title" value={title} onChange={handleInputChange} />
+                </Form.Group>
 
-            <Form.Group className="mb-3" controlId="description">
-                <Form.Label>Descripción</Form.Label>
-                <Form.Control type="text" name="description" value={description} onChange={handleInputChange} />
-            </Form.Group>
+                <Form.Group className="mb-3" controlId="description">
+                    <Form.Label>Descripción</Form.Label>
+                    <Form.Control type="text" name="description" value={description} onChange={handleInputChange} />
+                </Form.Group>
 
 
-            <Form.Group className="mb-3" controlId="price">
-                <Form.Label>Precio</Form.Label>
-                <Form.Control type="number" name="price" value={price} onChange={handleInputChange} />
-            </Form.Group>
+                <Form.Group className="mb-3" controlId="price">
+                    <Form.Label>Precio</Form.Label>
+                    <Form.Control type="number" name="price" value={price} onChange={handleInputChange} />
+                </Form.Group>
 
-            <Form.Group className="mb-3" controlId="image">
-                <Form.Label>Imagen</Form.Label>
-                <Form.Control type="file" onChange={handleFileUpload} />
-            </Form.Group>
+                <Form.Group className="mb-3" controlId="coords">
+                    <Form.Label>Ubicación (Coordenadas)</Form.Label>
+                    <Row>
+                        <Col><Form.Control type="text" name="lat" value={lat} onChange={handleInputChange} /></Col>
+                        <Col> <Form.Control type="text" name="lng" value={lng} onChange={handleInputChange} /></Col>
+                    </Row>
+                </Form.Group>
 
-            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
+                <Form.Group className="mb-3" controlId="image">
+                    <Form.Label>Imagen</Form.Label>
+                    <Form.Control type="file" onChange={handleFileUpload} />
+                </Form.Group>
 
-            <div className="d-grid">
-                <Button variant="outline-secondary" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear anuncio'}</Button>
-            </div>
-        </Form>
+                {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
+
+                <div className="d-grid">
+                    <Button variant="outline-secondary" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear anuncio'}</Button>
+                </div>
+            </Form >
+        </Container>
     )
 
 

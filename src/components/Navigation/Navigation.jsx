@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from 'react';
-import { Container, Nav, Navbar, NavDropdown, Button, Modal } from 'react-bootstrap';
+import { useState, useEffect, useContext } from 'react'
+import { Container, Nav, Navbar, NavDropdown, Button, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import NewRentForm from '../NewRentForm/NewRentForm'
 import { RentContext } from '../../contexts/rent.context'
-import { AuthContext } from '../../contexts/auth.context';
-import SignupForm from '../SignupForm/SignupForm';
-import LoginForm from '../LoginForm/LoginForm';
+import { AuthContext } from '../../contexts/auth.context'
+import SignupForm from '../SignupForm/SignupForm'
+import LoginForm from '../LoginForm/LoginForm'
 
 
 const Navigation = () => {
@@ -30,7 +30,6 @@ const Navigation = () => {
         loadRents()
     }, [])
 
-
     return (
         <Navbar bg="light" expand="lg">
             <Container>
@@ -48,10 +47,9 @@ const Navigation = () => {
                         </Link>
 
                         <NavDropdown title="Perfil" id="basic-nav-dropdown">
-                            {!user ?
+                            {!user
+                                ?
                                 <>
-
-
                                     <Link onClick={() => setModal({ visible: true, content: 'login' })}>
                                         <NavDropdown.Item as="div">
                                             Iniciar Sesión
@@ -77,9 +75,8 @@ const Navigation = () => {
                                 </>
                             }
                         </NavDropdown>
-
-                        {user ?
-
+                        {user
+                            ?
                             <>
                                 <Button onClick={() => setModal({ visible: true, content: 'rent' })} variant="outline-secondary" size="sm">Anunciar mi caravana</Button>
 
@@ -93,7 +90,6 @@ const Navigation = () => {
                         }
                     </Nav>
                 </Navbar.Collapse>
-
             </Container>
 
             <Modal show={modal.visible} onHide={closeModal}>
@@ -105,8 +101,6 @@ const Navigation = () => {
                     {modal.content === 'rent' && <NewRentForm fireFinalActions={fireFinalActions} />}
                 </Modal.Body>
             </Modal>
-
-
         </Navbar >
     )
 }
