@@ -1,8 +1,11 @@
 import './RentCard.css'
-import Card from 'react-bootstrap/Card'
+import { Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { AuthContext } from './../../contexts/auth.context'
 import { useContext, useState } from 'react'
+import rentService from '../../services/Rent.service'
+import { RentContext } from '../../contexts/rent.context'
+
 
 
 
@@ -10,6 +13,25 @@ function RentCard({ title, description, imageUrl, _id, owner }) {
 
     const { user } = useContext(AuthContext)
     const [like, setLike] = useState(false)
+    const { loadUserRents } = useContext(RentContext)
+
+
+
+    const likeRent = () => {
+
+        rentService
+            .likeRent(_id)
+            .then(() => loadUserRents())
+            .catch(err => console.log(err))
+    }
+
+    const unlikeRent = () => {
+
+        rentService
+            .unlikeRent(_id)
+            .then(() => loadUserRents())
+            .catch(err => console.log(err))
+    }
 
     return (
 
@@ -34,8 +56,18 @@ function RentCard({ title, description, imageUrl, _id, owner }) {
                         }
 
                         <h2 onClick={() => setLike((prevLike) => !prevLike)}>
-                            {like ? "❤️" : "♡"}
+                            {like ? <Button variant="outline-secondary" onClick={likeRent}>❤️</Button> : <Button variant="outline-secondary" onClick={unlikeRent}>♡</Button>}
                         </h2>
+                        <Link to={'/perfil'}>
+                            <div className='d-grid'>
+
+                                <Button variant="outline-secondary" onClick={likeRent}>❤️</Button>
+
+                                <Button variant="outline-secondary" onClick={unlikeRent}>♡</Button>
+
+
+                            </div>
+                        </Link>
                     </Card.Text>
                 </Card.ImgOverlay>
             </Card>

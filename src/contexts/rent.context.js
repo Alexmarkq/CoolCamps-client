@@ -20,13 +20,11 @@ function RentProviderWrapper(props) {
 
     const loadUserRents = () => {
         rentService
-            .getOwnProducts()
+            .getOwnRents()
             .then(({ data }) => {
                 setUserRents(data)
             })
             .catch(err => console.log(err))
-
-
     }
 
     return (

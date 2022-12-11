@@ -31,11 +31,21 @@ class RentService {
         return this.api.post('/saveRent', rentData)
     }
 
-    getOwnProducts() {
+    getOwnRents() {
         return this.api.get('/getOwnRents')
     }
     editRent(rentData, rent_id) {
         return this.api.put(`/rent/edit/${rent_id}`, rentData)
+    }
+    likeRent(rent_id) {
+        return this.api.post(`/likeRent/${rent_id}`)
+    }
+
+    unlikeRent(rent_id) {
+        return this.api.post(`/unlikeRent/${rent_id}`)
+    }
+    getLikedRent() {
+        return this.api.get('/getLikedRent')
     }
 }
 
