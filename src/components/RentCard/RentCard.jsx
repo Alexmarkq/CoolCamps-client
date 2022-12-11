@@ -1,17 +1,25 @@
 import './RentCard.css'
-import { Card, Button } from 'react-bootstrap'
+import rentService from '../../services/Rent.service'
+import { RentContext } from '../../contexts/rent.context'
+import { Card, Button, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { AuthContext } from './../../contexts/auth.context'
 import { useContext, useState } from 'react'
-import rentService from '../../services/Rent.service'
-import { RentContext } from '../../contexts/rent.context'
+import RentEditForm from '../RentEditForm/RentEditForm'
 
 
 
 
-function RentCard({ title, description, imageUrl, _id, owner }) {
+function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id }) {
 
     const { user } = useContext(AuthContext)
+
+    const [rent, setRent] = useState(null)
+    const [showModal, setShowModal] = useState(false)
+
+    const openModal = () => setShowModal(true)
+    const closeModal = () => setShowModal(false)
+
     const [like, setLike] = useState(false)
     const { loadUserRents } = useContext(RentContext)
 
@@ -33,6 +41,12 @@ function RentCard({ title, description, imageUrl, _id, owner }) {
             .catch(err => console.log(err))
     }
 
+    const fireFinalActions = () => {
+        closeModal()
+
+
+    }
+
     return (
 
         <>
@@ -52,7 +66,7 @@ function RentCard({ title, description, imageUrl, _id, owner }) {
 
                                 </>
                                 :
-                                <h1>es mia</h1>
+                                <h4>Mi anuncio</h4>
                         }
 
                         <h2 onClick={() => setLike((prevLike) => !prevLike)}>
@@ -69,8 +83,21 @@ function RentCard({ title, description, imageUrl, _id, owner }) {
                             </div>
                         </Link>
                     </Card.Text>
+                    <Card.Text >
+                        <Button onClick={openModal} variant="outline-warning" size="sm">Editar</Button>
+                    </Card.Text>
                 </Card.ImgOverlay>
             </Card>
+
+
+            < Modal show={showModal} onHide={closeModal} >
+                <Modal.Header closeButton>
+                    <Modal.Title>Editar</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <RentEditForm fireFinalActions={fireFinalActions} rent={{ title, description, price, imageUrl, lat, lng }} />
+                </Modal.Body >
+            </Modal >
         </>
     );
 }

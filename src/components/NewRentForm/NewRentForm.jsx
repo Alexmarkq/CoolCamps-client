@@ -59,6 +59,7 @@ const NewRentForm = ({ fireFinalActions }) => {
     const { title, description, price, lat, lng } = rentData
 
     return (
+
         <Container>
             < Form onSubmit={handleFormSubmit} >
                 <Form.Group className="mb-3" controlId="title">
@@ -98,6 +99,7 @@ const NewRentForm = ({ fireFinalActions }) => {
             </Form >
         </Container>
     )
+
 
 
 }

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { AuthContext } from '../../contexts/auth.context'
 import { Card, ListGroup, Container, Button, Col } from 'react-bootstrap'
 import rentService from '../../services/Rent.service'
@@ -31,7 +31,7 @@ const ProfilePage = () => {
         getLikedRents()
     }, [])
 
-    const { username, email, profileImg, owner, _id } = user
+    const { username, email, profileImg } = user
 
     return (
         <>
