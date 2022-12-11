@@ -1,26 +1,25 @@
 import { useState, useNavigate } from "react"
-import { Container, Form, Button } from "react-bootstrap"
+import { Container, Form, Button, Row, Col } from "react-bootstrap"
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
 import UploadServices from "../../services/Upload.service"
+import rentService from "../../services/Rent.service"
 
 
-
-const RentEditForm = (props) => {
+const RentEditForm = ({ fireFinalActions, rent }) => {
 
     const [errors, setErrors] = useState([])
+    const [loadingImage, setLoadingImage] = useState(false)
 
-    const { product } = props
+    const { title, description, price, imageUrl, lat, lng, _id } = rent
 
     const [rentData, setRentData] = useState({
-        title: product.title,
-        description: product.description,
-        price: product.price,
-        imageUrl: product.imageUrl,
-        lat: product.lat,
-        lng: product.lng
+        title: title,
+        description: description,
+        price: price,
+        imageUrl: imageUrl,
+        lat: lat,
+        lng: lng
     })
-
-    const navigate = useNavigate()
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -29,6 +28,8 @@ const RentEditForm = (props) => {
 
     const handleFileUpload = e => {
 
+        setLoadingImage(true)
+
         const formData = new FormData()
 
         formData.append('imageData', e.target.files[0])
@@ -36,7 +37,7 @@ const RentEditForm = (props) => {
         UploadServices
             .uploadimage(formData)
             .then(res => {
-                setSignupData({ ...signupData, profileImg: res.data.cloudinary_url })
+                setRentData({ ...rentData, imageUrl: res.data.cloudinary_url })
 
             })
             .catch(err => console.log(err))
@@ -46,15 +47,15 @@ const RentEditForm = (props) => {
         e.preventDefault()
 
         rentService
-            .editRent(rentData, product._id)
-            .then(() => navigate('/perfil'))
+            .editRent(rentData, _id)
+            .then(() => fireFinalActions())
             .catch(err => setErrors(err.response.data.errorMessages))
     }
 
 
     return (
         <Container>
-            <h1>Editar perfil</h1>
+
             < Form onSubmit={handleFormSubmit} >
                 <Form.Group className="mb-3" controlId="title">
                     <Form.Label>Título</Form.Label>
@@ -88,7 +89,7 @@ const RentEditForm = (props) => {
                 {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
                 <div className="d-grid">
-                    <Button variant="outline-secondary" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear anuncio'}</Button>
+                    <Button variant="outline-secondary" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Editar'}</Button>
                 </div>
             </Form >
         </Container>

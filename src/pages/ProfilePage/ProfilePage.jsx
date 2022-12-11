@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { AuthContext } from '../../contexts/auth.context'
 import { Card, ListGroup, Container, Button } from 'react-bootstrap'
-import rentService from '../../services/Rent.service'
 import { Link } from 'react-router-dom'
 import RentList from '../../components/RentList/RentList'
 import { RentContext } from '../../contexts/rent.context'
@@ -17,7 +16,7 @@ const ProfilePage = () => {
         loadUserRents()
     }, [])
 
-    const { username, email, profileImg, owner, _id } = user
+    const { username, email, profileImg } = user
 
     return (
         <>
