@@ -2,19 +2,24 @@ import './RentCard.css'
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import { AuthContext } from './../../contexts/auth.context'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+
 
 
 function RentCard({ title, description, imageUrl, _id, owner }) {
 
     const { user } = useContext(AuthContext)
+    const [like, setLike] = useState(false)
 
     return (
-        <Link to={`/detalles/${_id}`}>
-            <Card className='mb-3 mt-3 RentCard' >
+
+        <>
+            <Card className="bg-dark text-white">
                 <Card.Img variant="top" src={imageUrl} />
-                <Card.Body>
-                    <Card.Title >{title}</Card.Title>
+                <Card.ImgOverlay>
+                    <Link to={`/detalles/${_id}`}>
+                        <Card.Title >{title}</Card.Title>
+                    </Link>
                     <Card.Text >
                         {description}
                         {
@@ -28,11 +33,13 @@ function RentCard({ title, description, imageUrl, _id, owner }) {
                                 <h1>es mia</h1>
                         }
 
+                        <h2 onClick={() => setLike((prevLike) => !prevLike)}>
+                            {like ? "❤️" : "♡"}
+                        </h2>
                     </Card.Text>
-
-                </Card.Body>
+                </Card.ImgOverlay>
             </Card>
-        </Link >
+        </>
     );
 }
 
