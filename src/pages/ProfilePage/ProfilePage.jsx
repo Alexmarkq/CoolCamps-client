@@ -17,7 +17,7 @@ const ProfilePage = () => {
         loadUserRents()
     }, [])
 
-    const { username, email, profileImg, owner } = user
+    const { username, email, profileImg, owner, _id } = user
 
     return (
         <>
@@ -30,12 +30,19 @@ const ProfilePage = () => {
                     </Card.Body>
                     <ListGroup className="list-group-flush">
                         <ListGroup.Item>{email}</ListGroup.Item>
-                        <ListGroup.Item></ListGroup.Item>
+                        {user &&
+                            <ListGroup.Item>
+                                <Link to="/">
+                                    <Button variant="outline-danger">Eliminar Cuenta</Button>
+                                </Link>
+                            </ListGroup.Item>}
+
+
                     </ListGroup>
 
 
                 </Card>
-                <h1 className="mt-4">Mis alquileres</h1>
+                <h1 className="mt-4">Mis anuncios</h1>
                 <hr />
                 <RentList rents={userRents} />
                 <hr />

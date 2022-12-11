@@ -7,7 +7,7 @@ import SignupPage from "../pages/SignupPage/SignupPage"
 import LoginPage from "../pages/LoginPage/LoginPage"
 import ProfilePage from "../pages/ProfilePage/ProfilePage"
 import PrivateRoute from "./PrivateRoute"
-import MapPage from "../pages/MapPage/MapPage"
+
 
 
 const AppRoutes = () => {
@@ -23,7 +23,6 @@ const AppRoutes = () => {
 
             <Route element={<PrivateRoute />}>
                 <Route path="/perfil" element={<ProfilePage />} />
-                <Route path="/perfil/editar" element={<p> Editar perfil</p>} />
             </Route>
 
             <Route path="/comentario/crear" element={<p> Crear comentario</p>} />
