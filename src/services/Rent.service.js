@@ -34,6 +34,9 @@ class RentService {
     getOwnProducts() {
         return this.api.get('/getOwnRents')
     }
+    editRent(rentData, rent_id) {
+        return this.api.put(`/rent/edit/${rent_id}`, rentData)
+    }
 }
 
 const rentService = new RentService()

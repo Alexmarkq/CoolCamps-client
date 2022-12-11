@@ -6,7 +6,7 @@ import UploadServices from "../../services/Upload.service"
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
-const SignupForm = ({ fireFinalActions }) => {
+const SignupForm = () => {
 
     const [errors, setErrors] = useState([])
 
@@ -51,7 +51,7 @@ const SignupForm = ({ fireFinalActions }) => {
             .catch(err => setErrors(err.response.data.errorMessages))
     }
 
-    const { username, password, email, profileImg } = signupData
+    const { username, password, email } = signupData
 
 
     return (

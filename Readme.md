@@ -7,7 +7,6 @@
 |         	| `/iniciar-sesion`             |  Log In 	         |         |   	
 | 	        | `/cerrar-sesion`	            |  Log Out           |   ✅    |   	 
 |       	| `/perfil`         	        |  User Profile 	 |   ✅    |  
-|           | `/perfil/editar`             	|  Edit User Profile |   ✅    |  	
 |	        | `/lista`	                    |  Rent list 	     |   	   | 
 |	        | `/anuncio/crear`         	    |  Create Rent	     |   ✅    |	   
 |	        | `/detalles/:rent_id`  	    |  Rent Details 	 |   	   |   
