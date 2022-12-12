@@ -2,12 +2,9 @@ import RentCard from "../RentCard/RentCard"
 import { Row, Col } from 'react-bootstrap'
 
 
-
 const RentList = ({ rents, refreshRents }) => {
 
-
     return (
-
         <Row>
             {rents.map(elm => {
                 return (
@@ -17,7 +14,6 @@ const RentList = ({ rents, refreshRents }) => {
                 )
             })}
         </Row>
-
     )
 }
 export default RentList

@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { AuthContext } from '../../contexts/auth.context'
-import { Card, ListGroup, Container, Button, Col } from 'react-bootstrap'
-import rentService from '../../services/Rent.service'
+import { Card, ListGroup, Container, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import RentList from '../../components/RentList/RentList'
 import { RentContext } from '../../contexts/rent.context'
@@ -13,7 +12,6 @@ const ProfilePage = () => {
     const { user } = useContext(AuthContext)
 
     const { loadUserRents, userRents, favRents, getLikedRents } = useContext(RentContext)
-    console.log('PROFILE', favRents)
 
     useEffect(() => {
         loadUserRents()
@@ -39,30 +37,36 @@ const ProfilePage = () => {
                                     <Button variant="outline-danger">Eliminar Cuenta</Button>
                                 </Link>
                             </ListGroup.Item>}
-
-
                     </ListGroup>
 
-
                 </Card>
-                <h1 className="mt-4">Mis anuncios</h1>
-                <hr />
-                <RentList rents={userRents} />
-                <hr />
-                {favRents.length === 0 ?
-                    <>
-                        <h1> No tienes favoritos</h1>
-                    </>
-                    :
-                    <>
-                        <h1>Me interesa</h1>
-                        < RentList rents={favRents} refreshRents={getLikedRents} />
-                    </>
-                }
+                <Row className="mt-4">
+                    <Col  >
+                        <h2 >Mis anuncios</h2>
+                        <hr />
+                        <RentList rents={userRents} />
+                    </Col>
+
+                    <Col >
+                        {favRents.length === 0 ?
+                            <>
+                                <h2>No tienes favoritos</h2>
+                                <hr />
+                            </>
+                            :
+                            <>
+                                {/* propietario: undefined */}
+                                <h2 >Favoritos</h2>
+                                <hr />
+                                < RentList rents={favRents} refreshRents={getLikedRents} />
+                            </>
+                        }
+                    </Col>
+                </Row>
 
                 <hr />
-                <Link to="/">
-                    <Button variant="outline-secondary">Volver al inicio</Button>
+                <Link to="/lista">
+                    <Button variant="outline-secondary">Volver</Button>
                 </Link>
 
             </Container >

@@ -1,14 +1,11 @@
 import './RentCard.css'
 import rentService from '../../services/Rent.service'
-import { RentContext } from '../../contexts/rent.context'
+import { useContext, useState } from 'react'
 import { Card, Button, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { AuthContext } from './../../contexts/auth.context'
-import { useContext, useState } from 'react'
+import { RentContext } from '../../contexts/rent.context'
 import RentEditForm from '../RentEditForm/RentEditForm'
-import { useEffect } from 'react'
-
-
 
 
 function RentCard(props) {
@@ -18,16 +15,14 @@ function RentCard(props) {
     const lat = location.coordinates[0]
     const lng = location.coordinates[1]
 
-
     const { user } = useContext(AuthContext)
 
-    const [rent, setRent] = useState(null)
+    //const [rent, setRent] = useState(null)
     const [showModal, setShowModal] = useState(false)
 
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
 
-    const [like, setLike] = useState(false)
     const { getLikedRents, favRents, loadRents } = useContext(RentContext)
 
     const ids = favRents.map(el => el._id)
@@ -54,58 +49,44 @@ function RentCard(props) {
         closeModal()
     }
 
-    const useEffect = () => {
-
-    }
-
     return (
-
         <>
             <Card>
                 <Card.Img variant="top" className='RentCard' src={imageUrl} />
                 <Card.Body>
-                    <Card.Text>
+                    <Card.Text className="d-flex justify-content-between">
                         <Link to={`/detalles/${_id}`}>
                             <Card.Title >{title}</Card.Title>
                         </Link>
+                        <Link>{
+                            !ids.includes(_id)
+                                ?
+                                <a onClick={likeRent}>♡</a>
+                                :
+                                <a onClick={unlikeRent}>❤️</a>
+                        }</Link>
                     </Card.Text>
                     <Card.Text>
                         <p> {description}</p>
                     </Card.Text>
                     <Card.Text>
-                        <h4> {price}</h4>
+                        <h5> {price} €/Dia</h5>
                     </Card.Text>
                     <Card.Text>
-
                         {
                             !owner || owner != user?._id
-                                ?
-                                <><p>Creado por: {owner.username}</p>
-
-
-                                </>
-                                :
-                                <h4>Mi anuncio</h4>
+                            &&
+                            <p>Propietario:
+                                {" " + owner.username}</p>
                         }
-
-                        <Link >
-                            <div className='d-grid'>
-                                {!ids.includes(_id) ?
-
-                                    <a onClick={likeRent}>❤️</a>
-                                    :
-                                    <a onClick={unlikeRent}>♡</a>
-                                }
-
-                            </div>
-                        </Link>
                     </Card.Text>
                     <Card.Text >
-                        {user && <Button onClick={openModal} variant="outline-warning" size="sm">Editar</Button>}
+                        {owner._id === user._id
+                            &&
+                            <Button onClick={openModal} variant="outline-warning" size="sm">Editar</Button>}
                     </Card.Text>
                 </Card.Body>
             </Card>
-
 
             < Modal show={showModal} onHide={closeModal} >
                 <Modal.Header closeButton>
