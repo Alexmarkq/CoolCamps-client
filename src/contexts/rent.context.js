@@ -11,6 +11,7 @@ function RentProviderWrapper(props) {
     const [rents, setRents] = useState()
     const [userRents, setUserRents] = useState([])
     const [favRents, setfavRents] = useState([])
+    const [deleteRent, setDeleteRent] = useState([])
 
     const loadRents = () => {
         rentService
@@ -29,17 +30,21 @@ function RentProviderWrapper(props) {
     }
 
     const getLikedRents = () => {
-
         rentService
             .getLikedRent()
-            .then(({ data }) => {
-                setfavRents(data)
-            })
+            .then(({ data }) => { setfavRents(data) })
+            .catch(err => console.log(err))
+    }
+
+    const deleteRents = () => {
+        rentService
+            .deleteRent()
+            .then(({ data }) => { setDeleteRent(data) })
             .catch(err => console.log(err))
     }
 
     return (
-        <RentContext.Provider value={{ rents, userRents, loadRents, loadUserRents, getLikedRents, favRents, setfavRents }}>
+        <RentContext.Provider value={{ rents, userRents, loadRents, loadUserRents, getLikedRents, favRents, setfavRents, deleteRents, setDeleteRent }}>
             {props.children}
         </RentContext.Provider >
     )

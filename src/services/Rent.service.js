@@ -47,6 +47,9 @@ class RentService {
     getLikedRent() {
         return this.api.get('/getLikedRent')
     }
+    deleteRent(rent_id) {
+        return this.api.delete(`/deleteRent/${rent_id}`)
+    }
 }
 
 const rentService = new RentService()

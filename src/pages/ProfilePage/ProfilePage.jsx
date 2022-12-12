@@ -1,13 +1,13 @@
-import { useContext, useEffect } from 'react'
-import { AuthContext } from '../../contexts/auth.context'
-import { Card, ListGroup, Container, Button, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import RentList from '../../components/RentList/RentList'
+import UserCard from '../../components/UserCard/UserCard'
+import { Container, Button, Row, Col } from 'react-bootstrap'
+import { useContext, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { RentContext } from '../../contexts/rent.context'
+import { AuthContext } from '../../contexts/auth.context'
 
 
-
-const ProfilePage = () => {
+function ProfilePage() {
 
     const { user } = useContext(AuthContext)
 
@@ -24,22 +24,8 @@ const ProfilePage = () => {
         <>
             <Container>
 
-                <Card className='mt-5' style={{ width: '25rem' }}>
-                    <Card.Img variant="top" src={profileImg} />
-                    <Card.Body>
-                        <Card.Title>{username}</Card.Title>
-                    </Card.Body>
-                    <ListGroup className="list-group-flush">
-                        <ListGroup.Item>{email}</ListGroup.Item>
-                        {user &&
-                            <ListGroup.Item>
-                                <Link to="/">
-                                    <Button variant="outline-danger">Eliminar Cuenta</Button>
-                                </Link>
-                            </ListGroup.Item>}
-                    </ListGroup>
+                <UserCard user={user} />
 
-                </Card>
                 <Row className="mt-4">
                     <Col  >
                         <h2 >Mis anuncios</h2>

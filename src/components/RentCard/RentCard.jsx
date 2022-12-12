@@ -49,6 +49,16 @@ function RentCard(props) {
         closeModal()
     }
 
+    const deleteRent = () => {
+        rentService
+            .deleteRent(_id)
+            .then(() => fireFinalActions())
+            .then(() => loadRents())
+            .catch(err => (err))
+    }
+
+
+
     return (
         <>
             <Card>
@@ -81,9 +91,20 @@ function RentCard(props) {
                         }
                     </Card.Text>
                     <Card.Text >
-                        {owner._id === user._id
+                        {owner?._id === user?._id
                             &&
-                            <Button onClick={openModal} variant="outline-warning" size="sm">Editar</Button>}
+                            <div className="d-grid mt-4">
+                                <Button onClick={openModal} variant="outline-warning" size="sm">Editar</Button>
+                            </div>
+                        }
+                        {
+                            owner?._id === user?._id
+                            &&
+                            <div className="d-grid mt-2">
+                                <Button variant="outline-danger" size="sm" onClick={deleteRent}>Borrar</Button>
+                            </div>
+
+                        }
                     </Card.Text>
                 </Card.Body>
             </Card>

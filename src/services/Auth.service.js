@@ -30,6 +30,10 @@ class AuthService {
     verify = token => {
         return this.api.get('/verify')
     }
+
+    deleteUser(user_id) {
+        return this.api.delete(`/userDelete/${user_id}`)
+    }
 }
 
 const authService = new AuthService()
