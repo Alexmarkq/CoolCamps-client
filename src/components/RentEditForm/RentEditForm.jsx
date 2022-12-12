@@ -1,11 +1,14 @@
-import { useState, useNavigate } from "react"
+import { useState, useContext } from "react"
 import { Container, Form, Button, Row, Col } from "react-bootstrap"
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
 import UploadServices from "../../services/Upload.service"
 import rentService from "../../services/Rent.service"
+import { RentContext } from '../../contexts/rent.context'
 
 
 const RentEditForm = ({ fireFinalActions, rent }) => {
+
+    const { loadRents } = useContext(RentContext)
 
     const [errors, setErrors] = useState([])
     const [loadingImage, setLoadingImage] = useState(false)
@@ -38,6 +41,7 @@ const RentEditForm = ({ fireFinalActions, rent }) => {
             .uploadimage(formData)
             .then(res => {
                 setRentData({ ...rentData, imageUrl: res.data.cloudinary_url })
+                setLoadingImage(false)
 
             })
             .catch(err => console.log(err))
@@ -48,9 +52,14 @@ const RentEditForm = ({ fireFinalActions, rent }) => {
 
         rentService
             .editRent(rentData, _id)
-            .then(() => fireFinalActions())
+            .then(() => {
+                fireFinalActions()
+                loadRents()
+            })
             .catch(err => setErrors(err.response.data.errorMessages))
     }
+
+
 
 
     return (
@@ -59,7 +68,7 @@ const RentEditForm = ({ fireFinalActions, rent }) => {
             < Form onSubmit={handleFormSubmit} >
                 <Form.Group className="mb-3" controlId="title">
                     <Form.Label>Título</Form.Label>
-                    <Form.Control type="text" name="title" value={title} onChange={handleInputChange} />
+                    <Form.Control type="text" name="title" value={rentData.title} onChange={handleInputChange} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="description">

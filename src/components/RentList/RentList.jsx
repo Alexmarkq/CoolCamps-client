@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap'
 
 const RentList = ({ rents, refreshRents }) => {
 
+
     return (
 
         <Row>
