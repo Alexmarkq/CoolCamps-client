@@ -2,7 +2,8 @@ import RentCard from "../RentCard/RentCard"
 import { Row, Col } from 'react-bootstrap'
 
 
-const RentList = ({ rents }) => {
+
+const RentList = ({ rents, refreshRents }) => {
 
     return (
 
@@ -10,7 +11,7 @@ const RentList = ({ rents }) => {
             {rents.map(elm => {
                 return (
                     <Col key={elm._id} sm={{ span: 4 }}>
-                        <RentCard {...elm} />
+                        <RentCard {...elm} refreshRents={refreshRents} />
                     </Col>
                 )
             })}

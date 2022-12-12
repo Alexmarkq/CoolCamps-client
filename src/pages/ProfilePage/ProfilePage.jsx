@@ -1,12 +1,10 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../contexts/auth.context'
 import { Card, ListGroup, Container, Button, Col } from 'react-bootstrap'
 import rentService from '../../services/Rent.service'
 import { Link } from 'react-router-dom'
 import RentList from '../../components/RentList/RentList'
 import { RentContext } from '../../contexts/rent.context'
-import Loader from '../../components/Loader/Loader'
-
 
 
 
@@ -14,17 +12,8 @@ const ProfilePage = () => {
 
     const { user } = useContext(AuthContext)
 
-    const { loadUserRents, userRents } = useContext(RentContext)
-
-    const [favRents, setFavRents] = useState(null)
-
-    const getLikedRents = () => {
-
-        rentService
-            .getLikedRent()
-            .then(({ data }) => setFavRents(data))
-            .catch(err => console.log(err))
-    }
+    const { loadUserRents, userRents, favRents, getLikedRents } = useContext(RentContext)
+    console.log('PROFILE', favRents)
 
     useEffect(() => {
         loadUserRents()
@@ -60,16 +49,16 @@ const ProfilePage = () => {
                 <hr />
                 <RentList rents={userRents} />
                 <hr />
-                {/* {favRents ?
-
-                    <h1> No tienes favoritos</h1>
-
-                    : */}
-                <>
-                    <h1>Me interesa</h1>
-                    {!favRents ? <Loader /> : <RentList rents={favRents} refreshRents={getLikedRents} />}
-                </>
-                {/* } */}
+                {favRents.length === 0 ?
+                    <>
+                        <h1> No tienes favoritos</h1>
+                    </>
+                    :
+                    <>
+                        <h1>Me interesa</h1>
+                        < RentList rents={favRents} refreshRents={getLikedRents} />
+                    </>
+                }
 
                 <hr />
                 <Link to="/">

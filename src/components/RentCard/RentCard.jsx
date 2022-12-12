@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from './../../contexts/auth.context'
 import { useContext, useState } from 'react'
 import RentEditForm from '../RentEditForm/RentEditForm'
+import { useEffect } from 'react'
 
 
 
@@ -21,7 +22,11 @@ function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id })
     const closeModal = () => setShowModal(false)
 
     const [like, setLike] = useState(false)
-    const { loadUserRents } = useContext(RentContext)
+    const { getLikedRents, favRents } = useContext(RentContext)
+
+    console.log(favRents)
+
+    const ids = favRents.map(el => el._id)
 
 
 
@@ -29,7 +34,7 @@ function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id })
 
         rentService
             .likeRent(_id)
-            .then(() => loadUserRents())
+            .then(() => getLikedRents())
             .catch(err => console.log(err))
     }
 
@@ -37,27 +42,75 @@ function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id })
 
         rentService
             .unlikeRent(_id)
-            .then(() => loadUserRents())
+            .then(() => getLikedRents())
             .catch(err => console.log(err))
     }
 
     const fireFinalActions = () => {
         closeModal()
+    }
 
+    const useEffect = () => {
 
     }
 
     return (
 
+        // <>
+        //     <Card className="bg-dark text-white">
+        //         <Card.Img variant="top" src={imageUrl} />
+        //         <Card.ImgOverlay>
+        //             <Link to={`/detalles/${_id}`}>
+        //                 <Card.Title >{title}</Card.Title>
+        //             </Link>
+        //             <Card.Text >
+        //                 {description}
+        //                 {
+        //                     !owner || owner != user?._id
+        //                         ?
+        //                         <>
+        //                             {owner.username}
+
+        //                         </>
+        //                         :
+        //                         <h4>Mi anuncio</h4>
+        //                 }
+
+        //                 <Link >
+        //                     <div className='d-grid'>
+        //                         {!ids.includes(_id) ?
+
+        //                             <a onClick={likeRent}>❤️</a>
+        //                             :
+        //                             <a onClick={unlikeRent}>♡</a>
+        //                         }
+
+        //                     </div>
+        //                 </Link>
+        //             </Card.Text>
+        //             <Card.Text >
+        //                 <Button onClick={openModal} variant="outline-warning" size="sm">Editar</Button>
+        //             </Card.Text>
+        //         </Card.ImgOverlay>
+        //     </Card>
+        //     <>
         <>
-            <Card className="bg-dark text-white">
-                <Card.Img variant="top" src={imageUrl} />
-                <Card.ImgOverlay>
-                    <Link to={`/detalles/${_id}`}>
-                        <Card.Title >{title}</Card.Title>
-                    </Link>
-                    <Card.Text >
-                        {description}
+            <Card>
+                <Card.Img variant="top" className='RentCard' src={imageUrl} />
+                <Card.Body>
+                    <Card.Text>
+                        <Link to={`/detalles/${_id}`}>
+                            <Card.Title >{title}</Card.Title>
+                        </Link>
+                    </Card.Text>
+                    <Card.Text>
+                        <p> {description}</p>
+                    </Card.Text>
+                    <Card.Text>
+                        <h4> {price}</h4>
+                    </Card.Text>
+                    <Card.Text>
+
                         {
                             !owner || owner != user?._id
                                 ?
@@ -69,24 +122,19 @@ function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id })
                                 <h4>Mi anuncio</h4>
                         }
 
-                        <h2 onClick={() => setLike((prevLike) => !prevLike)}>
-                            {like ? <Button variant="outline-secondary" onClick={likeRent}>❤️</Button> : <Button variant="outline-secondary" onClick={unlikeRent}>♡</Button>}
-                        </h2>
-                        <Link to={'/perfil'}>
+                        <Link >
                             <div className='d-grid'>
+                                {!ids.includes(_id) ?
 
-                                <Button variant="outline-secondary" onClick={likeRent}>❤️</Button>
-
-                                <Button variant="outline-secondary" onClick={unlikeRent}>♡</Button>
-
+                                    <a onClick={likeRent}>❤️</a>
+                                    :
+                                    <a onClick={unlikeRent}>♡</a>
+                                }
 
                             </div>
                         </Link>
                     </Card.Text>
-                    <Card.Text >
-                        <Button onClick={openModal} variant="outline-warning" size="sm">Editar</Button>
-                    </Card.Text>
-                </Card.ImgOverlay>
+                </Card.Body>
             </Card>
 
 
