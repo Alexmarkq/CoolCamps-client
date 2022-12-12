@@ -6,6 +6,7 @@ const AuthContext = createContext()
 function AuthProviderWrapper(props) {
 
     const [user, setUser] = useState(null)
+
     const [isLoading, setIsLoading] = useState(true)
 
     const storeToken = (token) => {
@@ -24,7 +25,7 @@ function AuthProviderWrapper(props) {
                     setUser(data)
                     setIsLoading(false)
                 })
-                .catch(err => {
+                .catch(() => {
                     setUser(null)
                     setIsLoading(false)
                 })
@@ -46,7 +47,6 @@ function AuthProviderWrapper(props) {
             {props.children}
         </AuthContext.Provider>
     )
-
 }
 
 export { AuthContext, AuthProviderWrapper }

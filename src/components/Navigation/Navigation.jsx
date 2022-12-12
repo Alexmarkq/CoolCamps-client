@@ -42,7 +42,7 @@ const Navigation = () => {
                     <Nav className="justify-content-end flex-grow-1 pe-3">
                         <Link to="/lista">
                             <Nav.Link as='div'>
-                                Alquilar
+                                Galería
                             </Nav.Link>
                         </Link>
 

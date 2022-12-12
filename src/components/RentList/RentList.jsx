@@ -8,7 +8,7 @@ const RentList = ({ rents, refreshRents }) => {
         <Row>
             {rents.map(elm => {
                 return (
-                    <Col key={elm._id} sm={{ span: 4 }}>
+                    <Col key={elm._id} sm={{ span: 6 }}>
                         <RentCard {...elm} refreshRents={refreshRents} />
                     </Col>
                 )

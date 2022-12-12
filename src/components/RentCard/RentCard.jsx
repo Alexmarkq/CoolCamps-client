@@ -61,9 +61,9 @@ function RentCard(props) {
 
     return (
         <>
-            <Card>
-                <Card.Img variant="top" className='RentCard' src={imageUrl} />
-                <Card.Body>
+            <Card className='RentCard'>
+                <Card.Img variant="top" src={imageUrl} />
+                <Card.Body >
                     <Card.Text className="d-flex justify-content-between">
                         <Link to={`/detalles/${_id}`}>
                             <Card.Title >{title}</Card.Title>

@@ -1,3 +1,4 @@
+import './../ProfilePage/ProfilePage.css'
 import RentList from '../../components/RentList/RentList'
 import UserCard from '../../components/UserCard/UserCard'
 import { Container, Button, Row, Col } from 'react-bootstrap'
@@ -24,25 +25,25 @@ function ProfilePage() {
         <>
             <Container>
 
-                <UserCard user={user} />
+                <UserCard />
 
                 <Row className="mt-4">
                     <Col  >
-                        <h2 >Mis anuncios</h2>
+                        <h3 >Mis anuncios</h3>
                         <hr />
                         <RentList rents={userRents} />
                     </Col>
 
-                    <Col >
+                    <Col className='fav'>
                         {favRents.length === 0 ?
                             <>
-                                <h2>No tienes favoritos</h2>
+                                <h3>No tienes favoritos</h3>
                                 <hr />
                             </>
                             :
                             <>
                                 {/* propietario: undefined */}
-                                <h2 >Favoritos</h2>
+                                <h3 >Favoritos</h3>
                                 <hr />
                                 < RentList rents={favRents} refreshRents={getLikedRents} />
                             </>

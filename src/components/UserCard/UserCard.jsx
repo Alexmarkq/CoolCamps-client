@@ -6,11 +6,15 @@ import { AuthContext } from './../../contexts/auth.context'
 import { useContext } from 'react'
 
 
-function UserCard(props) {
+function UserCard() {
 
-    const { username, profileImg, email } = props
 
     const { user, _id } = useContext(AuthContext)
+
+    const { username, profileImg, email } = user
+
+    console.log(user)
+
 
     const navigate = useNavigate()
 
@@ -22,8 +26,8 @@ function UserCard(props) {
     }
 
     return (
-        <Card className='mt-5' style={{ width: '25rem' }}>
-            <Card.Img variant="top" src={profileImg} />
+        <Card className='mt-5' style={{ width: '50%' }}>
+            <Card.Img variant='top' src={profileImg} />
             <Card.Body>
                 <Card.Title>{username}</Card.Title>
             </Card.Body>
@@ -36,7 +40,6 @@ function UserCard(props) {
                         </Link>
                     </ListGroup.Item>}
             </ListGroup>
-
         </Card>
     )
 }

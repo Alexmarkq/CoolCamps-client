@@ -43,6 +43,8 @@ const SignupForm = () => {
 
         e.preventDefault()
 
+        console.log(signupData)
+
         authService
             .signup(signupData)
             .then(() => {
