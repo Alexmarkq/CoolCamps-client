@@ -10,7 +10,13 @@ import RentEditForm from '../RentEditForm/RentEditForm'
 
 
 
-function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id }) {
+function RentCard(props) {
+
+    const { title, description, price, imageUrl, location, owner, _id } = props
+
+    const lat = location.coordinates[0]
+    const lng = location.coordinates[1]
+
 
     const { user } = useContext(AuthContext)
 
@@ -21,7 +27,7 @@ function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id })
     const closeModal = () => setShowModal(false)
 
     const [like, setLike] = useState(false)
-    const { loadUserRents } = useContext(RentContext)
+    const { loadRents } = useContext(RentContext)
 
 
 
@@ -29,7 +35,7 @@ function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id })
 
         rentService
             .likeRent(_id)
-            .then(() => loadUserRents())
+            .then(() => loadRents())
             .catch(err => console.log(err))
     }
 
@@ -37,7 +43,7 @@ function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id })
 
         rentService
             .unlikeRent(_id)
-            .then(() => loadUserRents())
+            .then(() => loadRents())
             .catch(err => console.log(err))
     }
 
@@ -48,6 +54,7 @@ function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id })
     }
 
     return (
+
 
         <>
             <Card className="bg-dark text-white">
@@ -61,8 +68,8 @@ function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id })
                         {
                             !owner || owner != user?._id
                                 ?
-                                <>
-                                    {owner.username}
+                                <><p>Creado por: {owner.username}</p>
+
 
                                 </>
                                 :
@@ -70,7 +77,7 @@ function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id })
                         }
 
                         <h2 onClick={() => setLike((prevLike) => !prevLike)}>
-                            {like ? <Button variant="outline-secondary" onClick={likeRent}>❤️</Button> : <Button variant="outline-secondary" onClick={unlikeRent}>♡</Button>}
+                            {like ? <Button >❤️</Button> : <Button>♡</Button>}
                         </h2>
                         <Link to={'/perfil'}>
                             <div className='d-grid'>
@@ -84,7 +91,7 @@ function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id })
                         </Link>
                     </Card.Text>
                     <Card.Text >
-                        <Button onClick={openModal} variant="outline-warning" size="sm">Editar</Button>
+                        {user && <Button onClick={openModal} variant="outline-warning" size="sm">Editar</Button>}
                     </Card.Text>
                 </Card.ImgOverlay>
             </Card>
@@ -95,7 +102,7 @@ function RentCard({ title, description, price, imageUrl, lat, lng, owner, _id })
                     <Modal.Title>Editar</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <RentEditForm fireFinalActions={fireFinalActions} rent={{ title, description, price, imageUrl, lat, lng }} />
+                    <RentEditForm fireFinalActions={fireFinalActions} rent={{ title, description, price, imageUrl, lat, lng, _id }} />
                 </Modal.Body >
             </Modal >
         </>

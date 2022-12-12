@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../contexts/auth.context'
 import { Card, ListGroup, Container, Button, Col } from 'react-bootstrap'
 import rentService from '../../services/Rent.service'
