@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Form, Button, Container, Row, Col } from "react-bootstrap"
-import rentService from "../../services/Rent.service"
+import reviewService from "../../services/Review.service"
 
 
 const NewReviewForm = ({ fireFinalActions }) => {
@@ -10,6 +10,7 @@ const NewReviewForm = ({ fireFinalActions }) => {
         description: ''
     })
 
+    const [errors, setErrors] = useState([])
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -27,7 +28,7 @@ const NewReviewForm = ({ fireFinalActions }) => {
 
     }
 
-    const { title, description, } = rentData
+    const { title, description } = rentData
 
     return (
 
@@ -44,13 +45,11 @@ const NewReviewForm = ({ fireFinalActions }) => {
                 </Form.Group>
 
                 <div className="d-grid">
-                    <Button variant="outline-secondary" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear anuncio'}</Button>
+                    <Button variant="outline-secondary" type="submit"> Crear comentario</Button>
                 </div>
             </Form >
         </Container>
     )
-
-
 
 }
 export default NewReviewForm

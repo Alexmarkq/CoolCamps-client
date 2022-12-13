@@ -7,6 +7,7 @@ import SignupPage from "../pages/SignupPage/SignupPage"
 import LoginPage from "../pages/LoginPage/LoginPage"
 import ProfilePage from "../pages/ProfilePage/ProfilePage"
 import PrivateRoute from "./PrivateRoute"
+import NewReviewPage from "../pages/NewRentPage/NewRentPage"
 
 
 
@@ -23,9 +24,10 @@ const AppRoutes = () => {
 
             <Route element={<PrivateRoute />}>
                 <Route path="/perfil" element={<ProfilePage />} />
+                <Route path="/comentario/crear/:rent_id" element={<NewReviewPage />} />
+                <Route path="/comentario/detalles/:rent_id" element={<RentDetailsPage />} />
             </Route>
 
-            <Route path="/comentario/crear" element={<p> Crear comentario</p>} />
             <Route path="/*" element={<h1>404</h1>} />
         </Routes>
     )

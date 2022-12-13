@@ -1,16 +1,18 @@
 import { Container } from "react-bootstrap"
-import NewRentForm from "../../components/NewRentForm/NewRentForm"
+import NewReviewForm from "../../components/NewReviewForm/NewReviewForm"
 
-const NewRentPage = () => {
+
+
+const NewReviewPage = () => {
 
     return (
         <Container>
-            <h1>Alquila tu caravana!</h1>
+            <h1>Comentarios</h1>
             <hr />
-            <NewRentForm />
+            <NewReviewForm />
         </Container>
 
     )
 }
 
-export default NewRentPage
+export default NewReviewPage

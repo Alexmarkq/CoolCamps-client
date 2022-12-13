@@ -22,6 +22,11 @@ class ReviewService {
     saveReview(rent_id) {
         return this.api.post(`/create/${rent_id}`)
     }
+
+
+    showReview(rent_id) {
+        return this.api.post(`/showreview/${rent_id}`)
+    }
 }
 
 const reviewService = new ReviewService()

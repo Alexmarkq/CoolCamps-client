@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import { useContext, useEffect } from "react"
 import { RentContext } from "../../contexts/rent.context"
 import Loader from "../../components/Loader/Loader"
-import Maps from "../../components/Maps/Maps"
 
 
 

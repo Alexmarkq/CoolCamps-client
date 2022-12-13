@@ -1,9 +1,9 @@
 import './RentDetailsPage.css'
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
 import { AuthContext } from './../../contexts/auth.context'
-import { useContext } from 'react'
+import reviewService from '../../services/Review.service'
 import rentService from "./../../services/Rent.service"
 import Maps from '../../components/Maps/Maps'
 import Loader from "../../components/Loader/Loader"
@@ -15,8 +15,16 @@ const RentDetailsPage = () => {
     const { user } = useContext(AuthContext)
 
     const [rent, setRent] = useState({})
+    const [review, setReview] = useState({})
 
     const { rent_id } = useParams()
+
+    // const allReview = () => {
+
+    //     reviewService
+    //         .showReview()
+    //     .then(() => )            
+    // }
 
 
     const oneRent = () => {
@@ -26,6 +34,8 @@ const RentDetailsPage = () => {
             .then(({ data }) => setRent(data))
             .catch(err => console.error(err))
     }
+
+
 
     useEffect(() => {
         oneRent()
