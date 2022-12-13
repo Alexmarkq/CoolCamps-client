@@ -5,33 +5,26 @@ import { useLocation } from "react-router-dom"
 
 
 
-const NewReviewForm = () => {
+const NewReviewForm = ({ id }) => {
 
     const [reviewInfo, setReviewInfo] = useState({
         title: '',
         description: ''
     })
 
-
-
     const handleInputChange = e => {
         const { name, value } = e.target
         setReviewInfo({ ...reviewInfo, [name]: value })
     }
-
-    let location = useLocation()
-    let reviewLocation = location.pathname.slice(18)
-
 
     const handleFormSubmit = e => {
 
         e.preventDefault()
 
         reviewService
-            .saveReview(reviewLocation, reviewInfo)
+            .saveReview(id, reviewInfo)
             .then(() => console.log("hola"))
             .catch(err => console.log(err))
-
     }
 
     const { title, description } = reviewInfo

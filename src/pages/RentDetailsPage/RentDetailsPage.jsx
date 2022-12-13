@@ -1,6 +1,6 @@
 import './RentDetailsPage.css'
 import { useEffect, useState, useContext } from "react"
-import { Container, Row, Col, Button } from "react-bootstrap"
+import { Container, Row, Col, Button, Card, ListGroup } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
 import { AuthContext } from './../../contexts/auth.context'
 import reviewService from '../../services/Review.service'
@@ -9,23 +9,22 @@ import Maps from '../../components/Maps/Maps'
 import Loader from "../../components/Loader/Loader"
 
 
-
 const RentDetailsPage = () => {
 
     const { user } = useContext(AuthContext)
 
     const [rent, setRent] = useState({})
-    const [review, setReview] = useState({})
+    const [reviews, setReviews] = useState(null)
 
     const { rent_id } = useParams()
 
-    // const allReview = () => {
+    const allReview = () => {
 
-    //     reviewService
-    //         .showReview()
-    //     .then(() => )            
-    // }
-
+        reviewService
+            .showReview(rent_id)
+            .then(({ data }) => { setReviews(data) })
+            .catch(err => console.log(err))
+    }
 
     const oneRent = () => {
 
@@ -36,9 +35,9 @@ const RentDetailsPage = () => {
     }
 
 
-
     useEffect(() => {
         oneRent()
+        allReview()
     }, [])
 
 
@@ -59,6 +58,7 @@ const RentDetailsPage = () => {
                                 <h1 className="mb-4 mt-4">{title}</h1>
                             </Col>
                         </Row>
+
                         <hr />
                         <Row>
 
@@ -76,6 +76,7 @@ const RentDetailsPage = () => {
                                         <h1>Mi caravana</h1>
                                 }
                                 <h4> {price} € / Día</h4>
+
                             </Col>
 
                             <Col className='details' md={{ span: 4 }}>
@@ -86,13 +87,37 @@ const RentDetailsPage = () => {
                                 <p> <Maps lat={location.coordinates[0]} lng={location.coordinates[1]} /></p>
                             </Col>
 
+                            <Link to={`/comentario/crear/${rent._id}`}>
+                                <Button as="div" variant="outline-secondary">Crear comentario</Button>
+                            </Link>
+
                         </Row>
-                        <Link to={`/comentario/crear/${rent._id}`}>
-                            <Button as="div" variant="outline-secondary">Crear comentario</Button>
-                        </Link>
+
                         <hr />
+                        {reviews.map(elm => {
+
+                            return (
+
+                                <Card key={elm._id} className='mt-2' style={{ width: '100%' }}>
+                                    <Card.Img variant='top' />
+                                    <Card.Body>
+                                        <Card.Title>{elm.title}</Card.Title>
+                                    </Card.Body>
+                                    <ListGroup className="list-group-flush">
+                                        <ListGroup.Item>{elm.description}</ListGroup.Item>
+
+                                    </ListGroup>
+                                    <ListGroup className="list-group-flush">
+                                        <ListGroup.Item>{elm.owner.username}</ListGroup.Item>
+
+                                    </ListGroup>
+                                </Card>
+                            )
+                        })}
+
+
                         <Link to="/lista">
-                            <Button as="div" variant="outline-secondary">Volver</Button>
+                            <Button as="div" className="mb-5 mt-5" variant="outline-secondary">Volver</Button>
                         </Link>
 
 

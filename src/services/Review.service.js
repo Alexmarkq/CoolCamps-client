@@ -5,7 +5,7 @@ class ReviewService {
     constructor() {
 
         this.api = axios.create({
-            baseURL: `${process.env.REACT_APP_API_URL}/coolCamps`
+            baseURL: `${process.env.REACT_APP_API_URL}/review`
         })
         this.api.interceptors.request.use((config) => {
 
@@ -25,7 +25,7 @@ class ReviewService {
 
 
     showReview(rent_id) {
-        return this.api.post(`/showreview/${rent_id}`)
+        return this.api.get(`/showreviews/${rent_id}`)
     }
 }
 
