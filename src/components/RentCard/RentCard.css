@@ -1,4 +1,13 @@
 .RentCard img {
     height: 350px;
-    object-fit: cover;
+    object-fit: cover
+}
+
+.RentCard {
+    transition: transform .2s;
+    box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.1)
+}
+
+.RentCard:hover {
+    transform: scale(1.02)
 }
