@@ -32,7 +32,7 @@ class AuthService {
     }
 
     deleteUser(user_id) {
-        return this.api.delete(`/userDelete/${user_id}`)
+        return this.api.delete(`/deleteUser/${user_id}`)
     }
 }
 

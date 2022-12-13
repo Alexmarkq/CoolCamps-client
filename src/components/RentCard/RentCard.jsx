@@ -1,11 +1,11 @@
 import './RentCard.css'
-import rentService from '../../services/Rent.service'
+import { AuthContext } from './../../contexts/auth.context'
+import { RentContext } from '../../contexts/rent.context'
 import { useContext, useState } from 'react'
 import { Card, Button, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { AuthContext } from './../../contexts/auth.context'
-import { RentContext } from '../../contexts/rent.context'
 import RentEditForm from '../RentEditForm/RentEditForm'
+import rentService from '../../services/Rent.service'
 
 
 function RentCard(props) {
@@ -57,11 +57,9 @@ function RentCard(props) {
             .catch(err => (err))
     }
 
-
-
     return (
         <>
-            <Card className='RentCard'>
+            <Card className='RentCard mt-3'>
                 <Card.Img variant="top" src={imageUrl} />
                 <Card.Body >
                     <Card.Text className="d-flex justify-content-between">
@@ -79,6 +77,7 @@ function RentCard(props) {
                     <Card.Text>
                         <p> {description}</p>
                     </Card.Text>
+
                     <Card.Text>
                         <h5> {price} €/Dia</h5>
                     </Card.Text>
@@ -90,7 +89,7 @@ function RentCard(props) {
                                 {" " + owner.username}</p>
                         }
                     </Card.Text>
-                    <Card.Text >
+                    <Card.Text variant="bottom">
                         {owner?._id === user?._id
                             &&
                             <div className="d-grid mt-4">
@@ -118,7 +117,7 @@ function RentCard(props) {
                 </Modal.Body >
             </Modal >
         </>
-    );
+    )
 }
 
 export default RentCard

@@ -1,3 +1,4 @@
+import './RentDetailsPage.css'
 import { useEffect, useState } from "react"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
@@ -36,7 +37,7 @@ const RentDetailsPage = () => {
 
     return (
 
-        <Container>
+        <Container className='details'>
             {
                 !title
                     ?
@@ -67,8 +68,8 @@ const RentDetailsPage = () => {
                                 <h4> {price} € / Día</h4>
                             </Col>
 
-                            <Col md={{ span: 4 }}>
-                                <img src={imageUrl} style={{ width: '100%' }} />
+                            <Col className='details' md={{ span: 4 }}>
+                                <img className='details' src={imageUrl} style={{ width: '100%' }} />
                             </Col>
 
                             <Col className="Maps" md={{ span: 3 }}>
