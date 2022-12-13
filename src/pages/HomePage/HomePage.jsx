@@ -6,14 +6,14 @@ import './HomePage.css'
 const HomePage = () => {
 
     return (
-        <div>
+        <div className='back'>
             <img src={"./../homebackground.jpeg"} className="homepage" />
             <Container className="home">
 
                 <Row>
 
-                    <Col md={{ span: 8, offset: 2 }}>
-
+                    <Col lg={{ span: 10, offset: 1 }}>
+                        <h1 className='hero'>Explora.</h1>
 
                         <Link to="/lista">
                             <Button className="mt-5" variant="light">Ir a la galería</Button>

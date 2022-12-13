@@ -1,6 +1,7 @@
 .home {
     text-align: center;
     color: white;
+
 }
 
 .homepage {
@@ -8,4 +9,12 @@
     position: fixed;
     background-size: cover;
     z-index: -1;
+}
+
+.hero {
+    font-size: 12rem;
+}
+
+.back {
+    background-color: black;
 }
