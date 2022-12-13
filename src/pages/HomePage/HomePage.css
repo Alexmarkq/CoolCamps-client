@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
 .home {
     text-align: center;
     color: white;
@@ -12,9 +14,24 @@
 }
 
 .hero {
-    font-size: 12rem;
+    font-size: 13rem;
+    font-family: 'Kaushan Script', cursive;
+    text-decoration: none !important;
+    transition: transform .2s;
+    text-align: center;
+    display: flex;
+    text-shadow: rgb(62, 62, 62) 0.05em 0.05em 0.15em;
+
+}
+
+.hero:hover {
+    transform: scale(1.05);
 }
 
 .back {
+
     background-color: black;
+    size: 100%;
+    display: flex;
+    flex-direction: column;
 }
