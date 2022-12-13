@@ -33,12 +33,11 @@ const Navigation = () => {
     }, [])
 
     return (
-        <Navbar className='NavBar' expand="lg">
+        <Navbar className='NavBar' variant="dark" expand="lg">
             <Container>
                 <Link to="/">
                     <Navbar.Brand as="div">🚐 Cool Camps </Navbar.Brand>
                 </Link>
-                <Nav.Link as="div"> {user && `Bienvenido ${user.username}!`}</Nav.Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="justify-content-end flex-grow-1 pe-3">
@@ -48,7 +47,8 @@ const Navigation = () => {
                             </Nav.Link>
                         </Link>
 
-                        <NavDropdown title="Perfil" id="basic-nav-dropdown">
+
+                        <NavDropdown title={user ? `${user.username}` : "Perfil"} className='mx-3'>
                             {!user
                                 ?
                                 <>
@@ -80,13 +80,13 @@ const Navigation = () => {
                         {user
                             ?
                             <>
-                                <Button onClick={() => setModal({ visible: true, content: 'rent' })} variant="outline-secondary" size="sm">Anunciar mi caravana</Button>
+                                <Button onClick={() => setModal({ visible: true, content: 'rent' })} variant="outline-light" size="sm">Anunciar mi caravana</Button>
 
                             </>
                             :
                             <>
                                 <Link onClick={() => setModal({ visible: true, content: 'login' })}>
-                                    <Button variant="outline-secondary" size="sm">Anunciar mi caravana</Button>
+                                    <Button variant="outline-light" size="lg">Anunciar mi caravana</Button>
                                 </Link>
                             </>
                         }

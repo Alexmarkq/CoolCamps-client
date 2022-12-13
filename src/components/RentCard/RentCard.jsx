@@ -61,7 +61,7 @@ function RentCard(props) {
 
     return (
         <>
-            <Card className='RentCard'>
+            <Card className='RentCard mt-3'>
                 <Card.Img variant="top" src={imageUrl} />
                 <Card.Body >
                     <Card.Text className="d-flex justify-content-between">
