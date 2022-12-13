@@ -6,25 +6,29 @@ import './HomePage.css'
 const HomePage = () => {
 
     return (
-        <Container className="Home">
+        <div>
+            <img src={"./../homebackground.jpeg"} className="homepage" />
+            <Container className="Home">
 
-            <Row>
+                <Row>
 
-                <Col md={{ span: 8, offset: 2 }}>
+                    <Col md={{ span: 8, offset: 2 }}>
 
-                    <h1>🚐 Cool Camps</h1>
-                    <hr />
-                    <p>Lo tienes tio?</p>
-                    <Link to="/lista">
-                        <Button variant="outline-secondary">Ir a la galería</Button>
-                    </Link>
-                    <hr />
+                        <h1>🚐 Cool Camps</h1>
+                        <hr />
+                        <p>Lo tienes tio?</p>
+                        <Link to="/lista">
+                            <Button variant="outline-secondary">Ir a la galería</Button>
+                        </Link>
+                        <hr />
 
-                </Col>
+                    </Col>
 
-            </Row>
+                </Row>
 
-        </Container>
+            </Container>
+        </div>
+
     )
 }
 

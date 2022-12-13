@@ -6,6 +6,8 @@ import { RentContext } from '../../contexts/rent.context'
 import { AuthContext } from '../../contexts/auth.context'
 import SignupForm from '../SignupForm/SignupForm'
 import LoginForm from '../LoginForm/LoginForm'
+import "../Navigation/Navigation.css"
+import "./Navigation.css"
 
 
 const Navigation = () => {
@@ -31,7 +33,7 @@ const Navigation = () => {
     }, [])
 
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar className='NavBar' expand="lg">
             <Container>
                 <Link to="/">
                     <Navbar.Brand as="div">🚐 Cool Camps </Navbar.Brand>
