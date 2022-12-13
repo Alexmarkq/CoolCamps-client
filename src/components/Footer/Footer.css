@@ -1,8 +1,8 @@
 footer {
-    background-color: #f8f9fa;
-    color: black;
+    background-image: url("../../../public/navbar.jpeg");
+    color: rgb(254, 221, 209);
     font-size: .8em;
-    text-align: center;
+    text-align: right;
     padding: 8px;
     position: fixed;
     width: 100%;

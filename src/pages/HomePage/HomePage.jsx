@@ -8,19 +8,17 @@ const HomePage = () => {
     return (
         <div>
             <img src={"./../homebackground.jpeg"} className="homepage" />
-            <Container className="Home">
+            <Container className="home">
 
                 <Row>
 
                     <Col md={{ span: 8, offset: 2 }}>
 
-                        <h1>🚐 Cool Camps</h1>
-                        <hr />
-                        <p>Lo tienes tio?</p>
+
                         <Link to="/lista">
-                            <Button variant="outline-secondary">Ir a la galería</Button>
+                            <Button className="mt-5" variant="light">Ir a la galería</Button>
                         </Link>
-                        <hr />
+
 
                     </Col>
 
