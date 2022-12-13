@@ -87,6 +87,9 @@ const RentDetailsPage = () => {
                             </Col>
 
                         </Row>
+                        <Link to={`/comentario/crear/${rent._id}`}>
+                            <Button as="div" variant="outline-secondary">Crear comentario</Button>
+                        </Link>
                         <hr />
                         <Link to="/lista">
                             <Button as="div" variant="outline-secondary">Volver</Button>

@@ -1,34 +1,40 @@
 import { useState } from "react"
-import { Form, Button, Container, Row, Col } from "react-bootstrap"
+import { Form, Button, Container } from "react-bootstrap"
 import reviewService from "../../services/Review.service"
+import { useLocation } from "react-router-dom"
 
 
-const NewReviewForm = ({ fireFinalActions }) => {
 
-    const [rentData, setRentData] = useState({
+const NewReviewForm = () => {
+
+    const [reviewInfo, setReviewInfo] = useState({
         title: '',
         description: ''
     })
 
-    const [errors, setErrors] = useState([])
+
 
     const handleInputChange = e => {
         const { name, value } = e.target
-        setRentData({ ...rentData, [name]: value })
+        setReviewInfo({ ...reviewInfo, [name]: value })
     }
+
+    let location = useLocation()
+    let reviewLocation = location.pathname.slice(18)
 
 
     const handleFormSubmit = e => {
 
         e.preventDefault()
+
         reviewService
-            .saveReview(rentData)
-            .then(() => { fireFinalActions() })
-            .catch(err => setErrors(err.response.data.errorMessages))
+            .saveReview(reviewLocation, reviewInfo)
+            .then(() => console.log("hola"))
+            .catch(err => console.log(err))
 
     }
 
-    const { title, description } = rentData
+    const { title, description } = reviewInfo
 
     return (
 

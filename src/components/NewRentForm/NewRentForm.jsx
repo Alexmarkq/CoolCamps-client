@@ -15,8 +15,7 @@ const NewRentForm = ({ fireFinalActions }) => {
         lat: 0,
         lng: 0
 
-    }
-    )
+    })
 
     const [loadingImage, setLoadingImage] = useState(false)
 

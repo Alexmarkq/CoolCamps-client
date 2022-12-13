@@ -19,8 +19,8 @@ class ReviewService {
         })
     }
 
-    saveReview(rent_id) {
-        return this.api.post(`/create/${rent_id}`)
+    saveReview(rent_id, reviewInfo) {
+        return this.api.post(`/create/${rent_id}`, reviewInfo)
     }
 
 
