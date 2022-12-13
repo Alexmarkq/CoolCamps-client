@@ -1,11 +1,10 @@
 import { useState } from "react"
 import { Form, Button, Container } from "react-bootstrap"
 import reviewService from "../../services/Review.service"
-import { useLocation } from "react-router-dom"
 
 
 
-const NewReviewForm = ({ id }) => {
+const NewReviewForm = ({ fireFinalActions, id }) => {
 
     const [reviewInfo, setReviewInfo] = useState({
         title: '',
@@ -23,7 +22,7 @@ const NewReviewForm = ({ id }) => {
 
         reviewService
             .saveReview(id, reviewInfo)
-            .then(() => console.log("hola"))
+            .then(() => fireFinalActions())
             .catch(err => console.log(err))
     }
 
@@ -39,12 +38,12 @@ const NewReviewForm = ({ id }) => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="description">
-                    <Form.Label>Descripción</Form.Label>
+                    <Form.Label>Comentario</Form.Label>
                     <Form.Control type="text" name="description" value={description} onChange={handleInputChange} />
                 </Form.Group>
 
                 <div className="d-grid">
-                    <Button variant="outline-secondary" type="submit"> Crear comentario</Button>
+                    <Button variant="outline-secondary" type="submit">Crear comentario</Button>
                 </div>
             </Form >
         </Container>

@@ -3,29 +3,36 @@ import { Link } from 'react-router-dom'
 
 import './HomePage.css'
 
+const linkStyle = {
+    margin: "2rem",
+    textDecoration: "none",
+    color: 'white'
+
+};
+
 const HomePage = () => {
 
     return (
-        <div className='back'>
-            <img src={"./../homebackground.jpeg"} className="homepage" />
-            <Container className="home">
+        <>
 
-                <Row>
+            <div >
+                <img src={"./../homebackground.jpeg"} className="homepage" />
+                <Container className="home">
 
-                    <Col lg={{ span: 10, offset: 1 }}>
-                        <h1 className='hero'>Explora.</h1>
+                    <Row>
 
-                        <Link to="/lista">
-                            <Button className="mt-5" variant="light">Ir a la galería</Button>
-                        </Link>
+                        <Col lg={{ span: 10, offset: -1 }}>
+                            <Link to="/lista" style={linkStyle}>
+                                <h1 className='hero'>Explora</h1>
+                            </Link>
+                        </Col>
 
+                    </Row>
 
-                    </Col>
-
-                </Row>
-
-            </Container>
-        </div>
+                </Container>
+            </div>
+            <div className='back'></div>
+        </>
 
     )
 }

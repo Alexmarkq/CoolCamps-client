@@ -17,7 +17,6 @@ function RentCard(props) {
 
     const { user } = useContext(AuthContext)
 
-    //const [rent, setRent] = useState(null)
     const [showModal, setShowModal] = useState(false)
 
     const openModal = () => setShowModal(true)

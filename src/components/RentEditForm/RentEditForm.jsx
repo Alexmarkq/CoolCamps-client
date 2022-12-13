@@ -42,7 +42,6 @@ const RentEditForm = ({ fireFinalActions, rent }) => {
             .then(res => {
                 setRentData({ ...rentData, imageUrl: res.data.cloudinary_url })
                 setLoadingImage(false)
-
             })
             .catch(err => console.log(err))
     }
@@ -58,9 +57,6 @@ const RentEditForm = ({ fireFinalActions, rent }) => {
             })
             .catch(err => setErrors(err.response.data.errorMessages))
     }
-
-
-
 
     return (
         <Container>

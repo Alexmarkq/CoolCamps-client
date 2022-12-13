@@ -1,12 +1,14 @@
 import './RentDetailsPage.css'
 import { useEffect, useState, useContext } from "react"
-import { Container, Row, Col, Button, Card, ListGroup } from "react-bootstrap"
+import { Container, Row, Col, Button, Card, ListGroup, Modal } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
 import { AuthContext } from './../../contexts/auth.context'
 import reviewService from '../../services/Review.service'
 import rentService from "./../../services/Rent.service"
 import Maps from '../../components/Maps/Maps'
 import Loader from "../../components/Loader/Loader"
+import NewReviewForm from "../../components/NewReviewForm/NewReviewForm"
+
 
 
 const RentDetailsPage = () => {
@@ -15,6 +17,10 @@ const RentDetailsPage = () => {
 
     const [rent, setRent] = useState({})
     const [reviews, setReviews] = useState(null)
+    const [showModal, setShowModal] = useState(false)
+
+    const openModal = () => setShowModal(true)
+    const closeModal = () => setShowModal(false)
 
     const { rent_id } = useParams()
 
@@ -34,6 +40,11 @@ const RentDetailsPage = () => {
             .catch(err => console.error(err))
     }
 
+    const fireFinalActions = () => {
+        closeModal()
+        allReview()
+
+    }
 
     useEffect(() => {
         oneRent()
@@ -41,93 +52,100 @@ const RentDetailsPage = () => {
     }, [])
 
 
-    const { title, description, price, imageUrl, location, owner } = rent
 
+    const { title, description, price, imageUrl, location, owner, _id } = rent
 
     return (
+        <>
 
-        <Container className='details'>
-            {
-                !title
-                    ?
-                    <Loader />
-                    :
-                    <>
-                        <Row>
-                            <Col md={{ span: 8, offset: 1 }}>
-                                <h1 className="mb-4 mt-4">{title}</h1>
-                            </Col>
-                        </Row>
+            <Container className='details'>
+                {
+                    !title
+                        ?
+                        <Loader />
+                        :
+                        <>
+                            <Row>
+                                <Col md={{ span: 8, offset: 1 }}>
+                                    <h1 className="mb-4 mt-4">{title}</h1>
+                                </Col>
+                            </Row>
 
-                        <hr />
-                        <Row>
+                            <hr />
+                            <Row>
 
-                            <Col md={{ span: 4, offset: 1 }} >
+                                <Col md={{ span: 4, offset: 1 }} >
 
-                                <h3>Especificaciones</h3>
-                                <p>{description}</p>
-                                {
-                                    owner || owner != user?._id
-                                        ?
-                                        <>
-                                            {owner?.username}
-                                        </>
-                                        :
-                                        <h1>Mi caravana</h1>
-                                }
-                                <h4> {price} € / Día</h4>
+                                    <h3>Especificaciones</h3>
+                                    <p>{description}</p>
+                                    {
+                                        owner || owner != user?._id
+                                            ?
+                                            <>
+                                                {owner?.username}
+                                            </>
+                                            :
+                                            <h1>Mi caravana</h1>
+                                    }
+                                    <h4> {price} € / Día</h4>
 
-                            </Col>
+                                </Col>
 
-                            <Col className='details' md={{ span: 4 }}>
-                                <img className='details' src={imageUrl} style={{ width: '100%' }} />
-                            </Col>
+                                <Col className='details' md={{ span: 4 }}>
+                                    <img className='details' src={imageUrl} style={{ width: '100%' }} />
+                                </Col>
 
-                            <Col className="Maps" md={{ span: 3 }}>
-                                <p> <Maps lat={location.coordinates[0]} lng={location.coordinates[1]} /></p>
-                            </Col>
+                                <Col className="Maps" md={{ span: 3 }}>
+                                    <p> <Maps lat={location.coordinates[0]} lng={location.coordinates[1]} /></p>
+                                </Col>
 
-                            <Link to={`/comentario/crear/${rent._id}`}>
-                                <Button as="div" variant="outline-secondary">Crear comentario</Button>
+                                <div>
+                                    <Button onClick={openModal} as="div" variant="outline-secondary">Crear comentario</Button>
+                                </div>
+
+                            </Row>
+                            <hr />
+                            {reviews.map(elm => {
+
+                                return (
+
+
+                                    <Card key={elm._id} className='mt-2' style={{ width: '100%' }}>
+                                        <Card.Img variant='top' />
+                                        <Card.Body>
+                                            <Card.Title>{elm.title}</Card.Title>
+                                        </Card.Body>
+                                        <ListGroup className="list-group-flush">
+                                            <ListGroup.Item>{elm.description}</ListGroup.Item>
+
+                                        </ListGroup>
+                                        <ListGroup className="list-group-flush">
+                                            <ListGroup.Item>{elm.owner.username}</ListGroup.Item>
+
+                                        </ListGroup>
+                                    </Card>
+                                )
+                            })}
+
+
+                            <Link to="/lista">
+                                <Button as="div" className="mb-5 mt-5" variant="outline-secondary">Volver</Button>
                             </Link>
-
-                        </Row>
-
-                        <hr />
-                        {reviews.map(elm => {
-
-                            return (
-
-                                <Card key={elm._id} className='mt-2' style={{ width: '100%' }}>
-                                    <Card.Img variant='top' />
-                                    <Card.Body>
-                                        <Card.Title>{elm.title}</Card.Title>
-                                    </Card.Body>
-                                    <ListGroup className="list-group-flush">
-                                        <ListGroup.Item>{elm.description}</ListGroup.Item>
-
-                                    </ListGroup>
-                                    <ListGroup className="list-group-flush">
-                                        <ListGroup.Item>{elm.owner.username}</ListGroup.Item>
-
-                                    </ListGroup>
-                                </Card>
-                            )
-                        })}
+                        </>
+                }
+            </Container >
 
 
-                        <Link to="/lista">
-                            <Button as="div" className="mb-5 mt-5" variant="outline-secondary">Volver</Button>
-                        </Link>
+            < Modal show={showModal} onHide={closeModal} >
+                <Modal.Header closeButton>
+                    <Modal.Title>Crear comentario</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <NewReviewForm fireFinalActions={fireFinalActions} id={_id} />
+                </Modal.Body >
+            </Modal >
 
-
-
-                    </>
-
-
-            }
-
-        </Container >
+        </>
     )
 }
 

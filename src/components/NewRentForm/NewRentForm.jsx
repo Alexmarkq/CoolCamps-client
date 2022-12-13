@@ -21,7 +21,6 @@ const NewRentForm = ({ fireFinalActions }) => {
 
     const [errors, setErrors] = useState([])
 
-
     const handleInputChange = e => {
         const { name, value } = e.target
         setRentData({ ...rentData, [name]: value })

@@ -20,6 +20,7 @@ function RentProviderWrapper(props) {
             .catch(err => console.log(err))
     }
 
+
     const loadUserRents = () => {
         rentService
             .getOwnRents()
