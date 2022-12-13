@@ -10,7 +10,7 @@ import './UserCard.css'
 function UserCard() {
 
 
-    const { user } = useContext(AuthContext)
+    const { user, logoutUser } = useContext(AuthContext)
 
     const { username, profileImg, email, _id } = user
 
@@ -21,8 +21,10 @@ function UserCard() {
     const userDelete = () => {
         userService
             .deleteUser(_id)
-
-            .then(() => navigate("/"))
+            .then(() => {
+                logoutUser()
+                navigate("/")
+            })
             .catch(err => (err))
 
     }
