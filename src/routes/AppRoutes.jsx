@@ -12,10 +12,10 @@ const AppRoutes = () => {
         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/lista" element={<RentListPage />} />
+            <Route path="/detalles/:rent_id" element={<RentDetailsPage />} />
 
             <Route element={<PrivateRoute />}>
                 <Route path="/perfil" element={<ProfilePage />} />
-                <Route path="/detalles/:rent_id" element={<RentDetailsPage />} />
             </Route>
 
             <Route path="/*" element={<h1>404</h1>} />

@@ -120,8 +120,7 @@ const RentDetailsPage = () => {
 
                             </Row>
                             <hr />
-                            {reviews.map(elm => {
-                                console.log(elm)
+                            {reviews && reviews.map(elm => {
 
                                 return (
 
@@ -136,13 +135,13 @@ const RentDetailsPage = () => {
 
                                         </ListGroup>
                                         <ListGroup className="list-group-flush">
-                                            <ListGroup.Item>{elm.owner}</ListGroup.Item>
+                                            <ListGroup.Item>{elm.owner.username}</ListGroup.Item>
 
                                         </ListGroup>
                                         <Card.Text >
 
                                             {
-                                                (elm.owner === user?._id)
+                                                (elm.owner._id === user?._id)
                                                 &&
                                                 <div className="d-grid mt-2">
                                                     <Button variant="outline-danger" size="sm" onClick={() => deleteReview(elm._id)}>Borrar</Button>
