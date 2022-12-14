@@ -45,7 +45,7 @@ function RentProviderWrapper(props) {
     }
 
     return (
-        <RentContext.Provider value={{ rents, userRents, loadRents, loadUserRents, getLikedRents, favRents, setfavRents, deleteRents, setDeleteRent }}>
+        <RentContext.Provider value={{ rents, setRents, userRents, loadRents, loadUserRents, getLikedRents, favRents, setfavRents, deleteRents, setDeleteRent }}>
             {props.children}
         </RentContext.Provider >
     )

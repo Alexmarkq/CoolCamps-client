@@ -53,7 +53,9 @@ const RentDetailsPage = () => {
 
 
 
-    const { title, description, price, imageUrl, location, owner, _id } = rent
+    const { title, description, price, imageUrl, location, owner, _id, city } = rent
+
+
 
     return (
         <>
@@ -88,6 +90,8 @@ const RentDetailsPage = () => {
                                             <h1>Mi caravana</h1>
                                     }
                                     <h4> {price} € / Día</h4>
+                                    <p>{city}</p>
+
 
                                 </Col>
 
@@ -120,7 +124,7 @@ const RentDetailsPage = () => {
 
                                         </ListGroup>
                                         <ListGroup className="list-group-flush">
-                                            <ListGroup.Item>{elm.owner.username}</ListGroup.Item>
+                                            <ListGroup.Item>{user.username}</ListGroup.Item>
 
                                         </ListGroup>
                                     </Card>

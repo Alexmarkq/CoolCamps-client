@@ -80,13 +80,13 @@ const Navigation = () => {
                         {user
                             ?
                             <>
-                                <Button onClick={() => setModal({ visible: true, content: 'rent' })} variant="outline-light" size="sm">Anunciar mi caravana</Button>
+                                <Button onClick={() => setModal({ visible: true, content: 'rent' })} variant="outline-light" size="md">Anuncia tu caravana</Button>
 
                             </>
                             :
                             <>
                                 <Link onClick={() => setModal({ visible: true, content: 'login' })}>
-                                    <Button variant="outline-light" size="lg">Anunciar mi caravana</Button>
+                                    <Button variant="outline-light" size="md">Anuncia tu caravana</Button>
                                 </Link>
                             </>
                         }

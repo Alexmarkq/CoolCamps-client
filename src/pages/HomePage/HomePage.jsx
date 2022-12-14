@@ -13,10 +13,9 @@ const linkStyle = {
 const HomePage = () => {
 
     return (
-        <>
+        <div className='back'>
 
-            <div >
-                <img src={"./../homebackground.jpeg"} className="homepage" />
+            <div>
                 <Container className="home">
 
                     <Row>
@@ -31,8 +30,8 @@ const HomePage = () => {
 
                 </Container>
             </div>
-            <div className='back'></div>
-        </>
+
+        </div>
 
     )
 }
