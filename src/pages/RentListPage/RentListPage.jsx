@@ -10,7 +10,7 @@ import SearchBar from "../../components/SearchBar/SearchBar"
 
 const RentListPage = () => {
 
-    const { loadRents, rents, setRents } = useContext(RentContext)
+    const { loadRents, rents } = useContext(RentContext)
     const [showRents, setShowRents] = useState(rents)
     const [flag, setFlag] = useState(true)
 
@@ -26,12 +26,10 @@ const RentListPage = () => {
 
 
     return (
-
         <>
             <Container>
-                <h2 className="mt-4">Lista de alquileres</h2>
+                <h3 className="mt-4">Busca por ciudad</h3>
                 <hr />
-                <h3>Buscar </h3>
                 <SearchBar setShowRents={setShowRents} />
 
                 {!showRents

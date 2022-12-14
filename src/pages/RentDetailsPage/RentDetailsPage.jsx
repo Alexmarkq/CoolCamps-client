@@ -80,7 +80,7 @@ const RentDetailsPage = () => {
                         :
                         <>
                             <Row>
-                                <Col md={{ span: 8, offset: 1 }}>
+                                <Col md={{ span: 8 }}>
                                     <h1 className="mb-4 mt-4">{title}</h1>
                                 </Col>
                             </Row>
@@ -88,7 +88,7 @@ const RentDetailsPage = () => {
                             <hr />
                             <Row>
 
-                                <Col md={{ span: 4, offset: 1 }} >
+                                <Col md={{ span: 4 }} >
 
                                     <h3>Especificaciones</h3>
                                     <p>{description}</p>
@@ -108,10 +108,10 @@ const RentDetailsPage = () => {
                                 </Col>
 
                                 <Col className='details' md={{ span: 4 }}>
-                                    <img className='details' src={imageUrl} style={{ width: '100%' }} />
+                                    <img className='details mb-2' src={imageUrl} style={{ width: '100%' }} />
                                 </Col>
 
-                                <Col className="Maps" md={{ span: 3 }}>
+                                <Col className="Maps" md={{ span: 4 }}>
                                     <p> <Maps lat={location.coordinates[0]} lng={location.coordinates[1]} /></p>
                                 </Col>
 

@@ -4,7 +4,6 @@ import rentService from "../services/Rent.service"
 
 const RentContext = createContext()
 
-
 function RentProviderWrapper(props) {
 
     //useState([])
@@ -19,7 +18,6 @@ function RentProviderWrapper(props) {
             .then(({ data }) => setRents(data))
             .catch(err => console.log(err))
     }
-
 
     const loadUserRents = () => {
         rentService
