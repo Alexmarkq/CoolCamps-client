@@ -27,6 +27,11 @@ class ReviewService {
     showReview(rent_id) {
         return this.api.get(`/showreviews/${rent_id}`)
     }
+
+    deleteReview(rent_id) {
+        return this.api.delete(`/deleteReview/${rent_id}`)
+    }
+
 }
 
 const reviewService = new ReviewService()

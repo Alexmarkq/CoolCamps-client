@@ -34,9 +34,11 @@ class RentService {
     getOwnRents() {
         return this.api.get('/getOwnRents')
     }
+
     editRent(rentData, rent_id) {
         return this.api.put(`/rent/edit/${rent_id}`, rentData)
     }
+
     likeRent(rent_id) {
         return this.api.post(`/likeRent/${rent_id}`)
     }
@@ -44,12 +46,15 @@ class RentService {
     unlikeRent(rent_id) {
         return this.api.post(`/unlikeRent/${rent_id}`)
     }
+
     getLikedRent() {
         return this.api.get('/getLikedRent')
     }
+
     deleteRent(rent_id) {
         return this.api.delete(`/deleteRent/${rent_id}`)
     }
+
 }
 
 const rentService = new RentService()

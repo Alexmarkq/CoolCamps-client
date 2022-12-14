@@ -19,6 +19,10 @@ const RentDetailsPage = () => {
     const [reviews, setReviews] = useState(null)
     const [showModal, setShowModal] = useState(false)
 
+
+
+    console.log(reviews)
+
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
 
@@ -30,6 +34,13 @@ const RentDetailsPage = () => {
             .showReview(rent_id)
             .then(({ data }) => { setReviews(data) })
             .catch(err => console.log(err))
+    }
+
+    const deleteReview = () => {
+        reviewService
+            .deleteReview(_id)
+            .then(() => allReview())
+            .catch(err => (err))
     }
 
     const oneRent = () => {
@@ -123,6 +134,16 @@ const RentDetailsPage = () => {
                                             <ListGroup.Item>{elm.owner.username}</ListGroup.Item>
 
                                         </ListGroup>
+                                        <Card.Text >
+
+
+                                            <div className="d-grid mt-2">
+                                                <Button variant="outline-danger" size="sm" onClick={deleteReview}>Borrar</Button>
+                                            </div>
+
+
+
+                                        </Card.Text>
                                     </Card>
                                 )
                             })}
