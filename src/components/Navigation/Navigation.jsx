@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import NewRentForm from '../NewRentForm/NewRentForm'
 import { RentContext } from '../../contexts/rent.context'
 import { AuthContext } from '../../contexts/auth.context'
-import SignupForm from '../SignupForm/SignupForm'
 import LoginForm from '../LoginForm/LoginForm'
 import "../Navigation/Navigation.css"
 import "./Navigation.css"
@@ -40,15 +39,27 @@ const Navigation = () => {
                 </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="justify-content-end flex-grow-1 pe-3">
+                    <Nav className="justify-content-end flex-grow-1">
                         <Link to="/lista">
                             <Nav.Link as='div'>
                                 Galería
                             </Nav.Link>
                         </Link>
 
+                        <NavDropdown title=
+                            {user
+                                ?
+                                <Navbar.Brand href="/perfil">
+                                    <img
+                                        src={user.profileImg}
+                                        width="40"
+                                        className="d-inline-block imageNav"
+                                        alt="X"
+                                    />
+                                </Navbar.Brand>
+                                :
+                                "Perfil"} className='mx-3'>
 
-                        <NavDropdown title={user ? `${user.username}` : "Perfil"} className='mx-3'>
                             {!user
                                 ?
                                 <>
@@ -75,8 +86,13 @@ const Navigation = () => {
                                         </NavDropdown.Item>
                                     </Link>
                                 </>
+
                             }
                         </NavDropdown>
+                        {/* <Nav.Link as='div'>
+                            {user && user.username}
+                        </Nav.Link> */}
+
                         {user
                             ?
                             <>
@@ -91,6 +107,7 @@ const Navigation = () => {
                             </>
                         }
                     </Nav>
+
                 </Navbar.Collapse>
             </Container>
 

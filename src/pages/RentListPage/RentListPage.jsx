@@ -34,7 +34,7 @@ const RentListPage = () => {
     return (
         <>
             <Container>
-                <h3 className="mt-4">Busca por ciudad</h3>
+                <h3 className="mt-4">Búsqueda</h3>
                 <hr />
                 <SearchBar filterRents={filterRents} />
 

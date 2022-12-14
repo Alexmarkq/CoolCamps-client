@@ -121,10 +121,8 @@ const RentDetailsPage = () => {
                             </Row>
                             <hr />
                             {reviews.map(elm => {
-                                console.log(elm)
 
                                 return (
-
 
                                     <Card key={elm._id} className='mt-2' style={{ width: '100%' }}>
                                         <Card.Img variant='top' />
