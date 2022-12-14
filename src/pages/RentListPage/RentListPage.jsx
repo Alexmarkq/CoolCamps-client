@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react"
 import { RentContext } from "../../contexts/rent.context"
 import Loader from "../../components/Loader/Loader"
 import SearchBar from "../../components/SearchBar/SearchBar"
+import Maps from "../../components/Maps/Maps"
 
 
 
@@ -30,7 +31,7 @@ const RentListPage = () => {
         setFlteredRents(resultRents)
     }
 
-
+    console.log(filteredRents)
     return (
         <>
             <Container>
@@ -42,13 +43,17 @@ const RentListPage = () => {
                     ?
                     <Loader />
                     :
-                    <RentList rents={filteredRents} />}
+                    <>
+
+                        <Maps locations={filteredRents} lat={filteredRents[0].location.coordinates[0]} lng={filteredRents[0].location.coordinates[1]} />
+                        <RentList rents={filteredRents} />
+                    </>
+                }
                 <hr />
 
                 <Link to="/">
                     <Button variant="outline-secondary">Volver al inicio</Button>
                 </Link>
-
             </Container>
         </>
     )

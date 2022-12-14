@@ -7,12 +7,13 @@ const containerStyle = {
     height: '400px'
 };
 
-const Maps = ({ lat, lng }) => {
-
-
-    const center = {
-        lat,
-        lng
+const Maps = ({ lat, lng, locations }) => {
+    let center = { lat: 0, lng: 0 }
+    if (lat && lng) {
+        center = {
+            lat,
+            lng
+        }
     }
 
     return (
@@ -24,7 +25,18 @@ const Maps = ({ lat, lng }) => {
                 center={center}
                 zoom={12}
             >
-                <Marker key="marker_1"
+
+                {locations ? locations.map((el, idx) => {
+                    return (<Marker key={idx}
+
+                        position={{
+
+                            lat: el.location.coordinates[0],
+
+                            lng: el.location.coordinates[1]
+
+                        }} />)
+                }) : <Marker key="marker_1"
 
                     position={{
 
@@ -32,7 +44,7 @@ const Maps = ({ lat, lng }) => {
 
                         lng
 
-                    }} />
+                    }} />}
 
             </GoogleMap>
         </LoadScript>

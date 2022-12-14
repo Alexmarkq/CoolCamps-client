@@ -5,6 +5,7 @@ import NewRentForm from '../NewRentForm/NewRentForm'
 import { RentContext } from '../../contexts/rent.context'
 import { AuthContext } from '../../contexts/auth.context'
 import LoginForm from '../LoginForm/LoginForm'
+import SignupForm from '../SignupForm/SignupForm'
 import "../Navigation/Navigation.css"
 import "./Navigation.css"
 
@@ -68,7 +69,7 @@ const Navigation = () => {
                                             Iniciar Sesión
                                         </NavDropdown.Item>
                                     </Link>
-                                    <Link to="/registro">
+                                    <Link onClick={() => setModal({ visible: true, content: 'signup' })}>
                                         <NavDropdown.Item as="div">
                                             Registro
                                         </NavDropdown.Item>
@@ -118,6 +119,7 @@ const Navigation = () => {
                 <Modal.Body>
                     {modal.content === 'login' && <LoginForm fireFinalActions={fireFinalActions} />}
                     {modal.content === 'rent' && <NewRentForm fireFinalActions={fireFinalActions} />}
+                    {modal.content === 'signup' && <SignupForm fireFinalActions={fireFinalActions} />}
                 </Modal.Body>
             </Modal>
         </Navbar >

@@ -46,7 +46,7 @@ const SignupForm = () => {
         authService
             .signup(signupData)
             .then(() => {
-                navigate('/iniciar-sesion')
+                navigate('/')
             })
             .catch(err => setErrors(err.response.data.errorMessages))
     }
