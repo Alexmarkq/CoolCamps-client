@@ -10,7 +10,6 @@ import Loader from "../../components/Loader/Loader"
 import NewReviewForm from "../../components/NewReviewForm/NewReviewForm"
 
 
-
 const RentDetailsPage = () => {
 
     const { user } = useContext(AuthContext)
@@ -20,25 +19,27 @@ const RentDetailsPage = () => {
     const [showModal, setShowModal] = useState(false)
 
 
-
-    console.log(reviews)
-
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
 
     const { rent_id } = useParams()
+    const { review_id } = useParams()
+
 
     const allReview = () => {
 
         reviewService
             .showReview(rent_id)
-            .then(({ data }) => { setReviews(data) })
+            .then(({ data }) => {
+                setReviews(data)
+            })
             .catch(err => console.log(err))
     }
 
-    const deleteReview = () => {
+    const deleteReview = (reviewId) => {
+
         reviewService
-            .deleteReview(_id)
+            .deleteReview(reviewId)
             .then(() => allReview())
             .catch(err => (err))
     }
@@ -142,7 +143,7 @@ const RentDetailsPage = () => {
 
 
                                             <div className="d-grid mt-2">
-                                                <Button variant="outline-danger" size="sm" onClick={deleteReview}>Borrar</Button>
+                                                <Button variant="outline-danger" size="sm" onClick={() => deleteReview(elm._id)}>Borrar</Button>
                                             </div>
 
 

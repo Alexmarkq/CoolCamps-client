@@ -19,17 +19,17 @@ class ReviewService {
         })
     }
 
-    saveReview(rent_id, reviewInfo) {
-        return this.api.post(`/create/${rent_id}`, reviewInfo)
+    saveReview(review_id, reviewInfo) {
+        return this.api.post(`/create/${review_id}`, reviewInfo)
     }
 
 
-    showReview(rent_id) {
-        return this.api.get(`/showreviews/${rent_id}`)
+    showReview(review_id) {
+        return this.api.get(`/showreviews/${review_id}`)
     }
 
-    deleteReview(rent_id) {
-        return this.api.delete(`/deleteReview/${rent_id}`)
+    deleteReview(review_id) {
+        return this.api.delete(`/deleteReview/${review_id}`)
     }
 
 }
