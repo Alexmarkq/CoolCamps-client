@@ -1,8 +1,0 @@
-.mt-5 {
-    transition: transform .2s;
-    box-shadow: 4px 4px 4px 1px rgba(0, 0, 0, 0.2);
-}
-
-.mt-5:hover {
-    transform: scale(1.02);
-}

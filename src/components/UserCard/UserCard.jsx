@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom"
 import { Link } from 'react-router-dom'
 import { AuthContext } from './../../contexts/auth.context'
 import { useContext } from 'react'
-import './UserCard.css'
 
 
 function UserCard() {
@@ -28,7 +27,7 @@ function UserCard() {
     }
 
     return (
-        <Card className='mt-5' style={{ width: '50%' }}>
+        <Card className='mt-4' style={{ width: '100%' }}>
             <Card.Img variant='top' src={profileImg} />
             <Card.Body>
                 <Card.Title>{username}</Card.Title>

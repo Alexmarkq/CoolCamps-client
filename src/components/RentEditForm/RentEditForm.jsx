@@ -13,7 +13,7 @@ const RentEditForm = ({ fireFinalActions, rent }) => {
     const [errors, setErrors] = useState([])
     const [loadingImage, setLoadingImage] = useState(false)
 
-    const { title, description, price, imageUrl, lat, lng, _id } = rent
+    const { title, description, price, imageUrl, lat, lng, _id, city } = rent
 
     const [rentData, setRentData] = useState({
         title: title,
@@ -21,7 +21,8 @@ const RentEditForm = ({ fireFinalActions, rent }) => {
         price: price,
         imageUrl: imageUrl,
         lat: lat,
-        lng: lng
+        lng: lng,
+        city: city
     })
 
     const handleInputChange = e => {
@@ -69,21 +70,26 @@ const RentEditForm = ({ fireFinalActions, rent }) => {
 
                 <Form.Group className="mb-3" controlId="description">
                     <Form.Label>Descripción</Form.Label>
-                    <Form.Control type="text" name="description" value={description} onChange={handleInputChange} />
+                    <Form.Control type="text" name="description" value={rentData.description} onChange={handleInputChange} />
                 </Form.Group>
 
 
                 <Form.Group className="mb-3" controlId="price">
                     <Form.Label>Precio</Form.Label>
-                    <Form.Control type="number" name="price" value={price} onChange={handleInputChange} />
+                    <Form.Control type="number" name="price" value={rentData.price} onChange={handleInputChange} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="coords">
                     <Form.Label>Ubicación (Coordenadas)</Form.Label>
                     <Row>
-                        <Col><Form.Control type="text" name="lat" value={lat} onChange={handleInputChange} /></Col>
-                        <Col> <Form.Control type="text" name="lng" value={lng} onChange={handleInputChange} /></Col>
+                        <Col><Form.Control type="text" name="lat" value={rentData.lat} onChange={handleInputChange} /></Col>
+                        <Col> <Form.Control type="text" name="lng" value={rentData.lng} onChange={handleInputChange} /></Col>
                     </Row>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="city">
+                    <Form.Label>Ciudad</Form.Label>
+                    <Form.Control type="text" name="city" value={rentData.city} onChange={handleInputChange} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="image">

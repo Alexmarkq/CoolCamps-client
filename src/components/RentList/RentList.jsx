@@ -4,16 +4,12 @@ import { Row, Col } from 'react-bootstrap'
 
 const RentList = ({ rents }) => {
 
-    console.warn(rents)
-
-
-
 
     return (
         <Row>
             {rents.map(elm => {
                 return (
-                    <Col key={elm._id} sm={{ span: 6 }}>
+                    <Col key={elm._id} md={{ span: 6 }}>
                         <RentCard {...elm} />
                     </Col>
                 )
