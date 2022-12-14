@@ -38,7 +38,7 @@ function ProfilePage() {
                     </Col>
                 </Row>
 
-                <Row className='fav'>
+                <Row className='fav mt-5'>
                     {favRents.length === 0 ?
                         <>
                             <h3>No tienes favoritos</h3>

@@ -12,9 +12,13 @@ const SearchBar = ({ filterRents }) => {
     }
 
     return (
-        <div>
-            <input type="text" onChange={handleInput} value={filterText} />
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Ciudades de España</label>
+            <input type="text" onChange={handleInput} value={filterText} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+
         </div>
+
     )
 }
 

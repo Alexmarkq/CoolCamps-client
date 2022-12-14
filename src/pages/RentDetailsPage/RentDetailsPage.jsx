@@ -124,7 +124,6 @@ const RentDetailsPage = () => {
 
                                 return (
 
-
                                     <Card key={elm._id} className='mt-2' style={{ width: '100%' }}>
                                         <Card.Img variant='top' />
                                         <Card.Body>
