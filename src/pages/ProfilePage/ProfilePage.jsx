@@ -12,9 +12,10 @@ function ProfilePage() {
 
     // const { user } = useContext(AuthContext)
 
-    const { loadUserRents, userRents, favRents, getLikedRents } = useContext(RentContext)
+    const { loadUserRents, userRents, favRents, getLikedRents, loadRents } = useContext(RentContext)
 
     useEffect(() => {
+        loadRents()
         loadUserRents()
         getLikedRents()
     }, [])
