@@ -23,7 +23,6 @@ const RentDetailsPage = () => {
     const closeModal = () => setShowModal(false)
 
     const { rent_id } = useParams()
-    const { review_id } = useParams()
 
 
     const allReview = () => {
@@ -122,6 +121,7 @@ const RentDetailsPage = () => {
                             </Row>
                             <hr />
                             {reviews.map(elm => {
+                                console.log(elm)
 
                                 return (
 
@@ -136,17 +136,18 @@ const RentDetailsPage = () => {
 
                                         </ListGroup>
                                         <ListGroup className="list-group-flush">
-                                            <ListGroup.Item>{user.username}</ListGroup.Item>
+                                            <ListGroup.Item>{elm.owner}</ListGroup.Item>
 
                                         </ListGroup>
                                         <Card.Text >
 
-
-                                            <div className="d-grid mt-2">
-                                                <Button variant="outline-danger" size="sm" onClick={() => deleteReview(elm._id)}>Borrar</Button>
-                                            </div>
-
-
+                                            {
+                                                (elm.owner === user?._id)
+                                                &&
+                                                <div className="d-grid mt-2">
+                                                    <Button variant="outline-danger" size="sm" onClick={() => deleteReview(elm._id)}>Borrar</Button>
+                                                </div>
+                                            }
 
                                         </Card.Text>
                                     </Card>
