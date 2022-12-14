@@ -12,6 +12,7 @@ const NewRentForm = ({ fireFinalActions }) => {
         description: '',
         price: 0,
         imageUrl: '',
+        city: '',
         lat: 0,
         lng: 0
 
@@ -54,7 +55,7 @@ const NewRentForm = ({ fireFinalActions }) => {
 
     }
 
-    const { title, description, price, lat, lng } = rentData
+    const { title, description, price, lat, lng, city } = rentData
 
     return (
 
@@ -74,6 +75,11 @@ const NewRentForm = ({ fireFinalActions }) => {
                 <Form.Group className="mb-3" controlId="price">
                     <Form.Label>Precio</Form.Label>
                     <Form.Control type="number" name="price" value={price} onChange={handleInputChange} />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="city">
+                    <Form.Label>Ciudad</Form.Label>
+                    <Form.Control type="text" name="city" value={city} onChange={handleInputChange} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="coords">

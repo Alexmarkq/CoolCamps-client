@@ -1,12 +1,12 @@
-import Maps from '../../components/Maps/Maps'
+// import Maps from '../../components/Maps/Maps'
 
 
-const MapPage = () => {
+// const MapPage = () => {
 
-    return (
-        <Maps />
+//     return (
+//         <Maps />
 
-    )
-}
+//     )
+// }
 
-export default MapPage
+// export default MapPage

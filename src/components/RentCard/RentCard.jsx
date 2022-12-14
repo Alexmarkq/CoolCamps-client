@@ -10,7 +10,7 @@ import RentEditForm from '../RentEditForm/RentEditForm'
 
 function RentCard(props) {
 
-    const { title, description, price, imageUrl, location, owner, _id } = props
+    const { title, description, price, imageUrl, location, owner, _id, city } = props
 
     const lat = location.coordinates[0]
     const lng = location.coordinates[1]
@@ -77,6 +77,7 @@ function RentCard(props) {
                     </Card.Text>
                     <Card.Text>
                         <p> {description}</p>
+                        📍{city}
                     </Card.Text>
                     <Card.Text>
                         <h5> {price} €/Dia</h5>
@@ -113,7 +114,7 @@ function RentCard(props) {
                     <Modal.Title>Editar</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <RentEditForm fireFinalActions={fireFinalActions} rent={{ title, description, price, imageUrl, lat, lng, _id }} />
+                    <RentEditForm fireFinalActions={fireFinalActions} rent={{ title, description, price, imageUrl, lat, lng, _id, city }} />
                 </Modal.Body >
             </Modal >
         </>

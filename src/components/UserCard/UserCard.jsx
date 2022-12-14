@@ -14,8 +14,6 @@ function UserCard() {
 
     const { username, profileImg, email, _id } = user
 
-    console.log(user)
-
     const navigate = useNavigate()
 
     const userDelete = () => {

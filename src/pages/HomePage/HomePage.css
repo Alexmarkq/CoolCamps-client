@@ -29,9 +29,7 @@
 }
 
 .back {
-
-    background-color: black;
-    size: 100%;
-    display: flex;
-    flex-direction: column;
+    min-height: calc(100vh - 30px);
+    background-size: cover;
+    background-image: url("../../../public/homebackground.jpeg");
 }
