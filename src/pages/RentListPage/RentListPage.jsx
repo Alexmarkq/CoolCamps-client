@@ -11,17 +11,23 @@ import SearchBar from "../../components/SearchBar/SearchBar"
 const RentListPage = () => {
 
     const { loadRents, rents } = useContext(RentContext)
-    const [showRents, setShowRents] = useState(rents)
-    const [flag, setFlag] = useState(true)
-
+    const [filteredRents, setFlteredRents] = useState()
 
     useEffect(() => {
         loadRents()
     }, [])
 
-    if (rents && flag) {
-        setFlag(false)
-        setShowRents(rents)
+    useEffect(() => {
+        rents && setFlteredRents(rents)
+    }, [rents])
+
+    const filterRents = (filterText) => {
+
+        const resultRents = rents.filter(elm => {
+            return elm.city.toLowerCase().includes(filterText.toLowerCase())
+        })
+
+        setFlteredRents(resultRents)
     }
 
 
@@ -30,13 +36,13 @@ const RentListPage = () => {
             <Container>
                 <h3 className="mt-4">Busca por ciudad</h3>
                 <hr />
-                <SearchBar setShowRents={setShowRents} />
+                <SearchBar filterRents={filterRents} />
 
-                {!showRents
+                {!filteredRents
                     ?
                     <Loader />
                     :
-                    <RentList rents={showRents} />}
+                    <RentList rents={filteredRents} />}
                 <hr />
 
                 <Link to="/">
