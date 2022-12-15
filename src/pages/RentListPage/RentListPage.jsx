@@ -45,8 +45,8 @@ const RentListPage = () => {
                     <>
 
                         <Maps locations={filteredRents}
-                            lat={filteredRents[0].location.coordinates[0]}
-                            lng={filteredRents[0].location.coordinates[1]} />
+                            lat={filteredRents[0]?.location?.coordinates[0]}
+                            lng={filteredRents[0]?.location?.coordinates[1]} />
 
                         <RentList rents={filteredRents} />
                     </>

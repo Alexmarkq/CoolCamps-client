@@ -107,6 +107,7 @@ function RentCard(props) {
 
                         }
                     </Card.Text>
+
                 </Card.Body>
             </Card>
 

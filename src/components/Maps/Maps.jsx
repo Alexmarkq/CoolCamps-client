@@ -10,13 +10,15 @@ const containerStyle = {
 
 
 const Maps = ({ lat, lng, locations }) => {
-    let center = { lat: 0, lng: 0 }
+    let center = { lat: 40.39755373983946, lng: -3.641126902654129 }
     if (lat && lng) {
         center = {
             lat,
             lng
         }
     }
+
+    console.log('-----------------', locations)
 
     return (
         <LoadScript
