@@ -11,10 +11,14 @@ function ProfilePage() {
 
     const { loadUserRents, userRents, favRents, getLikedRents, loadRents } = useContext(RentContext)
 
-    useEffect(() => {
+    const refreshAll = () => {
         loadRents()
         loadUserRents()
         getLikedRents()
+    }
+
+    useEffect(() => {
+        refreshAll()
     }, [])
 
     return (
@@ -43,14 +47,14 @@ function ProfilePage() {
                         <>
                             <h3 >Favoritos</h3>
                             <hr />
-                            < RentList rents={favRents} refreshRents={getLikedRents} />
+                            < RentList rents={favRents} />
                         </>
                     }
                 </Row>
 
                 <hr />
 
-                <Link to="/lista">
+                <Link to="/lista" className="d-grid">
                     <Button variant="outline-secondary">Volver</Button>
                 </Link>
 

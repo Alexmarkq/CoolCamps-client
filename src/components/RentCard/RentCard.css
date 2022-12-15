@@ -11,3 +11,7 @@
 .RentCard:hover {
     transform: scale(1.02)
 }
+
+div .row {
+    margin: 0;
+}

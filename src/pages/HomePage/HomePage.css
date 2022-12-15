@@ -1,35 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
-
-.home {
-    text-align: center;
-    color: white;
-
-}
-
-.homepage {
-    width: 100%;
-    position: fixed;
-    background-size: cover;
-    z-index: -1;
-}
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee@1&display=swap');
 
 .hero {
-    font-size: 13rem;
-    font-family: 'Kaushan Script', cursive;
+    background: url("https://res.cloudinary.com/dsqconqsu/image/upload/v1671128784/qopq4gw0sxvgwnff1b8s.jpg") no-repeat center / cover;
+    height: 100vh;
+    width: 100%;
+}
+
+.welcome {
+    font-family: 'ABeeZee', sans-serif;
+    text-align: left;
+    font-size: 8rem;
     text-decoration: none !important;
     transition: transform .2s;
-    text-align: center;
     display: flex;
     text-shadow: rgb(62, 62, 62) 0.05em 0.05em 0.15em;
-
+    justify-content: left;
+    margin: 0 0 0 1.5rem
 }
 
-.hero:hover {
-    transform: scale(1.05);
+@media(max-width: 700px) {
+    .welcome {
+        font-size: 8rem;
+    }
 }
 
-/* .back {
-    min-height: calc(100vh - 30px);
-    background-size: cover;
-    background-image: url("../../../public/homebackground.jpeg");
-} */
+@media(max-width: 550px) {
+    .welcome {
+        font-size: 5rem;
+    }
+}
+
+.welcome:hover {
+    transform: scale(1.02);
+}

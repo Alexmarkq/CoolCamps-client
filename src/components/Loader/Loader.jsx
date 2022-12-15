@@ -3,10 +3,13 @@ import Spinner from 'react-bootstrap/Spinner'
 function Loader() {
 
     return (
-        <Spinner animation="border" role="status">
-            <span className="visually-hidden">Cargando...</span>
-        </Spinner>
-    );
+        <div class="d-flex justify-content-center">
+            <Spinner animation="border text-secondary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </Spinner>
+        </div>
+    )
+
 }
 
 export default Loader

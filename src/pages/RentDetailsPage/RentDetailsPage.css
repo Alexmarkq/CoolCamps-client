@@ -2,3 +2,10 @@
     height: 400px;
     object-fit: cover
 }
+
+.review-img {
+    width: 40px;
+    border-radius: 20px;
+    border: 2px solid #dbdada;
+    margin-right: 10px;
+}

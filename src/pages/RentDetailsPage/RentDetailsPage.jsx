@@ -105,7 +105,7 @@ const RentDetailsPage = () => {
                             </Col>
 
                             <Col className='details mb-4' md={{ span: 4 }}>
-                                <img className='details mb-2' src={imageUrl} style={{ width: '100%' }} />
+                                <img className='details mb-2 mt-2' src={imageUrl} style={{ width: '100%' }} />
                             </Col>
 
                             <Col className="Maps" md={{ span: 4 }}>
@@ -124,7 +124,10 @@ const RentDetailsPage = () => {
                             return (
                                 <>
                                     <Card className="mt-3" key={elm._id}>
-                                        <Card.Header>{elm.owner.username}</Card.Header>
+                                        <Card.Header>
+                                            <img src={elm.owner.profileImg} className="review-img" />
+                                            {elm.owner.username}
+                                        </Card.Header>
                                         <Card.Body>
                                             <Card.Title>{elm.title}</Card.Title>
                                             <Card.Text>

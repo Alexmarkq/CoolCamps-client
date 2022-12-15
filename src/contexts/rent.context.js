@@ -6,7 +6,6 @@ const RentContext = createContext()
 
 function RentProviderWrapper(props) {
 
-    //useState([])
     const [rents, setRents] = useState()
     const [userRents, setUserRents] = useState([])
     const [favRents, setfavRents] = useState([])
@@ -22,23 +21,21 @@ function RentProviderWrapper(props) {
     const loadUserRents = () => {
         rentService
             .getOwnRents()
-            .then(({ data }) => {
-                setUserRents(data)
-            })
+            .then(({ data }) => setUserRents(data))
             .catch(err => console.log(err))
     }
 
     const getLikedRents = () => {
         rentService
             .getLikedRent()
-            .then(({ data }) => { setfavRents(data) })
+            .then(({ data }) => setfavRents(data))
             .catch(err => console.log(err))
     }
 
     const deleteRents = () => {
         rentService
             .deleteRent()
-            .then(({ data }) => { setDeleteRent(data) })
+            .then(({ data }) => setDeleteRent(data))
             .catch(err => console.log(err))
     }
 

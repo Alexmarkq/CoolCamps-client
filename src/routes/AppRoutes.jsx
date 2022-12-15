@@ -5,6 +5,8 @@ import HomePage from "../pages/HomePage/HomePage"
 import ProfilePage from "../pages/ProfilePage/ProfilePage"
 import PrivateRoute from "./PrivateRoute"
 import SignupForm from "../components/SignupForm/SignupForm"
+import NotFoundPage from "../pages/HomePage/NotFoundPage/NotFoundPage"
+
 
 
 const AppRoutes = () => {
@@ -20,7 +22,7 @@ const AppRoutes = () => {
                 <Route path="/perfil" element={<ProfilePage />} />
             </Route>
 
-            <Route path="/*" element={<h1>404</h1>} />
+            <Route path="/*" element={<NotFoundPage />} />
         </Routes>
     )
 }

@@ -19,13 +19,17 @@ const RentListPage = () => {
     }, [])
 
     useEffect(() => {
-        rents && setFlteredRents(rents)
+        if (rents) {
+            const filtered = rents.filter(el => el.state === 'Enable')
+            setFlteredRents(filtered)
+        }
     }, [rents])
 
     const filterRents = (filterText) => {
 
         const resultRents = rents.filter(elm => {
-            return elm.city.toLowerCase().includes(filterText.toLowerCase())
+            console.log(elm.state)
+            return elm.city.toLowerCase().includes(filterText.toLowerCase()) && elm.state === 'Enable'
         })
 
         setFlteredRents(resultRents)
@@ -52,10 +56,11 @@ const RentListPage = () => {
                     </>
                 }
                 <hr />
-
-                <Link to="/">
-                    <Button variant="outline-secondary">Volver al inicio</Button>
-                </Link>
+                <Row>
+                    <Link to="/" className=" d-grid">
+                        <Button variant="outline-secondary" >Volver al inicio</Button>
+                    </Link>
+                </Row>
             </Container>
         </>
     )

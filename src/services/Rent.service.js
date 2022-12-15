@@ -55,6 +55,17 @@ class RentService {
         return this.api.delete(`/deleteRent/${rent_id}`)
     }
 
+    enable(rent_id) {
+        return this.api.post(`/enable/${rent_id}`)
+    }
+
+    disable(rent_id) {
+        return this.api.post(`/disable/${rent_id}`)
+    }
+
+
+
+
 }
 
 const rentService = new RentService()
