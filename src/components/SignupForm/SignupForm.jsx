@@ -6,7 +6,7 @@ import UploadServices from "../../services/Upload.service"
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
-const SignupForm = () => {
+const SignupForm = ({ fireFinalActions }) => {
 
     const [errors, setErrors] = useState([])
 
@@ -46,6 +46,7 @@ const SignupForm = () => {
         authService
             .signup(signupData)
             .then(() => {
+                fireFinalActions()
                 navigate('/')
             })
             .catch(err => setErrors(err.response.data.errorMessages))

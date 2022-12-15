@@ -5,12 +5,9 @@ import { Container, Button, Row, Col } from 'react-bootstrap'
 import { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { RentContext } from '../../contexts/rent.context'
-// import { AuthContext } from '../../contexts/auth.context'
 
 
 function ProfilePage() {
-
-    // const { user } = useContext(AuthContext)
 
     const { loadUserRents, userRents, favRents, getLikedRents, loadRents } = useContext(RentContext)
 
@@ -19,8 +16,6 @@ function ProfilePage() {
         loadUserRents()
         getLikedRents()
     }, [])
-
-    // const { username, email, profileImg } = user
 
     return (
         <>

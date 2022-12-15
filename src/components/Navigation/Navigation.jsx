@@ -114,7 +114,11 @@ const Navigation = () => {
 
             <Modal show={modal.visible} onHide={closeModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{modal.content === 'login' ? 'Accede' : 'Alquila'}</Modal.Title>
+                    <Modal.Title>
+                        {modal.content === 'login' && 'Accede' ||
+                            modal.content === 'rent' && 'Alquila' ||
+                            modal.content === 'signup' && 'Registro'}
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {modal.content === 'login' && <LoginForm fireFinalActions={fireFinalActions} />}

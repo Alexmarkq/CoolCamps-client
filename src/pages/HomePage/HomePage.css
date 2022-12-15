@@ -28,8 +28,8 @@
     transform: scale(1.05);
 }
 
-.back {
+/* .back {
     min-height: calc(100vh - 30px);
     background-size: cover;
     background-image: url("../../../public/homebackground.jpeg");
-}
+} */
