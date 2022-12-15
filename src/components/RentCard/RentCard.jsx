@@ -1,7 +1,7 @@
 import './RentCard.css'
 import rentService from '../../services/Rent.service'
 import { useContext, useState } from 'react'
-import { Card, Button, Modal } from 'react-bootstrap'
+import { Card, Button, Modal, Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { AuthContext } from './../../contexts/auth.context'
 import { RentContext } from '../../contexts/rent.context'
@@ -30,8 +30,10 @@ function RentCard(props) {
 
         rentService
             .likeRent(_id)
-            .then(() => getLikedRents())
-            .then(() => loadRents())
+            .then(() => {
+                getLikedRents()
+                loadRents()
+            })
             .catch(err => console.log(err))
     }
 
@@ -39,8 +41,10 @@ function RentCard(props) {
 
         rentService
             .unlikeRent(_id)
-            .then(() => getLikedRents())
-            .then(() => loadRents())
+            .then(() => {
+                getLikedRents()
+                loadRents()
+            })
             .catch(err => console.log(err))
     }
 
@@ -51,10 +55,17 @@ function RentCard(props) {
     const deleteRent = () => {
         rentService
             .deleteRent(_id)
-            .then(() => fireFinalActions())
-            .then(() => loadRents())
+            .then(() => {
+                fireFinalActions()
+                loadRents()
+            })
             .catch(err => (err))
     }
+
+    // const disable = () => {
+
+
+    // }
 
 
 
@@ -92,20 +103,35 @@ function RentCard(props) {
                         }
                     </Card.Text>
                     <Card.Text >
-                        {owner?._id === user?._id
-                            &&
-                            <div className="d-grid mt-4">
-                                <Button onClick={openModal} variant="outline-warning" size="sm">Editar</Button>
-                            </div>
-                        }
-                        {
-                            owner?._id === user?._id
-                            &&
-                            <div className="d-grid mt-2">
-                                <Button variant="outline-danger" size="sm" onClick={deleteRent}>Borrar</Button>
-                            </div>
-
-                        }
+                        <Row>
+                            {
+                                owner?._id === user?._id
+                                    ?
+                                    <>
+                                        <Col>
+                                            <div className="d-grid mt-2">
+                                                <Button onClick={openModal} variant="outline-warning" size="sm">Editar</Button>
+                                            </div>
+                                        </Col>
+                                        <Col>
+                                            <div className="d-grid mt-2">
+                                                <Button variant="outline-danger" size="sm" onClick={deleteRent}>Borrar</Button>
+                                            </div>
+                                        </Col>
+                                        <Col>
+                                            <div className="d-grid mt-2">
+                                                <Button variant="outline-dark" size="sm">Deshabilitar</Button>
+                                            </div>
+                                        </Col>
+                                    </>
+                                    :
+                                    <Col>
+                                        <div className="d-grid mt-2">
+                                            <Button variant="outline-dark" size="sm">Reservar</Button>
+                                        </div>
+                                    </Col>
+                            }
+                        </Row>
                     </Card.Text>
 
                 </Card.Body>
