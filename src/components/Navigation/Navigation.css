@@ -19,3 +19,11 @@
 .dropdown-toggle::after {
     display: none !important;
 }
+
+.nav-link {
+    padding: 0;
+}
+
+/* .navbar-button {
+    border-radius: 100px;
+} */

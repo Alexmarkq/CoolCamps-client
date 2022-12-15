@@ -106,7 +106,7 @@ const RentDetailsPage = () => {
 
                                 </Col>
 
-                                <Col className='details' md={{ span: 4 }}>
+                                <Col className='details mb-4' md={{ span: 4 }}>
                                     <img className='details mb-2' src={imageUrl} style={{ width: '100%' }} />
                                 </Col>
 
@@ -120,36 +120,30 @@ const RentDetailsPage = () => {
 
                             </Row>
                             <hr />
+
+                            <h3>Comentarios</h3>
                             {reviews && reviews.map(elm => {
 
                                 return (
 
-                                    <Card key={elm._id} className='mt-2' style={{ width: '100%' }}>
-                                        <Card.Img variant='top' />
-                                        <Card.Body>
-                                            <Card.Title>{elm.title}</Card.Title>
-                                        </Card.Body>
-                                        <ListGroup className="list-group-flush">
-                                            <ListGroup.Item>{elm.description}</ListGroup.Item>
+                                    <>
 
-                                        </ListGroup>
-                                        <ListGroup className="list-group-flush">
-                                            <ListGroup.Item>{elm.owner.username}</ListGroup.Item>
+                                        <Card className="mt-3" key={elm._id}>
+                                            <Card.Header>{elm.owner.username}</Card.Header>
+                                            <Card.Body>
+                                                <Card.Title>{elm.title}</Card.Title>
+                                                <Card.Text>
+                                                    {elm.description}
+                                                </Card.Text>
+                                                {
+                                                    (elm.owner._id === user?._id)
+                                                    &&
 
-                                        </ListGroup>
-                                        <Card.Text >
-
-                                            {
-                                                (elm.owner._id === user?._id)
-                                                &&
-                                                <div className="d-grid mt-2">
-                                                    <Button variant="outline-danger" size="sm" onClick={() => deleteReview(elm._id)}>Borrar</Button>
-                                                </div>
-                                            }
-
-                                        </Card.Text>
-                                    </Card>
-                                )
+                                                    <Button variant="outline-danger" onClick={() => deleteReview(elm._id)}>Borrar</Button>
+                                                }
+                                            </Card.Body>
+                                        </Card>
+                                    </>)
                             })}
 
 

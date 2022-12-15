@@ -1,5 +1,5 @@
 import RentList from "../../components/RentList/RentList"
-import { Container, Button } from 'react-bootstrap'
+import { Container, Button, Row } from 'react-bootstrap'
 import { Link } from "react-router-dom"
 import { useContext, useEffect, useState } from "react"
 import { RentContext } from "../../contexts/rent.context"
@@ -31,7 +31,6 @@ const RentListPage = () => {
         setFlteredRents(resultRents)
     }
 
-    console.log(filteredRents)
     return (
         <>
             <Container>
@@ -45,7 +44,10 @@ const RentListPage = () => {
                     :
                     <>
 
-                        <Maps locations={filteredRents} lat={filteredRents[0].location.coordinates[0]} lng={filteredRents[0].location.coordinates[1]} />
+                        <Maps locations={filteredRents}
+                            lat={filteredRents[0].location.coordinates[0]}
+                            lng={filteredRents[0].location.coordinates[1]} />
+
                         <RentList rents={filteredRents} />
                     </>
                 }

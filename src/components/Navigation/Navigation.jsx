@@ -103,7 +103,7 @@ const Navigation = () => {
                             :
                             <>
                                 <Link onClick={() => setModal({ visible: true, content: 'login' })}>
-                                    <Button variant="outline-light" size="md">Anuncia tu caravana</Button>
+                                    <Button variant="outline-light" size="md" className='navbar-button'>Anuncia tu caravana</Button>
                                 </Link>
                             </>
                         }

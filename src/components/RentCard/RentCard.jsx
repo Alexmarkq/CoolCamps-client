@@ -86,8 +86,9 @@ function RentCard(props) {
                         {
                             !owner || owner != user?._id
                             &&
-                            <p>Propietario:
+                            <> <p>Propietario:
                                 {" " + owner.username}</p>
+                            </>
                         }
                     </Card.Text>
                     <Card.Text >
