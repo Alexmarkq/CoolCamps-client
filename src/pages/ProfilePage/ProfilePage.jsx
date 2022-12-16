@@ -1,4 +1,3 @@
-import './../ProfilePage/ProfilePage.css'
 import RentList from '../../components/RentList/RentList'
 import UserCard from '../../components/UserCard/UserCard'
 import { Container, Button, Row, Col } from 'react-bootstrap'
