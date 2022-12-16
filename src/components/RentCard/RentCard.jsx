@@ -157,10 +157,13 @@ function RentCard(props) {
                                 </>
                                 :
                                 <Col>
-                                    <div className="d-grid mt-2">
-                                        <Button onClick={() => setModal({ visible: true, content: 'rent' })}
-                                            variant="outline-dark" size="sm">Reservar</Button>
-                                    </div>
+                                    {user
+                                        &&
+                                        <div className="d-grid mt-2">
+                                            <Button onClick={() => setModal({ visible: true, content: 'rent' })}
+                                                variant="outline-dark" size="sm">Reservar</Button>
+                                        </div>
+                                    }
                                 </Col>
                             }
                         </Row>
@@ -182,23 +185,7 @@ function RentCard(props) {
                 </Modal.Body>
             </Modal>
 
-            {/* < Modal show={showModal} onHide={closeModal} >
-                <Modal.Header closeButton>
-                    <Modal.Title>Editar</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <RentEditForm fireFinalActions={fireFinalActions} rent=
-                        {{ title, description, price, imageUrl, lat, lng, _id, city }} />
-                </Modal.Body >
-            </Modal >
-            < Modal show={showModal} onHide={closeModal} >
-                <Modal.Header closeButton>
-                    <Modal.Title>Reserva</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <NewReviewForm fireFinalActions={fireFinalActions} id={_id} />
-                </Modal.Body >
-            </Modal > */}
+
         </>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
-import { Col, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 
 
 const containerStyle = {
@@ -17,8 +17,6 @@ const Maps = ({ lat, lng, locations }) => {
             lng
         }
     }
-
-    console.log('-----------------', locations)
 
     return (
         <LoadScript

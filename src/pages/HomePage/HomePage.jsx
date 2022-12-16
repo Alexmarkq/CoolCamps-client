@@ -7,7 +7,7 @@ const linkStyle = {
     textDecoration: "none",
     color: 'white'
 
-};
+}
 
 const HomePage = () => {
 
@@ -16,11 +16,11 @@ const HomePage = () => {
 
             <section className='hero' >
 
-                <Link to="/lista" style={linkStyle}>
-                    <h1 className='welcome'>
+                <Link to="/lista" className='intro' style={linkStyle}>
+                    <h2 className='rent'>
+                        Alquiler de autocaravanas</h2>
 
-
-                        Vive<br />la<br /> naturaleza</h1>
+                    <h3 className='rent2'>entre particulares.</h3>
                 </Link>
 
             </section>

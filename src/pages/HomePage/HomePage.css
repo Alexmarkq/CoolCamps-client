@@ -1,16 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=ABeeZee@1&display=swap');
 
 .hero {
     background: url("https://res.cloudinary.com/dsqconqsu/image/upload/v1671128784/qopq4gw0sxvgwnff1b8s.jpg") no-repeat center / cover;
-    height: 100vh;
-    width: 100%;
+    height: 90vh;
+
 }
 
-.welcome {
+.rent {
     font-family: 'ABeeZee', sans-serif;
     text-align: left;
-    font-size: 8rem;
+    font-size: 2rem;
     text-decoration: none !important;
     transition: transform .2s;
     display: flex;
@@ -19,18 +18,19 @@
     margin: 0 0 0 1.5rem
 }
 
-@media(max-width: 700px) {
-    .welcome {
-        font-size: 8rem;
-    }
+.rent2 {
+    color: rgb(204, 201, 201);
+    font-family: 'ABeeZee', sans-serif;
+    text-align: left;
+    font-size: 2rem;
+    text-decoration: none !important;
+    transition: transform .2s;
+    display: flex;
+    text-shadow: rgb(62, 62, 62) 0.05em 0.05em 0.15em;
+    justify-content: left;
+    margin: 0 0 0 1.5rem
 }
 
-@media(max-width: 550px) {
-    .welcome {
-        font-size: 5rem;
-    }
-}
-
-.welcome:hover {
-    transform: scale(1.02);
+.ren2:hover {
+    transform: scale(1.05)
 }

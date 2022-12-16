@@ -47,7 +47,6 @@ const RentListPage = () => {
                     <Loader />
                     :
                     <>
-
                         <Maps locations={filteredRents}
                             lat={filteredRents[0]?.location?.coordinates[0]}
                             lng={filteredRents[0]?.location?.coordinates[1]} />

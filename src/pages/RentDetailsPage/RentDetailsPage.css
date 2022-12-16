@@ -9,3 +9,7 @@
     border: 2px solid #dbdada;
     margin-right: 10px;
 }
+
+.image {
+    border-radius: 20px;
+}

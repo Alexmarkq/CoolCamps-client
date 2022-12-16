@@ -5,7 +5,7 @@ import HomePage from "../pages/HomePage/HomePage"
 import ProfilePage from "../pages/ProfilePage/ProfilePage"
 import PrivateRoute from "./PrivateRoute"
 import SignupForm from "../components/SignupForm/SignupForm"
-import NotFoundPage from "../pages/HomePage/NotFoundPage/NotFoundPage"
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage"
 
 
 

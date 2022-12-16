@@ -62,11 +62,7 @@ const RentDetailsPage = () => {
         allReview()
     }, [])
 
-
-
     const { title, description, price, imageUrl, location, owner, _id, city } = rent
-
-
 
     return (
         <>
@@ -92,6 +88,7 @@ const RentDetailsPage = () => {
                                 📍 {city}
 
                                 <h4>{price} €/Día</h4>
+
                                 <p>{price * 6} €/Semana</p>
                                 {
                                     owner || owner != user?._id
@@ -104,17 +101,18 @@ const RentDetailsPage = () => {
                                 }
                             </Col>
 
-                            <Col className='details mb-4' md={{ span: 4 }}>
-                                <img className='details mb-2 mt-2' src={imageUrl} style={{ width: '100%' }} />
+                            <Col className='details mb-4 image' md={{ span: 4 }}>
+                                <img className='details mb-2 mt-2 image' src={imageUrl} style={{ width: '100%' }} />
                             </Col>
 
-                            <Col className="Maps" md={{ span: 4 }}>
+                            <Col className="Maps image" md={{ span: 4 }}>
                                 <p> <Maps lat={location.coordinates[0]} lng={location.coordinates[1]} /></p>
                             </Col>
-
-                            <Row>
-                                <Button onClick={openModal} as="div" variant="outline-secondary">Crear comentario</Button>
-                            </Row>
+                            {user &&
+                                <Row>
+                                    <Button onClick={openModal} as="div" variant="outline-secondary">Crear comentario</Button>
+                                </Row>
+                            }
 
                         </Row>
                         <hr />

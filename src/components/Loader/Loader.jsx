@@ -5,7 +5,7 @@ function Loader() {
     return (
         <div class="d-flex justify-content-center">
             <Spinner animation="border text-secondary" role="status">
-                <span class="visually-hidden">Loading...</span>
+                <span class="visually-hidden">Cargando...</span>
             </Spinner>
         </div>
     )
