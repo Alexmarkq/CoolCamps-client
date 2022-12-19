@@ -34,7 +34,6 @@
 | DELETE        | `/rent/delete/`	            |  Rent delete	     |          |  
 | POST        	| `/rent/create`	            |  Rent form 	     |   	    | 
 | POST	        | `/post/create`	            |  Post form 	     |      	| 
-| PUT	        | `/post/edit`	                |  Post form 	     |      	| 
 | DELETE	    | `/post/delete`	            |  Delete Post       |      	| 
  
 
