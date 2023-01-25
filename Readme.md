@@ -20,21 +20,21 @@
 ## Server Routes
 
 
-|   HTTP Method	|   URI path	                |  Description 	     |   JSON	|
-| -----------   | ----------------------------- | ------------------ |--------- |	  	
-| POST          | `/signup`                 	|  Create user       |      	|
-| POST	        | `/login`	                    |  User login	     |          |
-| PUT	        | `/profile/edit`	            |  Edit user profile |   	    |    
-| DELETE	    | `/user/delete`	            |  Delete user	     |       	|  
-| GET	        | `/user/:user_id`          	|  User details	     |    ✅    | 
-| GET	        | `/getAllRents`   	            |  Rent list         |    ✅    |   
-| GET     	    | `/rent/:rent_id`	            |  Rent details	     |    ✅    |
-| PUT     	    | `/saveRent`   	            |  Save rent	     |     	    | 
-| PUT           | `/rent/edit/`	                |  Rent edit	     |          |    
-| DELETE        | `/rent/delete/`	            |  Rent delete	     |          |  
-| POST        	| `/rent/create`	            |  Rent form 	     |   	    | 
-| POST	        | `/post/create`	            |  Post form 	     |      	| 
-| DELETE	    | `/post/delete`	            |  Delete Post       |      	| 
+|   HTTP Method	|   URI path	                |  Description 	     |   JSON  	|
+| -----------   | -------------------------- | ------------------ |--------- |	  	
+| POST          | `/signup`                 	|  Create user       |         	|
+| POST	         | `/login`	                  |  User login	       |          |
+| PUT	          | `/profile/edit`	           |  Edit user profile |   	      |    
+| DELETE	       | `/user/delete`	            |  Delete user	      |       	  |  
+| GET	          | `/user/:user_id`          	|  User details	     |    ✅    | 
+| GET	          | `/getAllRents`   	         |  Rent list         |    ✅    |   
+| GET     	     | `/rent/:rent_id`	          |  Rent details	     |    ✅    |
+| PUT     	     | `/saveRent`   	            |  Save rent	        |     	    | 
+| PUT           | `/rent/edit/`	             |  Rent edit	        |          |    
+| DELETE        | `/rent/delete/`	           |  Rent delete	      |          |  
+| POST        	 | `/rent/create`	            |  Rent form 	       |   	      | 
+| POST	         | `/post/create`	            |  Post form 	       |      	   | 
+| DELETE	       | `/post/delete`	            |  Delete Post       |      	   | 
  
 
   	
