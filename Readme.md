@@ -8,13 +8,13 @@
 | `/`       	             |  Index page   	    |          	   |
 | `/registro`            	|  User Registration |              |   	
 | `/iniciar-sesion`       |  Log In 	          |              |   	
-| `/cerrar-sesion`	       |  Log Out           |   ✅    |   	 
-| `/perfil`         	     |  User Profile 	    |   ✅    |  
-| `/lista`	               |  Rent list 	       |   	   | 
-| `/anuncio/crear`        |  Create Rent	      |   ✅    |	   
-| `/detalles/:rent_id`    |  Rent Details 	    |   	   |   
-| `/comentario/crear`	    |  Create Comment  	 |   ✅ 	  |   	  	
-| `/*`	                   |  Not Found	        |   	   |
+| `/cerrar-sesion`	       |  Log Out           |        ✅    |   	 
+| `/perfil`         	     |  User Profile 	    |        ✅    |  
+| `/lista`	               |  Rent list 	       |          	   | 
+| `/anuncio/crear`        |  Create Rent	      |        ✅    |	   
+| `/detalles/:rent_id`    |  Rent Details 	    |          	   |   
+| `/comentario/crear`	    |  Create Comment  	 |        ✅ 	  |   	  	
+| `/*`	                   |  Not Found	        |          	   |
 
 
 ## Server Routes
