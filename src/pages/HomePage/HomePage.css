@@ -10,6 +10,11 @@
 }
 
 h1 {
+    letter-spacing: -.05em;
+}
+
+
+.title {
     font-size: 3.5rem;
     font-weight: 700;
     letter-spacing: -.06em;
@@ -19,7 +24,7 @@ h1 {
 
 @media screen and (max-width: 700px) {
 
-    h1 {
+    .title {
         font-size: 3.5rem;
         font-weight: 700;
         letter-spacing: -.06em;
@@ -30,7 +35,7 @@ h1 {
 
 }
 
-h1:hover {
+.title:hover {
     transform: scale(1.01)
 }
 

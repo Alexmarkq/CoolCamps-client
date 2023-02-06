@@ -25,8 +25,6 @@ function RentCard(props) {
 
     const closeModal = () => setModal({ visible: false })
 
-
-
     const { getLikedRents, favRents, loadRents, loadUserRents } = useContext(RentContext)
 
     const ids = favRents.map(el => el._id)
