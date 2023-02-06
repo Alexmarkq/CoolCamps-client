@@ -56,7 +56,7 @@ function ProfilePage() {
 
                 <hr />
 
-                <Link to="/lista" className="d-grid">
+                <Link to="/lista" className="d-grid mb-5">
                     <Button variant="outline-secondary">Volver</Button>
                 </Link>
 
