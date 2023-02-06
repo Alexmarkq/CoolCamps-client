@@ -2,35 +2,74 @@
 
 .hero {
     background: url("https://res.cloudinary.com/dsqconqsu/image/upload/v1671128784/qopq4gw0sxvgwnff1b8s.jpg") no-repeat center / cover;
-    height: 90vh;
-
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: grid;
+    min-height: 90vh;
+    place-content: end;
+    padding-bottom: 5%;
+    /* text-shadow: rgb(62, 62, 62) 0.05em 0.05em 0.15em */
 }
 
-.rent {
-    font-family: 'ABeeZee', sans-serif;
-    text-align: left;
-    font-size: 2rem;
-    text-decoration: none !important;
+h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -.06em;
+    margin: 0;
     transition: transform .2s;
-    display: flex;
-    text-shadow: rgb(62, 62, 62) 0.05em 0.05em 0.15em;
-    justify-content: left;
-    margin: 0 0 0 1.5rem
 }
 
-.rent2 {
-    color: rgb(204, 201, 201);
-    font-family: 'ABeeZee', sans-serif;
-    text-align: left;
-    font-size: 2rem;
-    text-decoration: none !important;
-    transition: transform .2s;
-    display: flex;
-    text-shadow: rgb(62, 62, 62) 0.05em 0.05em 0.15em;
-    justify-content: left;
-    margin: 0 0 0 1.5rem
+h1:hover {
+    transform: scale(1.01)
 }
 
-.ren2:hover {
-    transform: scale(1.05)
+.span1 {
+    color: #fff;
+    display: block;
+    position: relative;
+    line-height: 1.1;
+
+}
+
+.span1::before {
+    background: linear-gradient(90deg, rgb(186, 48, 1), yellow);
+    content: 'Alquiler de campers';
+    position: absolute;
+    inset: 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animated 7s infinite;
+
+}
+
+.span2 {
+    color: #fff;
+    display: block;
+    position: relative;
+    line-height: 1.1;
+}
+
+.span2::before {
+    background: linear-gradient(90deg, rgb(186, 48, 1), rgb(255, 255, 0));
+    content: 'entre particulares.';
+    position: absolute;
+    inset: 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animated 7s infinite;
+    animation-delay: 3.5s;
+}
+
+@keyframes animated {
+
+    0%,
+    16.667%,
+    100% {
+        opacity: 1;
+    }
+
+    33.333%,
+    83.333% {
+        opacity: 0;
+    }
+
 }

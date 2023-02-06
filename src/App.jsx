@@ -7,7 +7,7 @@ import AppRoutes from './routes/AppRoutes'
 const App = () => {
 
   return (
-    <div className='App pb-5'>
+    <div className='App'>
 
       <Navigation />
       <AppRoutes />
