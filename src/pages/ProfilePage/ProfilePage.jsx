@@ -29,12 +29,15 @@ function ProfilePage() {
                         <hr />
                         <UserCard />
                     </Col>
+                </Row>
+                <Row className="mt-4">
                     <Col  >
                         <h3 >Mis anuncios</h3>
                         <hr />
                         <RentList rents={userRents} />
                     </Col>
                 </Row>
+
 
                 <Row className='fav mt-5'>
                     {favRents.length === 0 ?

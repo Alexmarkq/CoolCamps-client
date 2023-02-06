@@ -34,10 +34,13 @@ function UserCard() {
             </Card.Body>
             <ListGroup className="list-group-flush">
                 <ListGroup.Item>{email}</ListGroup.Item>
-                {user &&
+                {user
+                    &&
                     <ListGroup.Item>
                         <Link to="/">
-                            <Button onClick={userDelete} variant="outline-danger">Eliminar Cuenta</Button>
+                            <div className="d-grid">
+                                <Button onClick={userDelete} variant="outline-danger">Eliminar Cuenta</Button>
+                            </div>
                         </Link>
                     </ListGroup.Item>}
             </ListGroup>
