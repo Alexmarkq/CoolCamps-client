@@ -98,13 +98,13 @@ const Navigation = () => {
                             <>
                                 <Button
                                     onClick={() => setModal({ visible: true, content: 'rent' })} variant="outline-light" size="md">
-                                    Anuncia tu caravana</Button>
+                                    Anuncia tu camper</Button>
                             </>
                             :
                             <>
                                 <Link onClick={() => setModal({ visible: true, content: 'login' })}>
                                     <Button variant="outline-light" size="md" className='navbar-button'>
-                                        Anuncia tu caravana</Button>
+                                        Anuncia tu camper</Button>
                                 </Link>
                             </>
                         }
@@ -116,7 +116,7 @@ const Navigation = () => {
                 <Modal.Header closeButton>
                     <Modal.Title>
                         {modal.content === 'login' && 'Accede' ||
-                            modal.content === 'rent' && 'Alquila' ||
+                            modal.content === 'rent' && 'Anuncia tu camper' ||
                             modal.content === 'signup' && 'Registro'}
                     </Modal.Title>
                 </Modal.Header>
