@@ -17,6 +17,19 @@ h1 {
     transition: transform .2s;
 }
 
+@media screen and (max-width: 700px) {
+
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        letter-spacing: -.06em;
+        margin: 0;
+        transition: transform .2s;
+        padding-bottom: 21%;
+    }
+
+}
+
 h1:hover {
     transform: scale(1.01)
 }
