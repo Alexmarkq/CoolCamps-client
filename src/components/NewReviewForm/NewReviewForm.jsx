@@ -43,7 +43,7 @@ const NewReviewForm = ({ fireFinalActions, id }) => {
                 </Form.Group>
 
                 <div className="d-grid">
-                    <Button variant="outline-secondary" type="submit">Crear comentario</Button>
+                    <Button variant="outline-secondary" type="submit">Enviar</Button>
                 </div>
             </Form >
         </Container>
