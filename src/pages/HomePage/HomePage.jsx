@@ -8,22 +8,25 @@ const linkStyle = {
     color: 'white'
 
 }
+// const content =  "--content: 'Alquiler de campers'"
 
 const HomePage = () => {
 
     return (
         <>
 
-            <section className='hero' >
+            <div className='hero' >
 
                 <Link to="/lista" className='intro' style={linkStyle}>
-                    <h2 className='rent'>
-                        Alquiler de autocaravanas</h2>
+                    <h1>
+                        <span className='span1'>Alquiler de campers</span>
+                        <span className='span2'>entre particulares.</span>
+                    </h1>
 
-                    <h3 className='rent2'>entre particulares.</h3>
+
                 </Link>
 
-            </section>
+            </div>
 
 
         </>
