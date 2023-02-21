@@ -3,6 +3,7 @@
 
 
 
+
 ## Client Routes
 
 |   URI path	             |  Description  	    |   PROTECTED  |
