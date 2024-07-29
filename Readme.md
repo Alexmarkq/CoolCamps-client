@@ -1,5 +1,8 @@
 ## Live version here ---> https://coolcamps.netlify.app/
 
+
+
+
 ## Client Routes
 
 |   URI path	             |  Description  	    |   PROTECTED  |
@@ -14,6 +17,7 @@
 | `/detalles/:rent_id`    |  Rent Details 	    |          	   |   
 | `/comentario/crear`	    |  Create Comment  	 |        ✅ 	  |   	  	
 | `/*`	                   |  Not Found	        |          	   |
+
 
 
 
