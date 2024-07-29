@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Form, Button, Container } from "react-bootstrap"
 import reviewService from "../../services/Review.service"
-
+import "./NewReviewForm.css"
 
 
 const NewReviewForm = ({ fireFinalActions, id }) => {
@@ -42,8 +42,12 @@ const NewReviewForm = ({ fireFinalActions, id }) => {
                     <Form.Control type="text" name="description" value={description} onChange={handleInputChange} />
                 </Form.Group>
 
-                <div className="d-grid">
-                    <Button variant="outline-secondary" type="submit">Enviar</Button>
+                <div className="d-grid mt-4">
+                    <Button
+                        className="color"
+                        variant="outline-secondary"
+                        type="submit"
+                    >Enviar</Button>
                 </div>
             </Form >
         </Container>

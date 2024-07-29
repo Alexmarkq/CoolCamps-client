@@ -5,11 +5,12 @@
 
 .RentCard {
     transition: transform .2s;
-    box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.1)
+
 }
 
 .RentCard:hover {
-    transform: scale(1.02)
+    transform: scale(1.02);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1)
 }
 
 div .row {

@@ -1,5 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
+.dropdown-menu.show {
+    display: block;
+    background: rgba(249, 248, 247, 0.282);
+    backdrop-filter: blur(10px);
+}
+
+
+.dropdown-item {
+    color: rgb(9, 9, 9);
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0);
+    transform: scale(1.05);
+}
+
+
+.modal-content {
+    background-color: #ffffff13;
+    backdrop-filter: blur(10px);
+    color: #dbdada;
+
+}
+
+.modal-dialog {
+    color: white;
+}
+
+.galery-text {
+    margin: 10px;
+    text-align: center;
+}
+
+.galery-text {
+    font-weight: 400;
+    color: white;
+
+
+
+}
+
+.galery-text:hover {
+    font-weight: 400;
+    color: white;
+    transform: scale(1.07);
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.485);
+
+}
+
+
+.button {
+    background-color: #f377395e;
+    transition: transform .2s;
+
+
+}
+
+.button:hover {
+    color: white;
+    background-color: #f377395e;
+    transform: scale(1.05);
+    box-shadow: 3px 3px 5px rgba(10, 10, 10, 0.363);
+
+}
 
 .cool {
     font-family: 'Pacifico';
@@ -22,13 +89,14 @@
     margin: 0
 }
 
-a.dropdown-toggle.nav-link {
-    padding: 0px 0px;
-}
 
 .imageNav:hover {
 
     transform: scale(1.1)
+}
+
+a.dropdown-toggle.nav-link {
+    padding: 0px 0px;
 }
 
 .dropdown-toggle::after {
