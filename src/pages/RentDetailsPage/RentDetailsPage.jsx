@@ -102,7 +102,7 @@ const RentDetailsPage = () => {
                             </Col>
 
                             <Col className='details mb-4 image' md={{ span: 4 }}>
-                                <img className='details mb-2 mt-2 image' src={imageUrl} style={{ width: '100%' }} />
+                                <img className='details mb-2 mt-2 image' alt="detalle" src={imageUrl} style={{ width: '100%' }} />
                             </Col>
 
                             <Col className="Maps image" md={{ span: 4 }}>
@@ -120,10 +120,10 @@ const RentDetailsPage = () => {
                         <h3>Comentarios</h3>
                         {reviews && reviews.map(elm => {
                             return (
-                                <>
-                                    <Card className="mt-3" key={elm._id}>
+                                <div key={elm._id}>
+                                    <Card className="mt-3" >
                                         <Card.Header>
-                                            <img src={elm.owner.profileImg} className="review-img" />
+                                            <img src={elm.owner.profileImg} alt="Imagen Perfil" className="review-img" />
                                             {elm.owner.username}
                                         </Card.Header>
                                         <Card.Body>
@@ -138,14 +138,14 @@ const RentDetailsPage = () => {
                                             }
                                         </Card.Body>
                                     </Card>
-                                </>
+                                </div>
                             )
                         })}
-                        <Link to="/lista">
-                            <Row>
-                                <Button as="div" className="mb-5 mt-5" variant="outline-secondary">Volver</Button>
-                            </Row>
-                        </Link>
+                       <Row className="mb-5 mt-5">
+                            <Link to="/lista">
+                                <Button variant="outline-secondary">Volver</Button>
+                            </Link>
+                        </Row>
                     </>
                 }
             </Container >
