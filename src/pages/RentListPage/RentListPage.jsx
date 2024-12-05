@@ -57,7 +57,7 @@ const RentListPage = () => {
                 <hr />
                 <Row>
                     <Link to="/" className="d-grid mb-5">
-                        <Button variant="outline-secondary" >Volver al inicio</Button>
+                        <Button className="w-100" variant="outline-secondary" >Volver al inicio</Button>
                     </Link>
                 </Row>
             </Container>

@@ -139,7 +139,7 @@ const RentDetailsPage = () => {
                         })}
                        <Row className="mb-5 mt-5">
                             <Link to="/lista">
-                                <Button variant="outline-secondary">Volver</Button>
+                                <Button className="mb-5 w-100" variant="outline-secondary">Volver</Button>
                             </Link>
                         </Row>
                     </>
