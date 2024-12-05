@@ -13,9 +13,9 @@ const SearchBar = ({ filterRents }) => {
 
     return (
 
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Ciudades de España</label>
-            <input type="text" onChange={handleInput} value={filterText} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+        <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">Ciudades de España</label>
+            <input type="text" onChange={handleInput} value={filterText} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
 
         </div>
 
