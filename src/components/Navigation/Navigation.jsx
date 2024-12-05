@@ -122,9 +122,11 @@ const Navigation = () => {
 
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        {modal.content === 'login' && 'Accede' ||
-                            modal.content === 'rent' && 'Anuncia tu camper' ||
-                            modal.content === 'signup' && 'Registro'}
+                        {
+                            modal.content === ('login' && 'Accede') ||
+                            modal.content === ('rent' && 'Anuncia tu camper') ||
+                            modal.content === ('signup' && 'Registro')
+                        }
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
