@@ -28,7 +28,7 @@ const RentListPage = () => {
     const filterRents = (filterText) => {
 
         const resultRents = rents.filter(elm => {
-            console.log(elm.state)
+            //console.log(elm.state)
             return elm.city.toLowerCase().includes(filterText.toLowerCase()) && elm.state === 'Enable'
         })
 

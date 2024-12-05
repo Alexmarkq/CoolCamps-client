@@ -1,5 +1,5 @@
 import './Footer.css'
 
-const Footer = () => <footer> Creado por Alex & Juan</footer>
+const Footer = () => <footer> Desarrollado por Alex & Juan</footer>
 
 export default Footer

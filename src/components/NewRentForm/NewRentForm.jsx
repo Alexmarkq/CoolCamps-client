@@ -3,7 +3,7 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap"
 import rentService from "../../services/Rent.service"
 import UploadServices from "../../services/Upload.service"
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
-
+import "./NewRentForm.css"
 
 const NewRentForm = ({ fireFinalActions }) => {
 
@@ -97,8 +97,16 @@ const NewRentForm = ({ fireFinalActions }) => {
 
                 {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
-                <div className="d-grid">
-                    <Button variant="outline-secondary" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear anuncio'}</Button>
+                <div className="d-grid mt-4">
+                    <Button
+                        className="color"
+                        variant="outline-secondary"
+                        type="submit"
+                        disabled={loadingImage}>{loadingImage
+                            ?
+                            'Subiendo imagen...'
+                            :
+                            'Crear anuncio'}</Button>
                 </div>
             </Form >
         </Container>

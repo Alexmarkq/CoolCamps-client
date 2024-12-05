@@ -90,22 +90,28 @@ const Navigation = () => {
                     <Nav className="justify-content-end flex-grow-1">
                         <Link to="/lista">
                             <Nav.Link as='div' className='galery-text'>
-                                Galería
+                                Buscar
                             </Nav.Link>
                         </Link>
                         {user
                             ?
-                            <>
-                                <Button
-                                    onClick={() => setModal({ visible: true, content: 'rent' })} variant="outline-light" size="md">
-                                    Anuncia tu camper</Button>
+                            <>                                
+                                    <Button
+                                        className='button'
+                                        onClick={() => setModal({ visible: true, content: 'rent' })}
+                                        variant="outline-light"
+                                        size="md">
+                                        Anuncia tu camper</Button>
+
                             </>
                             :
                             <>
-                                <Link onClick={() => setModal({ visible: true, content: 'login' })}>
-                                    <Button variant="outline-light" size="md" className='navbar-button'>
+                                    <Button                                    
+                                        className='button'
+                                        onClick={() => setModal({ visible: true, content: 'login' })}
+                                        variant="outline-light" 
+                                        size="md">
                                         Anuncia tu camper</Button>
-                                </Link>
                             </>
                         }
                     </Nav>
@@ -113,6 +119,7 @@ const Navigation = () => {
             </Container>
 
             <Modal show={modal.visible} onHide={closeModal}>
+
                 <Modal.Header closeButton>
                     <Modal.Title>
                         {modal.content === 'login' && 'Accede' ||
@@ -125,6 +132,7 @@ const Navigation = () => {
                     {modal.content === 'rent' && <NewRentForm fireFinalActions={fireFinalActions} />}
                     {modal.content === 'signup' && <SignupForm fireFinalActions={fireFinalActions} />}
                 </Modal.Body>
+
             </Modal>
         </Navbar >
 

@@ -24,11 +24,13 @@ function ProfilePage() {
         <>
             <Container>
                 <Row className="mt-4">
-                    <Col  >
+                    <Col className='col-xxl-3 col-xl-3 col-lg-6 col-md-6'>
                         <h3 >Mi perfil</h3>
                         <hr />
                         <UserCard />
                     </Col>
+
+
                 </Row>
                 <Row className="mt-4">
                     <Col  >

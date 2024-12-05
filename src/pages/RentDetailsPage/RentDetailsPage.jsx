@@ -1,6 +1,6 @@
 import './RentDetailsPage.css'
 import { useEffect, useState, useContext } from "react"
-import { Container, Row, Col, Button, Card, ListGroup, Modal } from "react-bootstrap"
+import { Container, Row, Col, Button, Card, Modal } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
 import { AuthContext } from './../../contexts/auth.context'
 import reviewService from '../../services/Review.service'
@@ -18,15 +18,12 @@ const RentDetailsPage = () => {
     const [reviews, setReviews] = useState(null)
     const [showModal, setShowModal] = useState(false)
 
-
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
 
     const { rent_id } = useParams()
 
-
     const allReview = () => {
-
         reviewService
             .showReview(rent_id)
             .then(({ data }) => {
@@ -36,7 +33,6 @@ const RentDetailsPage = () => {
     }
 
     const deleteReview = (reviewId) => {
-
         reviewService
             .deleteReview(reviewId)
             .then(() => allReview())
@@ -44,7 +40,6 @@ const RentDetailsPage = () => {
     }
 
     const oneRent = () => {
-
         rentService
             .getOneRent(rent_id)
             .then(({ data }) => setRent(data))
@@ -54,7 +49,6 @@ const RentDetailsPage = () => {
     const fireFinalActions = () => {
         closeModal()
         allReview()
-
     }
 
     useEffect(() => {
@@ -62,7 +56,7 @@ const RentDetailsPage = () => {
         allReview()
     }, [])
 
-    const { title, description, price, imageUrl, location, owner, _id, city } = rent
+    const {title, description, price, imageUrl, location, owner, _id, city} = rent
 
     return (
         <>
@@ -77,18 +71,13 @@ const RentDetailsPage = () => {
                                 <h1 className="mt-4">{title}</h1>
                             </Col>
                         </Row>
-
                         <hr />
                         <Row>
                             <Col md={{ span: 4 }} >
                                 <h3>Especificaciones</h3>
-
                                 <p>{description}</p>
-
                                 📍 {city}
-
                                 <h4>{price} €/Día</h4>
-
                                 <p>{price * 6} €/Semana</p>
                                 {
                                     owner || owner != user?._id
@@ -102,7 +91,12 @@ const RentDetailsPage = () => {
                             </Col>
 
                             <Col className='details mb-4 image' md={{ span: 4 }}>
-                                <img className='details mb-2 mt-2 image' src={imageUrl} style={{ width: '100%' }} />
+                                <img 
+                                    className='details mb-2 mt-2 image'
+                                    alt='Detalle'
+                                    src={imageUrl} 
+                                    style={{ width: '100%' }} 
+                                />
                             </Col>
 
                             <Col className="Maps image" md={{ span: 4 }}>
@@ -123,7 +117,7 @@ const RentDetailsPage = () => {
                                 <>
                                     <Card className="mt-3" key={elm._id}>
                                         <Card.Header>
-                                            <img src={elm.owner.profileImg} className="review-img" />
+                                            <img src={elm.owner.profileImg} alt='Imagen perfil' className="review-img" />
                                             {elm.owner.username}
                                         </Card.Header>
                                         <Card.Body>
