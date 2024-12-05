@@ -19,7 +19,6 @@
 | `/*`	                   |  Not Found	        |          	   |
 
 
-
 ## Server Routes
 
 
