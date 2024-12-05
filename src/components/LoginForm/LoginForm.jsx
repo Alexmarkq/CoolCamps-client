@@ -57,7 +57,7 @@ const LoginForm = ({ fireFinalActions }) => {
                 <Form.Control type="password" value={password} onChange={handleInputChange} name="password" />
             </Form.Group>
 
-            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
+            {errors.length ? <ErrorMessage>{errors.map(elm => <div key={elm}>{elm}</div>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
                 <Button variant="dark" type="submit">Acceder</Button>

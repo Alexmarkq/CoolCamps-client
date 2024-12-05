@@ -81,7 +81,7 @@ const SignupForm = ({ fireFinalActions }) => {
                 <Form.Control type="file" onChange={handleFileUpload} />
             </Form.Group>
 
-            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
+            {errors.length ? <ErrorMessage>{errors.map(elm => <div key={elm}>{elm}</div>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
                 <Button variant="dark" type="submit">Registrarme</Button>

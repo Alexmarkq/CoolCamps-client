@@ -75,10 +75,12 @@ const RentDetailsPage = () => {
                         <Row>
                             <Col md={{ span: 4 }} >
                                 <h3>Especificaciones</h3>
-                                <p>{description}</p>
+                                <div>{description}</div>
+                                <br />
                                 📍 {city}
-                                <h4>{price} €/Día</h4>
-                                <p>{price * 6} €/Semana</p>
+                                <br /><br />
+                                <div className="h4">{price} €/Día</div>
+                                <div>{price * 6} €/Semana</div>
                                 {
                                     owner || owner != user?._id
                                         ?
@@ -100,7 +102,7 @@ const RentDetailsPage = () => {
                             </Col>
 
                             <Col className="Maps image" md={{ span: 4 }}>
-                                <p> <Maps lat={location.coordinates[0]} lng={location.coordinates[1]} /></p>
+                                <div> <Maps lat={location.coordinates[0]} lng={location.coordinates[1]} /></div><br />
                             </Col>
                             {user &&
                                 <Row>

@@ -97,7 +97,7 @@ const RentEditForm = ({ fireFinalActions, rent }) => {
                     <Form.Control type="file" onChange={handleFileUpload} />
                 </Form.Group>
 
-                {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
+                {errors.length ? <ErrorMessage>{errors.map(elm => <div key={elm}>{elm}</div>)}</ErrorMessage> : undefined}
 
                 <div className="d-grid">
                     <Button variant="outline-secondary" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Editar'}</Button>
