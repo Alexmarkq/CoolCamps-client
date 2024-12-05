@@ -29,7 +29,7 @@ const Navigation = () => {
     }
 
     useEffect(() => {
-        loadRents()
+        //loadRents()
     }, [])
 
     return (
