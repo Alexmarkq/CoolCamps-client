@@ -9,6 +9,7 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage"
 const SignupForm = ({ fireFinalActions }) => {
 
     const [errors, setErrors] = useState([])
+    const [isLoading, setIsLoading] = useState(false);
 
     const [signupData, setSignupData] = useState({
         username: '',
@@ -18,8 +19,7 @@ const SignupForm = ({ fireFinalActions }) => {
     })
 
     const handleFileUpload = e => {
-
-
+        setIsLoading(true)
         const formData = new FormData()
 
         formData.append('imageData', e.target.files[0])
@@ -31,6 +31,7 @@ const SignupForm = ({ fireFinalActions }) => {
 
             })
             .catch(err => console.log(err))
+            .finally(() => setIsLoading(false))
     }
 
     const handleInputChange = e => {
@@ -84,7 +85,16 @@ const SignupForm = ({ fireFinalActions }) => {
             {errors.length ? <ErrorMessage>{errors.map(elm => <div key={elm}>{elm}</div>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
-                <Button variant="dark" type="submit">Registrarme</Button>
+            <Button variant="dark" type="submit" disabled={isLoading}>
+                {isLoading ? (
+                    <>
+                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        Cargando imagen...
+                    </>
+                ) : (
+                    'Registrarme'
+                )}
+            </Button>
             </div>
 
         </Form>
