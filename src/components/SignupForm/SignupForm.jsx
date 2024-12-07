@@ -21,14 +21,12 @@ const SignupForm = ({ fireFinalActions }) => {
     const handleFileUpload = e => {
         setIsLoading(true)
         const formData = new FormData()
-
         formData.append('imageData', e.target.files[0])
 
         UploadServices
             .uploadimage(formData)
             .then(res => {
                 setSignupData({ ...signupData, profileImg: res.data.cloudinary_url })
-
             })
             .catch(err => console.log(err))
             .finally(() => setIsLoading(false))
@@ -41,7 +39,6 @@ const SignupForm = ({ fireFinalActions }) => {
     const navigate = useNavigate()
 
     const handleSubmit = e => {
-
         e.preventDefault()
 
         authService

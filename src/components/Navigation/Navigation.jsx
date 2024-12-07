@@ -28,6 +28,12 @@ const Navigation = () => {
         loadRents()
     }
 
+    const modalTitles = {
+        login: 'Accede',
+        rent: 'Anuncia tu camper',
+        signup: 'Registro'
+    };
+
     useEffect(() => {
         //loadRents()
     }, [])
@@ -119,14 +125,10 @@ const Navigation = () => {
             </Container>
 
             <Modal show={modal.visible} onHide={closeModal}>
-
+                
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        {
-                            modal.content === ('login' && 'Accede') ||
-                            modal.content === ('rent' && 'Anuncia tu camper') ||
-                            modal.content === ('signup' && 'Registro')
-                        }
+                        {modalTitles[modal.content] || ''}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
