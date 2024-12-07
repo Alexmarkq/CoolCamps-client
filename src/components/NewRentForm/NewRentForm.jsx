@@ -51,7 +51,12 @@ const NewRentForm = ({ fireFinalActions }) => {
         rentService
             .saveRent(rentData)
             .then(() => { fireFinalActions() })
-            .catch(err => setErrors(err.response.data.errorMessages))
+            .catch(err => {
+                const errorMessages = err.response?.data?.errorMessages || 
+                err.response?.data?.message || 
+                ['Error inesperado'];
+                setErrors(Array.isArray(errorMessages) ? errorMessages : [errorMessages]);
+            })
 
     }
 
