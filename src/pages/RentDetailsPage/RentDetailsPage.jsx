@@ -114,29 +114,33 @@ const RentDetailsPage = () => {
                         <hr />
 
                         <h3>Comentarios</h3>
-                        {reviews && reviews.map(elm => {
-                            return (
-                                <div key={elm._id}>
-                                    <Card className="mt-3" >
-                                        <Card.Header>
-                                            <img src={elm.owner.profileImg} alt='Imagen perfil' className="review-img" />
-                                            {elm.owner.username}
-                                        </Card.Header>
-                                        <Card.Body>
-                                            <Card.Title>{elm.title}</Card.Title>
-                                            <Card.Text>
-                                                {elm.description}
-                                            </Card.Text>
-                                            {
-                                                (elm.owner._id === user?._id)
-                                                &&
-                                                <Button variant="outline-danger" onClick={() => deleteReview(elm._id)}>Borrar</Button>
-                                            }
-                                        </Card.Body>
-                                    </Card>
-                                </div>
-                            )
-                        })}
+                            {user ? (
+                                reviews && reviews.length > 0 ? (
+                                    reviews.map(elm => (
+                                        <div key={elm._id}>
+                                            <Card className="mt-3">
+                                                <Card.Header>
+                                                    <img src={elm.owner.profileImg} alt="Imagen perfil" className="review-img" />
+                                                    {elm.owner.username}
+                                                </Card.Header>
+                                                <Card.Body>
+                                                    <Card.Title>{elm.title}</Card.Title>
+                                                    <Card.Text>{elm.description}</Card.Text>
+                                                    {elm.owner._id === user?._id && (
+                                                        <Button variant="outline-danger" onClick={() => deleteReview(elm._id)}>
+                                                            Borrar
+                                                        </Button>
+                                                    )}
+                                                </Card.Body>
+                                            </Card>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className='mt-4'>🤩 Se el primero en dejar un comentario! </div>
+                                )
+                            ) : (
+                                <div className='mt-4'>🧐 Inicia sesión para ver los comentarios.</div>
+                            )}
                        <Row className="mb-5 mt-5">
                             <Link to="/lista">
                                 <Button className="mb-5 w-100" variant="outline-secondary">Volver</Button>
