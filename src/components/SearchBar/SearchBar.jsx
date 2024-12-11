@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react"
-import { useContext } from "react"
-import { RentContext } from "../../contexts/rent.context"
+import { useState } from "react"
 
 const SearchBar = ({ filterRents }) => {
 
@@ -12,13 +10,11 @@ const SearchBar = ({ filterRents }) => {
     }
 
     return (
-
         <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">Ciudades de España</label>
             <input type="text" onChange={handleInput} value={filterText} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
 
         </div>
-
     )
 }
 
