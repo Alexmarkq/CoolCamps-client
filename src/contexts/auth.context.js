@@ -3,22 +3,17 @@ import authService from "../services/Auth.service"
 
 const AuthContext = createContext()
 
-function AuthProviderWrapper(props) {
+const AuthProviderWrapper = ({children}) => {
 
     const [user, setUser] = useState(null)
-
     const [isLoading, setIsLoading] = useState(true)
-
+    
     const storeToken = (token) => {
         localStorage.setItem("authToken", token)
     }
-
     const authenticateUser = () => {
-
         const token = localStorage.getItem("authToken")
-
         if (token) {
-
             authService
                 .verify(token)
                 .then(({ data }) => {
@@ -44,7 +39,7 @@ function AuthProviderWrapper(props) {
 
     return (
         <AuthContext.Provider value={{ storeToken, authenticateUser, user, logoutUser, isLoading }}>
-            {props.children}
+            {children}
         </AuthContext.Provider>
     )
 }

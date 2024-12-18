@@ -1,20 +1,15 @@
 import axios from 'axios'
 
 class RentService {
-
     constructor() {
-
         this.api = axios.create({
             baseURL: `${process.env.REACT_APP_API_URL}/coolCamps`
         })
         this.api.interceptors.request.use((config) => {
-
             const storedToken = localStorage.getItem("authToken");
-
             if (storedToken) {
                 config.headers = { Authorization: `Bearer ${storedToken}` }
             }
-
             return config
         })
     }
@@ -62,10 +57,6 @@ class RentService {
     disable(rent_id) {
         return this.api.post(`/disable/${rent_id}`)
     }
-
-
-
-
 }
 
 const rentService = new RentService()
