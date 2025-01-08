@@ -1,12 +1,11 @@
 import { createContext, useState } from "react"
 import rentService from "../services/Rent.service"
 
-
 const RentContext = createContext()
 
-function RentProviderWrapper(props) {
+const RentProviderWrapper = ({children}) => {
 
-    const [rents, setRents] = useState()
+    const [rents, setRents] = useState([])
     const [userRents, setUserRents] = useState([])
     const [favRents, setfavRents] = useState([])
     const [deleteRent, setDeleteRent] = useState([])
@@ -41,7 +40,7 @@ function RentProviderWrapper(props) {
 
     return (
         <RentContext.Provider value={{ rents, setRents, userRents, loadRents, loadUserRents, getLikedRents, favRents, setfavRents, deleteRents, setDeleteRent }}>
-            {props.children}
+            {children}
         </RentContext.Provider >
     )
 }

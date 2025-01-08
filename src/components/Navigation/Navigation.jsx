@@ -18,9 +18,7 @@ import './Navigation.css'
 
 const Navigation = () => {
   const { loadRents } = useContext(RentContext)
-
   const { user, logoutUser } = useContext(AuthContext)
-
   const [modal, setModal] = useState({
     visible: false,
     content: '',

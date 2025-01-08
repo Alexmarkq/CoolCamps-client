@@ -6,8 +6,8 @@ import { RentProviderWrapper } from './contexts/rent.context'
 import { AuthProviderWrapper } from './contexts/auth.context'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(
 
+root.render(
   <AuthProviderWrapper>
     <RentProviderWrapper>
       <Router>
@@ -15,6 +15,4 @@ root.render(
       </Router>
     </RentProviderWrapper>
   </AuthProviderWrapper>
-
-
 )
