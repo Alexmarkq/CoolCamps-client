@@ -89,7 +89,6 @@ const Navigation = () => {
                 as='div'
                 onClick={() => {
                   logoutUser()
-                  window.location.href = '/'
                 }}
               >
                 Cerrar sesión

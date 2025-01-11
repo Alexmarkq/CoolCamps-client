@@ -1,75 +1,86 @@
-import { useState, useContext } from "react"
-import { Form, Button } from "react-bootstrap"
-import { useNavigate } from "react-router-dom"
-import { AuthContext } from "../../contexts/auth.context"
-import authService from "../../services/Auth.service"
-import ErrorMessage from "../ErrorMessage/ErrorMessage"
-
+import { useState, useContext } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../contexts/auth.context'
+import authService from '../../services/Auth.service'
+import ErrorMessage from '../ErrorMessage/ErrorMessage'
 
 const LoginForm = ({ fireFinalActions }) => {
+  const [errors, setErrors] = useState([])
 
-    const [errors, setErrors] = useState([])
+  const [signupData, setSignupData] = useState({
+    email: '',
+    password: '',
+  })
 
-    const [signupData, setSignupData] = useState({
-        email: '',
-        password: ''
-    })
+  const handleInputChange = (e) => {
+    const { value, name } = e.target
+    setSignupData({ ...signupData, [name]: value })
+  }
 
-    const handleInputChange = e => {
-        const { value, name } = e.target
-        setSignupData({ ...signupData, [name]: value })
-    }
+  const navigate = useNavigate()
 
-    const navigate = useNavigate()
+  const { storeToken, authenticateUser } = useContext(AuthContext)
 
-    const { storeToken, authenticateUser } = useContext(AuthContext)
+  const handleSubmit = (e) => {
+    e.preventDefault()
 
+    authService
+      .login(signupData)
+      .then(({ data }) => {
+        const tokenFromServer = data.authToken
+        storeToken(tokenFromServer)
+        authenticateUser()
+        fireFinalActions()
+      })
+      .catch((err) => {
+        const errorMessages = err.response?.data?.errorMessages ||
+          err.response?.data?.message || ['Error inesperado']
+        setErrors(
+          Array.isArray(errorMessages) ? errorMessages : [errorMessages]
+        )
+      })
+  }
 
-    const handleSubmit = e => {
+  const { password, email } = signupData
 
-        e.preventDefault()
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className='mb-3' controlId='email'>
+        <Form.Label>Email</Form.Label>
+        <Form.Control
+          type='email'
+          value={email}
+          onChange={handleInputChange}
+          name='email'
+        />
+      </Form.Group>
 
-        authService
-            .login(signupData)
-            .then(({ data }) => {
-                const tokenFromServer = data.authToken
-                storeToken(tokenFromServer)
-                authenticateUser()
-                navigate('/')
-                fireFinalActions()
-            })
-            .catch(err => {
-                const errorMessages = err.response?.data?.errorMessages || 
-                err.response?.data?.message || 
-                ['Error inesperado'];
-                setErrors(Array.isArray(errorMessages) ? errorMessages : [errorMessages]);
-            })
-    }
+      <Form.Group className='mb-3' controlId='password'>
+        <Form.Label>Contraseña</Form.Label>
+        <Form.Control
+          type='password'
+          value={password}
+          onChange={handleInputChange}
+          name='password'
+        />
+      </Form.Group>
 
-    const { password, email } = signupData
+      {errors.length ? (
+        <ErrorMessage>
+          {errors.map((elm) => (
+            <div key={elm}>{elm}</div>
+          ))}
+        </ErrorMessage>
+      ) : undefined}
 
-    return (
-
-        <Form onSubmit={handleSubmit}>
-
-            <Form.Group className="mb-3" controlId="email">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" value={email} onChange={handleInputChange} name="email" />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="password">
-                <Form.Label>Contraseña</Form.Label>
-                <Form.Control type="password" value={password} onChange={handleInputChange} name="password" />
-            </Form.Group>
-
-            {errors.length ? <ErrorMessage>{errors.map(elm => <div key={elm}>{elm}</div>)}</ErrorMessage> : undefined}
-
-            <div className="d-grid">
-                <Button variant="dark" type="submit">Acceder</Button>
-            </div>
-
-        </Form>
-    )
+      <div className='d-grid'>
+        <Button variant='dark' type='submit'>
+          Acceder
+        </Button>
+      </div>
+    </Form>
+  )
 }
 
 export default LoginForm
