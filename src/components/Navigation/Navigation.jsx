@@ -64,27 +64,36 @@ const Navigation = () => {
         >
           {!user ? (
             <>
-              <Link
+              <NavDropdown.Item
+                as='div'
                 onClick={() => setModal({ visible: true, content: 'login' })}
               >
-                <NavDropdown.Item as='div'>Iniciar Sesión</NavDropdown.Item>
-              </Link>
-              <Link
+                Iniciar Sesión
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                as='div'
                 onClick={() => setModal({ visible: true, content: 'signup' })}
               >
-                <NavDropdown.Item as='div'>Registro</NavDropdown.Item>
-              </Link>
+                Registro
+              </NavDropdown.Item>
             </>
           ) : (
             <>
-              <Link to='/perfil'>
-                <NavDropdown.Item as='div'>Mi Perfil</NavDropdown.Item>
-              </Link>
-              <Link to='/'>
-                <NavDropdown.Item as='div' onClick={logoutUser}>
-                  Cerrar sesión
-                </NavDropdown.Item>
-              </Link>
+              <NavDropdown.Item
+                as='div'
+                onClick={() => (window.location.href = '/perfil')}
+              >
+                Mi Perfil
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                as='div'
+                onClick={() => {
+                  logoutUser()
+                  window.location.href = '/'
+                }}
+              >
+                Cerrar sesión
+              </NavDropdown.Item>
             </>
           )}
         </NavDropdown>
