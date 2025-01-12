@@ -1,123 +1,166 @@
-import { useState } from "react"
-import { Form, Button, Container, Row, Col } from "react-bootstrap"
-import rentService from "../../services/Rent.service"
-import UploadServices from "../../services/Upload.service"
-import ErrorMessage from "../ErrorMessage/ErrorMessage"
-import "./NewRentForm.css"
+import { useState } from 'react'
+import { Form, Button, Container, Row, Col } from 'react-bootstrap'
+import rentService from '../../services/Rent.service'
+import UploadServices from '../../services/Upload.service'
+import ErrorMessage from '../ErrorMessage/ErrorMessage'
+import { toast } from 'react-hot-toast'
+import './NewRentForm.css'
 
 const NewRentForm = ({ fireFinalActions }) => {
+  const [rentData, setRentData] = useState({
+    title: '',
+    description: '',
+    price: 0,
+    imageUrl: '',
+    city: '',
+    lat: 0,
+    lng: 0,
+  })
 
-    const [rentData, setRentData] = useState({
-        title: '',
-        description: '',
-        price: 0,
-        imageUrl: '',
-        city: '',
-        lat: 0,
-        lng: 0
+  const [loadingImage, setLoadingImage] = useState(false)
 
-    })
+  const [errors, setErrors] = useState([])
 
-    const [loadingImage, setLoadingImage] = useState(false)
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setRentData({ ...rentData, [name]: value })
+  }
 
-    const [errors, setErrors] = useState([])
+  const handleFileUpload = (e) => {
+    setLoadingImage(true)
+    const formData = new FormData()
+    formData.append('imageData', e.target.files[0])
 
-    const handleInputChange = e => {
-        const { name, value } = e.target
-        setRentData({ ...rentData, [name]: value })
-    }
+    UploadServices.uploadimage(formData)
+      .then((res) => {
+        setRentData({ ...rentData, imageUrl: res.data.cloudinary_url })
+        setLoadingImage(false)
+      })
+      .catch((err) => console.log(err))
+  }
 
-    const handleFileUpload = e => {
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
 
-        setLoadingImage(true)
+    rentService
+      .saveRent(rentData)
+      .then(() => {
+        fireFinalActions()
+        toast.success(`Anuncio creado con éxito!`, {
+          style: {
+            border: '1px solid #713200',
+            padding: '10px',
+            color: '#713200',
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          },
+          iconTheme: {
+            primary: '#713200',
+            secondary: '#FFFAEE',
+          },
+        })
+      })
+      .catch((err) => {
+        const errorMessages = err.response?.data?.errorMessages ||
+          err.response?.data?.message || ['Error inesperado']
+        setErrors(
+          Array.isArray(errorMessages) ? errorMessages : [errorMessages]
+        )
+      })
+  }
 
-        const formData = new FormData()
-        formData.append('imageData', e.target.files[0])
+  const { title, description, price, lat, lng, city } = rentData
 
-        UploadServices
-            .uploadimage(formData)
-            .then(res => {
-                setRentData({ ...rentData, imageUrl: res.data.cloudinary_url })
-                setLoadingImage(false)
-            })
-            .catch(err => console.log(err))
+  return (
+    <Container>
+      <Form onSubmit={handleFormSubmit}>
+        <Form.Group className='mb-3' controlId='title'>
+          <Form.Label>Título</Form.Label>
+          <Form.Control
+            type='text'
+            name='title'
+            value={title}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
 
-    }
+        <Form.Group className='mb-3' controlId='description'>
+          <Form.Label>Descripción</Form.Label>
+          <Form.Control
+            type='text'
+            name='description'
+            value={description}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
 
+        <Form.Group className='mb-3' controlId='price'>
+          <Form.Label>Precio</Form.Label>
+          <Form.Control
+            type='number'
+            name='price'
+            value={price}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
 
-    const handleFormSubmit = e => {
+        <Form.Group className='mb-3' controlId='city'>
+          <Form.Label>Ciudad</Form.Label>
+          <Form.Control
+            type='text'
+            name='city'
+            value={city}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
 
-        e.preventDefault()
-        rentService
-            .saveRent(rentData)
-            .then(() => { fireFinalActions() })
-            .catch(err => {
-                const errorMessages = err.response?.data?.errorMessages || 
-                err.response?.data?.message || 
-                ['Error inesperado'];
-                setErrors(Array.isArray(errorMessages) ? errorMessages : [errorMessages]);
-            })
+        <Form.Group className='mb-3' controlId='coords'>
+          <Form.Label>Ubicación (Coordenadas)</Form.Label>
+          <Row>
+            <Col>
+              <Form.Control
+                type='text'
+                name='lat'
+                value={lat}
+                onChange={handleInputChange}
+              />
+            </Col>
+            <Col>
+              {' '}
+              <Form.Control
+                type='text'
+                name='lng'
+                value={lng}
+                onChange={handleInputChange}
+              />
+            </Col>
+          </Row>
+        </Form.Group>
 
-    }
+        <Form.Group className='mb-3' controlId='image'>
+          <Form.Label>Imagen</Form.Label>
+          <Form.Control type='file' onChange={handleFileUpload} />
+        </Form.Group>
 
-    const { title, description, price, lat, lng, city } = rentData
+        {errors.length ? (
+          <ErrorMessage>
+            {errors.map((elm) => (
+              <div key={elm}>{elm}</div>
+            ))}
+          </ErrorMessage>
+        ) : undefined}
 
-    return (
-
-        <Container>
-            < Form onSubmit={handleFormSubmit} >
-                <Form.Group className="mb-3" controlId="title">
-                    <Form.Label>Título</Form.Label>
-                    <Form.Control type="text" name="title" value={title} onChange={handleInputChange} />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="description">
-                    <Form.Label>Descripción</Form.Label>
-                    <Form.Control type="text" name="description" value={description} onChange={handleInputChange} />
-                </Form.Group>
-
-
-                <Form.Group className="mb-3" controlId="price">
-                    <Form.Label>Precio</Form.Label>
-                    <Form.Control type="number" name="price" value={price} onChange={handleInputChange} />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="city">
-                    <Form.Label>Ciudad</Form.Label>
-                    <Form.Control type="text" name="city" value={city} onChange={handleInputChange} />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="coords">
-                    <Form.Label>Ubicación (Coordenadas)</Form.Label>
-                    <Row>
-                        <Col><Form.Control type="text" name="lat" value={lat} onChange={handleInputChange} /></Col>
-                        <Col> <Form.Control type="text" name="lng" value={lng} onChange={handleInputChange} /></Col>
-                    </Row>
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="image">
-                    <Form.Label>Imagen</Form.Label>
-                    <Form.Control type="file" onChange={handleFileUpload} />
-                </Form.Group>
-
-                {errors.length ? <ErrorMessage>{errors.map(elm => <div key={elm}>{elm}</div>)}</ErrorMessage> : undefined}
-
-                <div className="d-grid mt-4">
-                    <Button
-                        className="color"
-                        variant="outline-secondary"
-                        type="submit"
-                        disabled={loadingImage}>{loadingImage
-                            ?
-                            'Subiendo imagen...'
-                            :
-                            'Crear anuncio'}</Button>
-                </div>
-            </Form >
-        </Container>
-    )
-
-
-
+        <div className='d-grid mt-4'>
+          <Button
+            className='color'
+            variant='outline-secondary'
+            type='submit'
+            disabled={loadingImage}
+          >
+            {loadingImage ? 'Subiendo imagen...' : 'Crear anuncio'}
+          </Button>
+        </div>
+      </Form>
+    </Container>
+  )
 }
 export default NewRentForm
