@@ -109,29 +109,16 @@ const Navigation = () => {
                 Buscar
               </Nav.Link>
             </Link>
-            {user ? (
-              <>
-                <Button
-                  className='button'
-                  onClick={() => setModal({ visible: true, content: 'rent' })}
-                  variant='outline-light'
-                  size='md'
-                >
-                  Anuncia tu camper
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button
-                  className='button'
-                  onClick={() => setModal({ visible: true, content: 'login' })}
-                  variant='outline-light'
-                  size='md'
-                >
-                  Anuncia tu camper
-                </Button>
-              </>
-            )}
+            <Button
+              className='button'
+              onClick={() =>
+                setModal({ visible: true, content: user ? 'rent' : 'login' })
+              }
+              variant='outline-light'
+              size='md'
+            >
+              Anuncia tu camper
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>

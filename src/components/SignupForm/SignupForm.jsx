@@ -44,7 +44,7 @@ const SignupForm = ({ fireFinalActions }) => {
       .then(() => {
         fireFinalActions()
         navigate('/')
-        toast.success(`Usuario registrado con éxito!`, {
+        toast.success(`¡Usuario registrado con éxito!`, {
           style: {
             border: '1px solid #713200',
             padding: '10px',

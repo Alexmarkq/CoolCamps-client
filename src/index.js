@@ -13,7 +13,7 @@ root.render(
     <RentProviderWrapper>
       <Router>
         <App />
-        <Toaster />
+        <Toaster position='bottom-right' reverseOrder={true} />
       </Router>
     </RentProviderWrapper>
   </AuthProviderWrapper>
