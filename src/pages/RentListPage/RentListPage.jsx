@@ -1,69 +1,67 @@
-import RentList from "../../components/RentList/RentList"
+import RentList from '../../components/RentList/RentList'
 import { Container, Button, Row } from 'react-bootstrap'
-import { Link } from "react-router-dom"
-import { useContext, useEffect, useState } from "react"
-import { RentContext } from "../../contexts/rent.context"
-import Loader from "../../components/Loader/Loader"
-import SearchBar from "../../components/SearchBar/SearchBar"
-import Maps from "../../components/Maps/Maps"
-
-
+import { Link } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
+import { RentContext } from '../../contexts/rent.context'
+import Loader from '../../components/Loader/Loader'
+import SearchBar from '../../components/SearchBar/SearchBar'
+import Maps from '../../components/Maps/Maps'
 
 const RentListPage = () => {
+  const { loadRents, rents } = useContext(RentContext)
+  const [filteredRents, setFlteredRents] = useState()
 
-    const { loadRents, rents } = useContext(RentContext)
-    const [filteredRents, setFlteredRents] = useState()
+  useEffect(() => {
+    loadRents()
+  }, [])
 
-    useEffect(() => {
-        loadRents()
-    }, [])
-
-    useEffect(() => {
-        if (rents) {
-            const filtered = rents.filter(el => el.state === 'Enable')
-            setFlteredRents(filtered)
-        }
-    }, [rents])
-
-    const filterRents = (filterText) => {
-
-        const resultRents = rents.filter(elm => {
-            //console.log(elm.state)
-            return elm.city.toLowerCase().includes(filterText.toLowerCase()) && elm.state === 'Enable'
-        })
-
-        setFlteredRents(resultRents)
+  useEffect(() => {
+    if (rents) {
+      const filtered = rents.filter((el) => el.state === 'Enable')
+      setFlteredRents(filtered)
     }
+  }, [rents])
 
-    return (
-        <>
-            <Container>
-                <h3 className="mt-4">Búsqueda</h3>
-                <hr />
-                <SearchBar filterRents={filterRents} />
+  const filterRents = (filterText) => {
+    const resultRents = rents.filter((elm) => {
+      return (
+        elm.city.toLowerCase().includes(filterText.toLowerCase()) &&
+        elm.state === 'Enable'
+      )
+    })
 
-                {!filteredRents
-                    ?
-                    <Loader />
-                    :
-                    <>
-                        <Maps locations={filteredRents}
-                            lat={filteredRents[0]?.location?.coordinates[0]}
-                            lng={filteredRents[0]?.location?.coordinates[1]} />
+    setFlteredRents(resultRents)
+  }
 
-                        <RentList rents={filteredRents} />
-                    </>
-                }
-                <hr />
-                <Row>
-                    <Link to="/" className="d-grid mb-5">
-                        <Button className="w-100" variant="outline-secondary" >Volver al inicio</Button>
-                    </Link>
-                </Row>
-            </Container>
-        </>
-    )
+  return (
+    <>
+      <Container>
+        <h3 className='mt-4'>Búsqueda</h3>
+        <hr />
+        <SearchBar filterRents={filterRents} />
 
+        {!filteredRents ? (
+          <Loader />
+        ) : (
+          <>
+            <Maps
+              locations={filteredRents}
+              lat={filteredRents[0]?.location?.coordinates[0] || 40.416775}
+              lng={filteredRents[0]?.location?.coordinates[1] || -3.70379}
+            />
+
+            <RentList rents={filteredRents} />
+          </>
+        )}
+        <hr />
+        <Row>
+          <Link to='/' className='d-grid mb-5'>
+            <Button className='w-100 app-theme-color'>Volver al inicio</Button>
+          </Link>
+        </Row>
+      </Container>
+    </>
+  )
 }
 
 export default RentListPage

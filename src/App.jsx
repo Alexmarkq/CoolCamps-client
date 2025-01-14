@@ -5,16 +5,13 @@ import Footer from './components/Footer/Footer'
 import AppRoutes from './routes/AppRoutes'
 
 const App = () => {
-
   return (
     <div className='App'>
-
       <Navigation />
       <AppRoutes />
       <Footer />
-
     </div>
   )
 }
 
-export default App;
+export default App

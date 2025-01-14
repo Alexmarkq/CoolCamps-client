@@ -7,6 +7,7 @@ import { AuthContext } from './../../contexts/auth.context'
 import { RentContext } from '../../contexts/rent.context'
 import RentEditForm from '../RentEditForm/RentEditForm'
 import NewReviewForm from '../NewReviewForm/NewReviewForm'
+import { toast } from 'react-hot-toast'
 
 function RentCard(props) {
   const { user } = useContext(AuthContext)
@@ -23,8 +24,22 @@ function RentCard(props) {
     city,
     state,
   } = props
+
   const lat = location.coordinates[0]
   const lng = location.coordinates[1]
+
+  const toastStyles = {
+    style: {
+      border: '1px solid #713200',
+      padding: '10px',
+      color: '#713200',
+      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    },
+    iconTheme: {
+      primary: '#713200',
+      secondary: '#FFFAEE',
+    },
+  }
 
   const [modal, setModal] = useState({
     visible: false,
@@ -64,6 +79,7 @@ function RentCard(props) {
     rentService
       .deleteRent(_id)
       .then(() => {
+        toast.success(`Anuncio eliminado`, toastStyles)
         fireFinalActions()
         loadRents()
         loadUserRents()
@@ -75,6 +91,7 @@ function RentCard(props) {
     rentService
       .enable(_id)
       .then(() => {
+        toast.success(`Anuncio habilitado`, toastStyles)
         fireFinalActions()
         loadRents()
         loadUserRents()
@@ -86,6 +103,7 @@ function RentCard(props) {
     rentService
       .disable(_id)
       .then(() => {
+        toast.success(`Anuncio deshabilitado`, toastStyles)
         fireFinalActions()
         loadRents()
         loadUserRents()
@@ -102,8 +120,8 @@ function RentCard(props) {
         >
           <Card.Img variant='top' src={imageUrl} />
           <Card.Body>
-            <Card.Text className='d-flex justify-content-between'>
-              <Card.Title style={{ color: 'blue' }}>{title}</Card.Title>
+            <div className='d-flex justify-content-between'>
+              <Card.Title style={{ color: '#a6601b' }}>{title}</Card.Title>
               <span
                 onClick={(e) => {
                   e.preventDefault()
@@ -112,92 +130,77 @@ function RentCard(props) {
               >
                 {!ids.includes(_id) ? '♡' : '❤️'}
               </span>
-            </Card.Text>
-            <Card.Text>
-              <div> {description}</div>
-              <br />
-              📍 {city}
-            </Card.Text>
-            <Card.Text>
-              <div className='h5'>{price} €/Día</div>
-            </Card.Text>
-            <Card.Text>
-              {!owner ||
-                (owner != user?._id && <div>De: {owner.username}</div>)}
-            </Card.Text>
-            <Card.Text>
+            </div>
+            <p>{description}</p>
+            <p>📍 {city}</p>
+            <p className='h5'>{price} €/Día</p>
+            {!owner || (owner !== user?._id && <p>De: {owner.username}</p>)}
+            <div>
               <Row>
                 {owner?._id === user?._id ? (
                   <>
                     <Col>
-                      <div className='d-grid mt-2'>
+                      <span className='d-grid mt-2'>
                         <Button
-                          onClick={() =>
+                          variant='outline-dark'
+                          size='sm'
+                          onClick={(e) => {
+                            e.preventDefault()
+                            state === 'Enable' ? disable() : enable()
+                          }}
+                        >
+                          {state === 'Enable' ? 'Deshabilitar' : 'Habilitar'}
+                        </Button>
+                      </span>
+                    </Col>
+                    <Col>
+                      <span className='d-grid mt-2'>
+                        <Button
+                          onClick={(e) => {
+                            e.preventDefault()
                             setModal({ visible: true, content: 'edit' })
-                          }
-                          variant='outline-warning'
+                          }}
+                          variant='outline-dark'
                           size='sm'
                         >
                           Editar
                         </Button>
-                      </div>
+                      </span>
                     </Col>
                     <Col>
-                      <div className='d-grid mt-2'>
+                      <span className='d-grid mt-2'>
                         <Button
                           variant='outline-danger'
                           size='sm'
-                          onClick={deleteRent}
+                          onClick={(e) => {
+                            e.preventDefault()
+                            deleteRent()
+                          }}
                         >
                           Borrar
                         </Button>
-                      </div>
+                      </span>
                     </Col>
-                    {state === 'Enable' ? (
-                      <Col>
-                        <div className='d-grid mt-2'>
-                          <Button
-                            variant='outline-dark'
-                            size='sm'
-                            onClick={disable}
-                          >
-                            Deshabilitar
-                          </Button>
-                        </div>
-                      </Col>
-                    ) : (
-                      <Col>
-                        <div className='d-grid mt-2'>
-                          <Button
-                            variant='outline-dark'
-                            size='sm'
-                            onClick={enable}
-                          >
-                            Habilitar
-                          </Button>
-                        </div>
-                      </Col>
-                    )}
                   </>
                 ) : (
                   <Col>
                     {user && (
-                      <div className='d-grid mt-2'>
+                      <span className='d-grid mt-2'>
                         <Button
+                          className='app-theme-color'
                           onClick={() =>
                             setModal({ visible: true, content: 'rent' })
                           }
-                          variant='outline-dark'
                           size='sm'
                         >
                           Reservar
                         </Button>
-                      </div>
+                      </span>
                     )}
                   </Col>
                 )}
               </Row>
-            </Card.Text>
+            </div>
           </Card.Body>
         </Link>
       </Card>

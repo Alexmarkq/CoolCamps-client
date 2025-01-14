@@ -43,14 +43,14 @@ const Navigation = () => {
         <NavDropdown
           title={
             user ? (
-              <Navbar.Brand href='/perfil'>
+              <div>
                 <img
                   src={user.profileImg}
                   width='40'
                   className='d-inline-block imageNav'
                   alt='X'
                 />
-              </Navbar.Brand>
+              </div>
             ) : (
               <img
                 src='https://res.cloudinary.com/dsqconqsu/image/upload/v1671119882/pxfyhdptihwg9fyjqibo.png'
@@ -96,19 +96,15 @@ const Navigation = () => {
             </>
           )}
         </NavDropdown>
-        <Link to='/'>
-          <Navbar.Brand as='div' className='cool'>
-            Cool Camps
-          </Navbar.Brand>
-        </Link>
+        <Navbar.Brand as={Link} to='/' className='cool'>
+          Cool Camps
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='justify-content-end flex-grow-1'>
-            <Link to='/lista'>
-              <Nav.Link as='div' className='galery-text'>
-                Buscar
-              </Nav.Link>
-            </Link>
+            <Nav.Link as={Link} to='/lista' className='galery-text'>
+              Buscar
+            </Nav.Link>
             <Button
               className='button'
               onClick={() =>

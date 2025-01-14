@@ -1,5 +1,5 @@
 import './Footer.css'
 
-const Footer = () => <footer> Desarrollado por Alex & Juan</footer>
+const Footer = () => <footer>Made with ❤️ in Madrid</footer>
 
 export default Footer

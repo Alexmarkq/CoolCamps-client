@@ -6,3 +6,39 @@
 a {
   text-decoration: none !important;
 }
+
+.app-theme-color {
+  color: #f8f9fa !important;
+  background-color: #a6601b !important;
+  border: 1px solid #ad6d31 !important;
+}
+
+.app-theme-color:hover {
+  color: #f8f9fa !important;
+  background-color: #ce833d !important;
+}
+
+.app-theme-color:focus,
+.app-theme-color:active {
+  background-color: #f8f9fa !important; 
+  color: #000 !important; 
+  border-color: #ccc !important; 
+  box-shadow: none !important;
+}
+
+.app-theme-color:disabled {
+  background-color: #ad6d31 !important; 
+  color: #f8f9fa !important; 
+  opacity: 1 !important; 
+  cursor: not-allowed; 
+}
+
+.no-spinners::-webkit-outer-spin-button,
+.no-spinners::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.submit-margin {
+  margin-top: 20px;
+}

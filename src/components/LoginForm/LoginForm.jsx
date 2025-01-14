@@ -1,6 +1,5 @@
 import { useState, useContext } from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
 import authService from '../../services/Auth.service'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
@@ -17,8 +16,6 @@ const LoginForm = ({ fireFinalActions }) => {
     const { value, name } = e.target
     setSignupData({ ...signupData, [name]: value })
   }
-
-  const navigate = useNavigate()
 
   const { storeToken, authenticateUser } = useContext(AuthContext)
 
@@ -53,6 +50,7 @@ const LoginForm = ({ fireFinalActions }) => {
           value={email}
           onChange={handleInputChange}
           name='email'
+          required
         />
       </Form.Group>
 
@@ -63,6 +61,7 @@ const LoginForm = ({ fireFinalActions }) => {
           value={password}
           onChange={handleInputChange}
           name='password'
+          required
         />
       </Form.Group>
 
@@ -75,7 +74,7 @@ const LoginForm = ({ fireFinalActions }) => {
       ) : undefined}
 
       <div className='d-grid'>
-        <Button variant='dark' type='submit'>
+        <Button className='app-theme-color' type='submit'>
           Acceder
         </Button>
       </div>

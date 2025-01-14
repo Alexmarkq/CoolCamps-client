@@ -10,6 +10,7 @@ import Loader from '../../components/Loader/Loader'
 import NewReviewForm from '../../components/NewReviewForm/NewReviewForm'
 import SignupForm from '../../components/SignupForm/SignupForm'
 import LoginForm from '../../components/LoginForm/LoginForm'
+import { toast } from 'react-hot-toast'
 
 const RentDetailsPage = () => {
   const { user } = useContext(AuthContext)
@@ -42,7 +43,21 @@ const RentDetailsPage = () => {
   const deleteReview = (reviewId) => {
     reviewService
       .deleteReview(reviewId)
-      .then(() => allReview())
+      .then(() => {
+        allReview()
+        toast.success('Comentario eliminado', {
+          style: {
+            border: '1px solid #713200',
+            padding: '10px',
+            color: '#713200',
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          },
+          iconTheme: {
+            primary: '#713200',
+            secondary: '#FFFAEE',
+          },
+        })
+      })
       .catch((err) => err)
   }
 
@@ -82,13 +97,16 @@ const RentDetailsPage = () => {
             <Row>
               <Col md={{ span: 4 }}>
                 <h3>Especificaciones</h3>
-                <div>{description}</div>
+                <span>{description}</span>
+                <br />
                 <br />
                 📍 {city}
                 <br />
                 <br />
-                <div className='h4'>{price} €/Día</div>
-                <div>{price * 6} €/Semana</div>
+                <span className='h4'>{price} €/Día</span>
+                <br />
+                <span>{price * 6} €/Semana</span>
+                <br />
                 {owner || owner != user?._id ? (
                   <>Propietario: {owner?.username}</>
                 ) : (
@@ -106,13 +124,13 @@ const RentDetailsPage = () => {
               </Col>
 
               <Col className='Maps image' md={{ span: 4 }}>
-                <div>
+                <span>
                   {' '}
                   <Maps
                     lat={location.coordinates[0]}
                     lng={location.coordinates[1]}
                   />
-                </div>
+                </span>
                 <br />
               </Col>
               {user && (
@@ -122,9 +140,9 @@ const RentDetailsPage = () => {
                       setModal({ visible: true, content: 'comment' })
                     }
                     as='div'
-                    variant='outline-secondary'
+                    className='app-theme-color'
                   >
-                    Crear comentario
+                    Nuevo comentario
                   </Button>
                 </Row>
               )}
@@ -135,7 +153,7 @@ const RentDetailsPage = () => {
             {user ? (
               reviews && reviews.length > 0 ? (
                 reviews.map((elm) => (
-                  <div key={elm._id}>
+                  <span key={elm._id}>
                     <Card className='mt-3'>
                       <Card.Header>
                         <img
@@ -158,15 +176,15 @@ const RentDetailsPage = () => {
                         )}
                       </Card.Body>
                     </Card>
-                  </div>
+                  </span>
                 ))
               ) : (
-                <div className='mt-4'>
+                <span className='mt-4'>
                   🤩 Se el primero en dejar un comentario!{' '}
-                </div>
+                </span>
               )
             ) : (
-              <div className='mt-4'>
+              <span className='mt-4'>
                 🧐{' '}
                 <span
                   onClick={() => setModal({ visible: true, content: 'login' })}
@@ -182,13 +200,11 @@ const RentDetailsPage = () => {
                   regístrate
                 </span>{' '}
                 para ver los comentarios.
-              </div>
+              </span>
             )}
             <Row className='mb-5 mt-5'>
               <Link to='/lista'>
-                <Button className='mb-5 w-100' variant='outline-secondary'>
-                  Volver
-                </Button>
+                <Button className='app-theme-color mb-5 w-100'>Volver</Button>
               </Link>
             </Row>
           </>
