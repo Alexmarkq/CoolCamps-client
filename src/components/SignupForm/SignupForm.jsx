@@ -114,7 +114,7 @@ const SignupForm = ({ fireFinalActions }) => {
       ) : undefined}
 
       <div className='d-grid'>
-        <Button variant='dark' type='submit' disabled={isLoading}>
+        <Button className='app-theme-color' type='submit' disabled={isLoading}>
           {isLoading ? (
             <>
               <span
