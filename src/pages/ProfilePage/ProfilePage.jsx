@@ -54,7 +54,7 @@ function ProfilePage() {
 
         <hr />
 
-        <Link to='/lista' className='d-grid mb-5'>
+        <Link to='/lista' className='d-grid mb-5 no-padding'>
           <Button className='app-theme-color w-100'>Volver</Button>
         </Link>
       </Container>

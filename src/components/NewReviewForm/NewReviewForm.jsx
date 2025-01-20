@@ -49,6 +49,7 @@ const NewReviewForm = ({ fireFinalActions, id }) => {
             name='title'
             value={title}
             onChange={handleInputChange}
+            required
           />
         </Form.Group>
 
@@ -59,6 +60,7 @@ const NewReviewForm = ({ fireFinalActions, id }) => {
             name='description'
             value={description}
             onChange={handleInputChange}
+            required
           />
         </Form.Group>
 

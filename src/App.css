@@ -7,10 +7,15 @@ a {
   text-decoration: none !important;
 }
 
+.no-padding {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
 .app-theme-color {
   color: #f8f9fa !important;
   background-color: #a6601b !important;
-  border: 1px solid #ad6d31 !important;
+  border: 1px solid #ad6d31 !important;  
 }
 
 .app-theme-color:hover {

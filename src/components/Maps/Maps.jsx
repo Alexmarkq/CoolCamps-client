@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 const containerStyle = {
   width: '100vw',
   height: '60vh',
+  borderRadius: '10px',
 }
 
 const Maps = ({ lat, lng, locations, selectable = false, onMapClick }) => {

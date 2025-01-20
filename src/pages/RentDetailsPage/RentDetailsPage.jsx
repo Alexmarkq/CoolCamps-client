@@ -105,36 +105,35 @@ const RentDetailsPage = () => {
                 <br />
                 <span className='h4'>{price} €/Día</span>
                 <br />
-                <span>{price * 6} €/Semana</span>
+                <span>{price * 7} €/Semana</span>
                 <br />
-                {owner || owner != user?._id ? (
+                {owner || owner !== user?._id ? (
                   <>Propietario: {owner?.username}</>
                 ) : (
                   <h1>Mi caravana</h1>
                 )}
               </Col>
 
-              <Col className='details mb-4 image' md={{ span: 4 }}>
+              <Col md={{ span: 4 }}>
                 <img
-                  className='details mb-2 mt-2 image'
+                  className='details image'
                   alt='Detalle'
                   src={imageUrl}
                   style={{ width: '100%' }}
                 />
               </Col>
 
-              <Col className='Maps image' md={{ span: 4 }}>
-                <span>
-                  {' '}
+              <Col md={{ span: 4 }}>
+                <div className='details-map'>
                   <Maps
                     lat={location.coordinates[0]}
                     lng={location.coordinates[1]}
                   />
-                </span>
+                </div>
                 <br />
               </Col>
               {user && (
-                <Row>
+                <Row className='no-padding'>
                   <Button
                     onClick={() =>
                       setModal({ visible: true, content: 'comment' })
@@ -203,7 +202,7 @@ const RentDetailsPage = () => {
               </span>
             )}
             <Row className='mb-5 mt-5'>
-              <Link to='/lista'>
+              <Link to='/lista' className='no-padding'>
                 <Button className='app-theme-color mb-5 w-100'>Volver</Button>
               </Link>
             </Row>

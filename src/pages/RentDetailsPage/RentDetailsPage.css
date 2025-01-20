@@ -1,6 +1,10 @@
 .details {
-    height: 400px;
+    height: 96%;
     object-fit: cover
+}
+
+.image {
+    border-radius: 10px;
 }
 
 .review-img {
@@ -11,6 +15,24 @@
     margin-right: 10px;
 }
 
-.image {
-    border-radius: 20px;
+@media (max-width: 767px) {
+    .px-3 {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+    .image{
+        margin: 20px 0 20px 0 !important;
+    }
+    .details{
+        height: 500px;
+    }
 }
+
+@media (min-width: 1400px) {
+    .details{
+        height: 92%;
+    }
+}
+
+
+
