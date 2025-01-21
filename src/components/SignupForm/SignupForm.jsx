@@ -77,6 +77,7 @@ const SignupForm = ({ fireFinalActions }) => {
           value={username}
           onChange={handleInputChange}
           name='username'
+          required
         />
       </Form.Group>
 
@@ -87,6 +88,7 @@ const SignupForm = ({ fireFinalActions }) => {
           value={password}
           onChange={handleInputChange}
           name='password'
+          required
         />
       </Form.Group>
 
@@ -97,12 +99,13 @@ const SignupForm = ({ fireFinalActions }) => {
           value={email}
           onChange={handleInputChange}
           name='email'
+          required
         />
       </Form.Group>
 
       <Form.Group className='mb-3' controlId='image'>
         <Form.Label>Imagen</Form.Label>
-        <Form.Control type='file' onChange={handleFileUpload} />
+        <Form.Control type='file' onChange={handleFileUpload} required />
       </Form.Group>
 
       {errors.length ? (

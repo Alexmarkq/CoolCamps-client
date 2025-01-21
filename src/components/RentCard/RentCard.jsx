@@ -134,6 +134,8 @@ function RentCard(props) {
             <p>{description}</p>
             <p>📍 {city}</p>
             <p className='h5'>{price} €/Día</p>
+            <span>{price * 6} €/Semana</span>
+            <br />
             {!owner || (owner !== user?._id && <p>De: {owner.username}</p>)}
             <div>
               <Row>

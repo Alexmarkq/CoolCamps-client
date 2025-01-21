@@ -105,7 +105,7 @@ const RentDetailsPage = () => {
                 <br />
                 <span className='h4'>{price} €/Día</span>
                 <br />
-                <span>{price * 7} €/Semana</span>
+                <span>{price * 6} €/Semana</span>
                 <br />
                 {owner || owner !== user?._id ? (
                   <>Propietario: {owner?.username}</>
