@@ -1,19 +1,45 @@
-.RentCard img {
-    height: 350px;
-    object-fit: cover
-}
-
-.RentCard {
+.rentcard {
     transition: transform .2s;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.RentCard:hover {
+.rentcard:hover {
     transform: scale(1.02);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1)
+}
+
+.rentcard img {
+    height: 350px;
+    object-fit: cover
 }
 
 div .row {
     margin: 0;
 }
+
+.rentcard-title {
+    color: #a6601b;
+    display: -webkit-box;
+    -webkit-box-orient: vertical; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1; 
+    line-height: 1.6; 
+}
+
+.rentcard-description {
+    min-height: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4; 
+    line-height: 1.6; 
+    max-height: calc(1.6em * 4); 
+}
+
 

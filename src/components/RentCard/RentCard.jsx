@@ -113,98 +113,102 @@ function RentCard(props) {
 
   return (
     <>
-      <Card className='RentCard mt-3'>
+      <Card className='rentcard mt-3'>
         <Link
           to={`/detalles/${_id}`}
           style={{ textDecoration: 'none', color: 'inherit' }}
         >
           <Card.Img variant='top' src={imageUrl} />
-          <Card.Body>
-            <div className='d-flex justify-content-between'>
-              <Card.Title style={{ color: '#a6601b' }}>{title}</Card.Title>
-              <span
-                onClick={(e) => {
-                  e.preventDefault()
-                  !ids.includes(_id) ? likeRent() : unlikeRent()
-                }}
-              >
-                {!ids.includes(_id) ? '♡' : '❤️'}
-              </span>
-            </div>
-            <p>{description}</p>
-            <p>📍 {city}</p>
-            <p className='h5'>{price} €/Día</p>
-            <span>{price * 6} €/Semana</span>
-            <br />
-            {!owner || (owner !== user?._id && <p>De: {owner.username}</p>)}
-            <div>
-              <Row>
-                {owner?._id === user?._id ? (
-                  <>
-                    <Col>
-                      <span className='d-grid mt-2'>
-                        <Button
-                          variant='outline-dark'
-                          size='sm'
-                          onClick={(e) => {
-                            e.preventDefault()
-                            state === 'Enable' ? disable() : enable()
-                          }}
-                        >
-                          {state === 'Enable' ? 'Deshabilitar' : 'Habilitar'}
-                        </Button>
-                      </span>
-                    </Col>
-                    <Col>
-                      <span className='d-grid mt-2'>
-                        <Button
-                          onClick={(e) => {
-                            e.preventDefault()
-                            setModal({ visible: true, content: 'edit' })
-                          }}
-                          variant='outline-dark'
-                          size='sm'
-                        >
-                          Editar
-                        </Button>
-                      </span>
-                    </Col>
-                    <Col>
-                      <span className='d-grid mt-2'>
-                        <Button
-                          variant='outline-danger'
-                          size='sm'
-                          onClick={(e) => {
-                            e.preventDefault()
-                            deleteRent()
-                          }}
-                        >
-                          Borrar
-                        </Button>
-                      </span>
-                    </Col>
-                  </>
-                ) : (
+          <div className='d-flex flex-column'>
+            <Card.Body>
+              <div className='d-flex justify-content-between'>
+                <Card.Title className='rentcard-title'>{title}</Card.Title>
+                <span
+                  onClick={(e) => {
+                    e.preventDefault()
+                    !ids.includes(_id) ? likeRent() : unlikeRent()
+                  }}
+                >
+                  {!ids.includes(_id) ? '♡' : '❤️'}
+                </span>
+              </div>
+              <div className='rentcard-description'>{description}</div>
+            </Card.Body>
+            <Card.Footer className='mt-auto'>
+              <p>📍 {city}</p>
+              <p className='h5'>{price} €/Día</p>
+              <span>{price * 6} €/Semana</span>
+              <br />
+              {!owner || (owner !== user?._id && <p>De: {owner.username}</p>)}
+            </Card.Footer>
+          </div>
+          <div>
+            <Row>
+              {owner?._id === user?._id ? (
+                <>
                   <Col>
-                    {user && (
-                      <span className='d-grid mt-2'>
-                        <Button
-                          className='app-theme-color'
-                          onClick={(e) => {
-                            e.preventDefault()
-                            setModal({ visible: true, content: 'rent' })
-                          }}
-                          size='sm'
-                        >
-                          Reservar
-                        </Button>
-                      </span>
-                    )}
+                    <span className='d-grid mt-2'>
+                      <Button
+                        variant='outline-dark'
+                        size='sm'
+                        onClick={(e) => {
+                          e.preventDefault()
+                          state === 'Enable' ? disable() : enable()
+                        }}
+                      >
+                        {state === 'Enable' ? 'Deshabilitar' : 'Habilitar'}
+                      </Button>
+                    </span>
                   </Col>
-                )}
-              </Row>
-            </div>
-          </Card.Body>
+                  <Col>
+                    <span className='d-grid mt-2'>
+                      <Button
+                        onClick={(e) => {
+                          e.preventDefault()
+                          setModal({ visible: true, content: 'edit' })
+                        }}
+                        variant='outline-dark'
+                        size='sm'
+                      >
+                        Editar
+                      </Button>
+                    </span>
+                  </Col>
+                  <Col>
+                    <span className='d-grid mt-2'>
+                      <Button
+                        variant='outline-danger'
+                        size='sm'
+                        onClick={(e) => {
+                          e.preventDefault()
+                          deleteRent()
+                        }}
+                      >
+                        Borrar
+                      </Button>
+                    </span>
+                  </Col>
+                </>
+              ) : (
+                <Col>
+                  {user && (
+                    <span className='d-grid mt-2'>
+                      <Button
+                        className='app-theme-color'
+                        onClick={(e) => {
+                          e.preventDefault()
+                          setModal({ visible: true, content: 'rent' })
+                        }}
+                        size='sm'
+                      >
+                        Reservar
+                      </Button>
+                    </span>
+                  )}
+                </Col>
+              )}
+            </Row>
+          </div>
         </Link>
       </Card>
 
