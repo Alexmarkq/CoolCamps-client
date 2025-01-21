@@ -2,6 +2,7 @@ import React from 'react'
 import { GoogleMap, Marker } from '@react-google-maps/api'
 import { Row } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
+import './Maps.css'
 
 const containerStyle = {
   width: '100vw',
@@ -33,7 +34,7 @@ const Maps = ({ lat, lng, locations, selectable = false, onMapClick }) => {
   }
 
   return (
-    <Row id='map2' className='px-3'>
+    <Row id='map2' className='px-3 extra-padding'>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={mapCenter}
