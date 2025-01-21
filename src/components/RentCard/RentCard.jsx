@@ -143,11 +143,11 @@ function RentCard(props) {
             </Card.Footer>
           </div>
           <div>
-            <Row>
+            <Row className='button-container'>
               {owner?._id === user?._id ? (
                 <>
                   <Col>
-                    <span className='d-grid mt-2'>
+                    <span className='d-grid mt-2 mb-2'>
                       <Button
                         variant='outline-dark'
                         size='sm'
@@ -161,7 +161,7 @@ function RentCard(props) {
                     </span>
                   </Col>
                   <Col>
-                    <span className='d-grid mt-2'>
+                    <span className='d-grid mt-2 mb-2'>
                       <Button
                         onClick={(e) => {
                           e.preventDefault()
@@ -190,20 +190,18 @@ function RentCard(props) {
                   </Col>
                 </>
               ) : (
-                <Col>
+                <Col className='d-grid button-container'>
                   {user && (
-                    <span className='d-grid mt-2'>
-                      <Button
-                        className='app-theme-color'
-                        onClick={(e) => {
-                          e.preventDefault()
-                          setModal({ visible: true, content: 'rent' })
-                        }}
-                        size='sm'
-                      >
-                        Reservar
-                      </Button>
-                    </span>
+                    <Button
+                      className='app-theme-color'
+                      onClick={(e) => {
+                        e.preventDefault()
+                        setModal({ visible: true, content: 'rent' })
+                      }}
+                      size='sm'
+                    >
+                      Reservar
+                    </Button>
                   )}
                 </Col>
               )}

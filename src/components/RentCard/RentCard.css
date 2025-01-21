@@ -41,5 +41,8 @@ div .row {
     line-height: 1.6; 
     max-height: calc(1.6em * 4); 
 }
-
+.button-container {
+    margin-bottom: 5px;
+    background-color: #f7f7f7;
+}
 
