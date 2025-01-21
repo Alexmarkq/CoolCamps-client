@@ -167,8 +167,8 @@ const RentEditForm = ({ fireFinalActions, rent }) => {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={() => setShowMap(false)}>
-            Cerrar
+          <Button className='app-theme-color' onClick={() => setShowMap(false)}>
+            Aceptar
           </Button>
         </Modal.Footer>
       </Modal>

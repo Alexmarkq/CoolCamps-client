@@ -188,9 +188,10 @@ function RentCard(props) {
                       <span className='d-grid mt-2'>
                         <Button
                           className='app-theme-color'
-                          onClick={() =>
+                          onClick={(e) => {
+                            e.preventDefault()
                             setModal({ visible: true, content: 'rent' })
-                          }
+                          }}
                           size='sm'
                         >
                           Reservar
