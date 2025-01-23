@@ -12,13 +12,15 @@ import { AuthContext } from '../../contexts/auth.context'
 import NewRentForm from '../NewRentForm/NewRentForm'
 import SignupForm from '../SignupForm/SignupForm'
 import LoginForm from '../LoginForm/LoginForm'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../Navigation/Navigation.css'
 import './Navigation.css'
 
 const Navigation = () => {
   const { loadRents } = useContext(RentContext)
   const { user, logoutUser } = useContext(AuthContext)
+  const navigate = useNavigate()
+
   const [modal, setModal] = useState({
     visible: false,
     content: '',
@@ -89,6 +91,7 @@ const Navigation = () => {
                 as='div'
                 onClick={() => {
                   logoutUser()
+                  navigate('/')
                 }}
               >
                 Cerrar sesión

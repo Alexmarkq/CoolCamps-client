@@ -13,7 +13,13 @@
     border-radius: 20px;
     border: 2px solid #dbdada;
     margin-right: 10px;
+    transition: transform .2s;
 }
+.review-img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 
 @media (max-width: 767px) {
     .px-3 {

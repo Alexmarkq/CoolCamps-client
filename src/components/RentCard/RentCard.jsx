@@ -1,6 +1,6 @@
 import './RentCard.css'
 import { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import rentService from '../../services/Rent.service'
 import { Card, Button, Modal, Col, Row } from 'react-bootstrap'
 import { AuthContext } from './../../contexts/auth.context'
@@ -11,8 +11,9 @@ import { toast } from 'react-hot-toast'
 
 function RentCard(props) {
   const { user } = useContext(AuthContext)
-  const { getLikedRents, favRents, loadRents, loadUserRents } =
+  const { getLikedRents, favRents, loadRents, loadOwnRents } =
     useContext(RentContext)
+  const navigate = useNavigate()
   const {
     title,
     description,
@@ -23,6 +24,7 @@ function RentCard(props) {
     _id,
     city,
     state,
+    profilePage,
   } = props
 
   const lat = location.coordinates[0]
@@ -82,7 +84,7 @@ function RentCard(props) {
         toast.success(`Anuncio eliminado`, toastStyles)
         fireFinalActions()
         loadRents()
-        loadUserRents()
+        loadOwnRents()
       })
       .catch((err) => err)
   }
@@ -94,7 +96,7 @@ function RentCard(props) {
         toast.success(`Anuncio habilitado`, toastStyles)
         fireFinalActions()
         loadRents()
-        loadUserRents()
+        loadOwnRents()
       })
       .catch((err) => err)
   }
@@ -106,7 +108,7 @@ function RentCard(props) {
         toast.success(`Anuncio deshabilitado`, toastStyles)
         fireFinalActions()
         loadRents()
-        loadUserRents()
+        loadOwnRents()
       })
       .catch((err) => err)
   }
@@ -139,7 +141,29 @@ function RentCard(props) {
               <p className='h5'>{price} €/Día</p>
               <span>{price * 6} €/Semana</span>
               <br />
-              {!owner || (owner !== user?._id && <p>De: {owner.username}</p>)}
+              {!profilePage &&
+                (!owner ||
+                  (owner !== user?._id && (
+                    <p>
+                      Propietario:{' '}
+                      <span
+                        onClick={(e) => {
+                          e.preventDefault()
+                          if (user) {
+                            navigate(`/perfil/${owner._id}`)
+                          } else {
+                            toast.error(
+                              `Debes iniciar sesión para ver el perfil del propietario.`,
+                              toastStyles
+                            )
+                          }
+                        }}
+                        style={{ color: 'blue' }}
+                      >
+                        {owner.username}
+                      </span>
+                    </p>
+                  )))}
             </Card.Footer>
           </div>
           <div>

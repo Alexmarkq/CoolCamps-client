@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom'
 import { RentContext } from '../../contexts/rent.context'
 
 function ProfilePage() {
-  const { loadUserRents, userRents, favRents, getLikedRents, loadRents } =
+  const { loadOwnRents, ownRents, favRents, getLikedRents, loadRents } =
     useContext(RentContext)
 
   const refreshAll = () => {
     loadRents()
-    loadUserRents()
+    loadOwnRents()
     getLikedRents()
   }
 
@@ -33,7 +33,7 @@ function ProfilePage() {
           <Col>
             <h3>Mis anuncios</h3>
             <hr />
-            <RentList rents={userRents} />
+            <RentList rents={ownRents} />
           </Col>
         </Row>
 

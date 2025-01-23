@@ -1,7 +1,7 @@
 import './RentDetailsPage.css'
 import { useEffect, useState, useContext } from 'react'
 import { Container, Row, Col, Button, Card, Modal } from 'react-bootstrap'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { AuthContext } from './../../contexts/auth.context'
 import reviewService from '../../services/Review.service'
 import rentService from './../../services/Rent.service'
@@ -14,6 +14,7 @@ import { toast } from 'react-hot-toast'
 
 const RentDetailsPage = () => {
   const { user } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const [rent, setRent] = useState({})
   const [reviews, setReviews] = useState(null)
@@ -75,7 +76,7 @@ const RentDetailsPage = () => {
 
   useEffect(() => {
     oneRent()
-    allReview()
+    user && allReview()
   }, [])
 
   const { title, description, price, imageUrl, location, owner, _id, city } =
@@ -156,8 +157,12 @@ const RentDetailsPage = () => {
                     <Card className='mt-3'>
                       <Card.Header>
                         <img
+                          onClick={(e) => {
+                            e.preventDefault()
+                            navigate(`/perfil/${elm.owner._id}`)
+                          }}
                           src={elm.owner.profileImg}
-                          alt='Imagen perfil'
+                          alt='Imagen usuario'
                           className='review-img'
                         />
                         {elm.owner.username}
