@@ -11,6 +11,7 @@ import './RentListPage.css'
 const RentListPage = () => {
   const { loadRents, rents } = useContext(RentContext)
   const [filteredRents, setFlteredRents] = useState()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     loadRents()
@@ -20,6 +21,7 @@ const RentListPage = () => {
     if (rents) {
       const filtered = rents.filter((el) => el.state === 'Enable')
       setFlteredRents(filtered)
+      setIsLoading(false)
     }
   }, [rents])
 
@@ -41,7 +43,7 @@ const RentListPage = () => {
         <hr />
         <SearchBar filterRents={filterRents} />
 
-        {!filteredRents ? (
+        {isLoading ? (
           <Loader />
         ) : (
           <>
