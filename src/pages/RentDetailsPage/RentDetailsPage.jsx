@@ -192,14 +192,14 @@ const RentDetailsPage = () => {
                 🧐{' '}
                 <span
                   onClick={() => setModal({ visible: true, content: 'login' })}
-                  style={{ cursor: 'pointer', color: 'blue' }}
+                  style={{ cursor: 'pointer', color: '#a6601b' }}
                 >
                   Inicia sesión
                 </span>
                 {' o '}
                 <span
                   onClick={() => setModal({ visible: true, content: 'signup' })}
-                  style={{ cursor: 'pointer', color: 'blue' }}
+                  style={{ cursor: 'pointer', color: '#a6601b' }}
                 >
                   regístrate
                 </span>{' '}

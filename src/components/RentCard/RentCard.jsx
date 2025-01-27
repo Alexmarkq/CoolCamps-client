@@ -158,7 +158,7 @@ function RentCard(props) {
                             )
                           }
                         }}
-                        style={{ color: 'blue' }}
+                        style={{ color: '#a6601b' }}
                       >
                         {owner.username}
                       </span>
