@@ -26,7 +26,7 @@ const AuthProviderWrapper = ({ children }) => {
   }
 
   const authenticateUser = () => {
-    const token = localStorage.getItem('authToken')
+    const token = localStorage.getItem('authToken') || null
     const hasWelcome = localStorage.getItem('hasWelcome')
 
     if (token) {
@@ -45,6 +45,8 @@ const AuthProviderWrapper = ({ children }) => {
           setUser(null)
           setIsLoading(false)
         })
+    } else {
+      setIsLoading(false)
     }
   }
   const logoutUser = () => {

@@ -77,7 +77,7 @@ const RentDetailsPage = () => {
   useEffect(() => {
     oneRent()
     user && allReview()
-  }, [])
+  }, [user])
 
   const { title, description, price, imageUrl, location, owner, _id, city } =
     rent
@@ -125,12 +125,12 @@ const RentDetailsPage = () => {
               </Col>
 
               <Col md={{ span: 4 }}>
-                <div className='details-map'>
-                  <Maps
-                    lat={location.coordinates[0]}
-                    lng={location.coordinates[1]}
-                  />
-                </div>
+                {/* <div className='details image'> */}
+                <Maps
+                  lat={location.coordinates[0]}
+                  lng={location.coordinates[1]}
+                />
+                {/* </div> */}
                 <br />
               </Col>
               {user && (
