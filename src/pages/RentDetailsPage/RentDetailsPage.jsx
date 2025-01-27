@@ -125,12 +125,10 @@ const RentDetailsPage = () => {
               </Col>
 
               <Col md={{ span: 4 }}>
-                {/* <div className='details image'> */}
                 <Maps
                   lat={location.coordinates[0]}
                   lng={location.coordinates[1]}
                 />
-                {/* </div> */}
                 <br />
               </Col>
               {user && (

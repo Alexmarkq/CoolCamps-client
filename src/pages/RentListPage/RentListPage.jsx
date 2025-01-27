@@ -1,11 +1,12 @@
 import RentList from '../../components/RentList/RentList'
-import { Container, Button, Row } from 'react-bootstrap'
+import { Container, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { RentContext } from '../../contexts/rent.context'
 import Loader from '../../components/Loader/Loader'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import Maps from '../../components/Maps/Maps'
+import './RentListPage.css'
 
 const RentListPage = () => {
   const { loadRents, rents } = useContext(RentContext)
@@ -44,11 +45,13 @@ const RentListPage = () => {
           <Loader />
         ) : (
           <>
-            <Maps
-              locations={filteredRents}
-              lat={filteredRents[0]?.location?.coordinates[0] || 40.416775}
-              lng={filteredRents[0]?.location?.coordinates[1] || -3.70379}
-            />
+            <Col className='map-padding'>
+              <Maps
+                locations={filteredRents}
+                lat={filteredRents[0]?.location?.coordinates[0] || 40.416775}
+                lng={filteredRents[0]?.location?.coordinates[1] || -3.70379}
+              />
+            </Col>
 
             <RentList rents={filteredRents} />
           </>
